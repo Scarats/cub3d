@@ -64,4 +64,42 @@ void	draw_line(t_point a, t_point b, int color, t_img *img)
 	}
 }
 
+// Draw line with dpoint at minimap ratio
+void	draw_d_line(t_dpoint a, t_dpoint b, int color, t_img *img)
+{
+	t_line l;
+	int e2;
+
+	l.dx = fabs(b.x - a.x);
+	l.dy = fabs(b.y - a.y);
+	if (a.x < b.x)
+		l.sx = 1; 
+	else
+		l.sx = -1;
+	if (a.y < b.y)
+		l.sy = 1; 
+	else
+		l.sy = -1;
+	
+	l.error = l.dx - l.dy;	
+	while(1)
+	{
+		my_pixel_put(img, map_to_pixel(a.x, img->data), map_to_pixel(a.y, img->data), color);
+
+		if (a.x == b.x && a.y== b.y)
+			break;
+		e2 = 2 * l.error;	
+		if (e2 > -l.dy)
+		{
+			l.error -= l.dy;
+            a.x += l.sx;
+        }
+        if (e2 < l.dx)
+        {
+            l.error += l.dx;
+            a.y += l.sy;
+        }
+	}
+}
+
 

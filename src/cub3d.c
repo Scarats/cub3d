@@ -36,11 +36,6 @@ int	main_logic(t_data *data)
 	
 	mouse_edge(data);
 
-	// TEMP ======================================
-	set_dir_from_pos(&data->direction, &data->position, data->direction_angle, data->win_width / 2);	
-	draw_line(data->position, data->direction, P_WHITE, data->img_buff);
-	// ===========================================
-
 	draw_minimap(data, data->map);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;

@@ -17,6 +17,7 @@ void init_minimap_ratio(t_data *data)
 	int window;
 	float	scale_factor;
 
+	printf("init_minimap_ratio\n");
 	if (data->map.height > data->map.width)
 		max = data->map.height;
 	else

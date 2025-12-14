@@ -116,10 +116,10 @@ typedef struct s_data
 	int error;
 
 	// PLAYER
-	t_point		direction; // Just for testing
-	t_point		position;
-	t_vector	d_dir;
-	t_dpoint	d_pos;
+	t_dpoint		direction_point; // Just for testing
+	t_dpoint		position_point;
+	// t_vector	d_dir;
+	// t_dpoint	d_pos;
 	double		direction_angle;
 	t_controls	controls; 
 
@@ -158,6 +158,7 @@ void	reset_img(t_img *img);
 // DRAW
 void	my_pixel_put(t_img *img, int x, int y, int color);
 void	draw_line(t_point a, t_point b, int color, t_img *img);
+void	draw_d_line(t_dpoint a, t_dpoint b, int color, t_img *img);
 int		get_offset(int y, int x, int line_length, int bits_per_pixel);
 void	draw_square(int x, int y, t_data *data);
 
@@ -184,7 +185,7 @@ void    mouse_edge(t_data *data);
 
 // DIRECTION
 double	set_angle(double prev_angle, double	pixel_pov_shift);
-void    set_dir_from_pos(t_point *direction, t_point *position, double angle, double length);
+void    set_dir_from_pos(t_dpoint *direction, t_dpoint *position, double angle, double length);
 t_vector	get_vector(double angle);
 
 // POSITION
@@ -194,5 +195,6 @@ void	get_position(t_data *data);
 void	print_direction(t_data *data);
 void	draw_minimap(t_data *data, t_map map);
 void	init_minimap_ratio(t_data *data);
+int		map_to_pixel(double	map_point, t_data *data);
 
 #endif

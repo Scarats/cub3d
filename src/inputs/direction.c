@@ -36,7 +36,7 @@ t_vector get_vector(double angle)
 
 // Only use for testing or drawing the minimap, it gives the direction point from the position the angle and the length.
 // Currently used to draw a line for testing.
-void    set_dir_from_pos(t_point *direction, t_point *position, double angle, double length)
+void	set_dir_from_pos(t_dpoint *direction, t_dpoint *position, double angle, double length)
 {
     double rad;
     double dx;
