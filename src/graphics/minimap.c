@@ -9,10 +9,11 @@ void	draw_minimap(t_data *data, t_map map)
 	y = -1;
 	while (++y < map.height)
 	{
+		x = -1;
 		while (++x < map.width)
 		{
 			if (map.map[y][x] > 0)
-				draw_rectangle(x, y, map.height, map.width, data);
+				draw_square(x, y, data);
 		}
 	}
 }

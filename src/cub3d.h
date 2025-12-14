@@ -23,7 +23,8 @@
 #define POV	10 // Pixels shift per click
 #define M_PI 3.14159265358979323846
 #define FOV	66
-#define MINIMAP_SCALE 550
+#define MINIMAP_SCALE 100
+#define BORDER_THICKNESS 1
 
 typedef enum e_event
 {
@@ -156,7 +157,7 @@ void	reset_img(t_img *img);
 void	my_pixel_put(t_img *img, int x, int y, int color);
 void	draw_line(t_point a, t_point b, int color, t_img *img);
 int		get_offset(int y, int x, int line_length, int bits_per_pixel);
-void	draw_rectangle(int x, int y, int height, int width, t_data *data);
+void	draw_square(int x, int y, t_data *data);
 
 // HOOKS
 void	set_hooks(t_data *data);

@@ -19,12 +19,12 @@ MLX_MAC_DIR   = ./src/libraries/minilibx_mms_20200219
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	${CC} ${FLAGS} -c $< -o $@
+	@${CC} ${FLAGS} -c $< -o $@
 
 ${NAME}: 	${OBJS}
 	@make -C ./src/libraries/libft
 	@make -C ${MLX_LINUX_DIR}
-	${CC} ${OBJS} -L${MLX_LINUX_DIR} -lmlx -L/usr/lib -I${MLX_LINUX_DIR} -lXext -lX11 -lm -lz -L./src/libraries/libft -lft -o ${NAME} 
+	@${CC} ${OBJS} -L${MLX_LINUX_DIR} -lmlx -L/usr/lib -I${MLX_LINUX_DIR} -lXext -lX11 -lm -lz -L./src/libraries/libft -lft -o ${NAME} 
 
 # mac: 	${OBJS}
 # 	@make -C ./src/libraries/libft

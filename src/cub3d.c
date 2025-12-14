@@ -3,6 +3,8 @@
 void hardcoded_minimap(t_data *data)
 {
 	printf("hardcoded_minimap\n");
+	data->map.height = 4;
+	data->map.width = 4;
 	data->map.map = my_malloc(NULL, &data->malloc_list, sizeof(int *) * 4);
 	for (int i = 0; i < 4; i++)
 	{
