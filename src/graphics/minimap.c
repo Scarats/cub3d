@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-// void	print_direction(t_data *data)
-// {
-// 	// Set direction point
-// }
+void	draw_minimap(t_data *data)
+{
+
+}

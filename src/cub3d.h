@@ -40,7 +40,6 @@ typedef enum e_key
 	KEY_DOWN = 63364,
 } t_key;
 
-
  typedef struct s_line
  {
 	int dx;
@@ -55,6 +54,12 @@ typedef struct s_vector
 	double	dx;
 	double	dy;
 }	t_vector;
+
+typedef struct s_dpoint
+{
+	double	x;	// Width
+	double	y;	// Height
+}	t_dpoint;
 
 typedef struct s_point
 {
@@ -101,13 +106,17 @@ typedef struct s_data
 	int error;
 
 	// PLAYER
-	t_point		position;
-	t_point		direction; // Just for testing
+	// t_point		direction; // Just for testing
+	t_vector	direction;
+	t_dpoint	position;
+	double		direction_angle;
 	t_controls	controls; 
-	double	direction_angle;
 
 	// RAYCASTING
-	t_point	
+	t_dpoint	delta_dist;
+	t_dpoint	side_dist;
+	t_point		step;
+	t_point		map_pos;
 
 	// MOUSE
 	t_point *last_mouse_pos;
