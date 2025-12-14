@@ -146,7 +146,6 @@ int		main_logic(t_data *data);
 
 // UTILS
 int		stop(t_data *data);
-void	init_map_ratio(t_data *data);
 
 // WINDOWS
 void	create_window(t_data *data);
@@ -194,5 +193,6 @@ void	get_position(t_data *data);
 // MINIMAP
 void	print_direction(t_data *data);
 void	draw_minimap(t_data *data, t_map map);
+void	init_minimap_ratio(t_data *data);
 
 #endif

@@ -10,7 +10,8 @@ int	map_to_pixel(double	map_point, t_data *data)
 	return((int)(map_point * ratio) + PADDING);
 }
 
-void init_map_ratio(t_data *data)
+// Set the minimap ratio according to the window dimention anf the MINIMAP_SCALE
+void init_minimap_ratio(t_data *data)
 {
 	int max;
 	int window;

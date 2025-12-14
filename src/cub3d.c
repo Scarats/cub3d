@@ -71,7 +71,7 @@ void init(t_data *data)
 	hardcoded_minimap(data);
 	
 	// MAP TO SCREEN RATIO
-	data->
+	init_minimap_ratio(data);	
 
 	get_position(data);
 	set_hooks(data);

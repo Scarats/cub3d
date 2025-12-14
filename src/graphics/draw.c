@@ -64,41 +64,4 @@ void	draw_line(t_point a, t_point b, int color, t_img *img)
 	}
 }
 
-void	draw_square(int x, int y, t_data *data)
-{
-	int start_x;
-	int start_y;
-	int end_x;
-	int end_y;
-	int i;
-	int t;
-	int j;
 
-    start_x = x * MINIMAP_SCALE;
-    start_y = y * MINIMAP_SCALE;
-    end_x = start_x + MINIMAP_SCALE;
-    end_y = start_y + MINIMAP_SCALE;
-	i = start_x;
-	j = start_y;
-
-    // Left & Right
-	while (i++ < end_x)
-    {
-		t = -1;
-		while (++t < BORDER_THICKNESS)
-        {
-            my_pixel_put(data->img_buff, i, start_y + t, P_WHITE);
-            my_pixel_put(data->img_buff, i, end_y - 1 - t, P_WHITE);
-        }
-    }
-    // Left & Right
-	while (j++ < end_y)
-    {
-		t = -1;
-		while (++t < BORDER_THICKNESS)
-        {
-            my_pixel_put(data->img_buff, start_x + t, j, P_WHITE);
-            my_pixel_put(data->img_buff, end_x - 1 - t, j, P_WHITE);
-        }
-    }
-}
