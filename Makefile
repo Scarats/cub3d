@@ -2,7 +2,7 @@ SRCS	= src/cub3d.c src/utils/stop.c src/graphics/window_handler.c \
 			src/graphics/image_handler.c src/inputs/hooks.c \
 			src/inputs/direction.c src/graphics/render.c src/inputs/position.c \
 			src/inputs/pov_handler.c src/graphics/draw.c src/graphics/minimap.c \
-			src/inputs/mouse.c src/raycasting/raycasting.c
+			src/inputs/mouse.c src/raycasting/raycasting.c src/graphicsmap_to_screen.c \
 
 # add GL_SILENCE_DEPRECATION to silence mac OpenGL warnings
 FLAGS = -Wall -Wextra -Werror -g -DGL_SILENCE_DEPRECATION

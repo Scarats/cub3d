@@ -56,6 +56,7 @@ void init(t_data *data)
 {
 	fdprintf(1, "init\n");
 
+
 	// IMG
 	data->img_buff = my_malloc(NULL, &data->malloc_list, sizeof(t_img));
 	init_new_img(data->img_buff, data);
@@ -68,6 +69,9 @@ void init(t_data *data)
 
 	// MINIMAP
 	hardcoded_minimap(data);
+	
+	// MAP TO SCREEN RATIO
+	data->
 
 	get_position(data);
 	set_hooks(data);

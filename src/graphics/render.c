@@ -24,3 +24,4 @@ void	refresh_images(t_data *data)
 	swap_images(&data->img_main, &data->img_buff);
 	reset_img(data->img_buff);
 }
+

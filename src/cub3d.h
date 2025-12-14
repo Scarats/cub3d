@@ -23,8 +23,9 @@
 #define POV	10 // Pixels shift per click
 #define M_PI 3.14159265358979323846
 #define FOV	66
-#define MINIMAP_SCALE 100
+#define MINIMAP_SCALE 95 // in % of the screen
 #define BORDER_THICKNESS 1
+#define PADDING 5 // in pixel
 
 typedef enum e_event
 {
@@ -129,7 +130,8 @@ typedef struct s_data
 	t_point		map_pos;
 
 	// MINIMAP
-	t_map map;
+	int			map_ratio; // From map point to pixel point for the minimap
+	t_map		map;
 
 	// MOUSE
 	t_point *last_mouse_pos;
@@ -144,6 +146,7 @@ int		main_logic(t_data *data);
 
 // UTILS
 int		stop(t_data *data);
+void	init_map_ratio(t_data *data);
 
 // WINDOWS
 void	create_window(t_data *data);
