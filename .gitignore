@@ -1,0 +1,6 @@
+./src/libraries/minilibx-linux/test/mlx-test
+.vscode
+.DS_Store
+cub3d
+*.a
+*.o

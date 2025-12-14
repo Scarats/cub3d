@@ -1,0 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   my_strdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/03 15:12:02 by tcardair          #+#    #+#             */
+/*   Updated: 2025/12/08 14:45:52 by tcardair         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "my_gc.h"
+
+// strdup and add the allocated memory to the list.
+char	*my_strdup(t_list **malloc_list, char *src)
+{
+	char	*dup;
+
+	if (!src || !malloc_list)
+		return (NULL);
+	dup = ft_strdup(src);
+	if (!dup)
+		return (NULL);
+	my_addtolist(malloc_list, dup);
+	return (dup);
+}
