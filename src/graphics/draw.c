@@ -70,10 +70,10 @@ void	draw_rectangle(int x, int y, int height, int width, t_data *data)
 
 	x *= MINIMAP_SCALE;
 	y *= MINIMAP_SCALE;
-
-	x_backup = x;
 	height *= MINIMAP_SCALE;
 	width *= MINIMAP_SCALE;
+	
+	x_backup = x;
 	while (y < height)
 	{
 		x = x_backup;

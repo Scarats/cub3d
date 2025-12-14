@@ -1,5 +1,30 @@
 #include "cub3d.h"
 
+void hardcoded_minimap(t_data *data)
+{
+	printf("hardcoded_minimap\n");
+	data->map.map = my_malloc(NULL, &data->malloc_list, sizeof(int *) * 4);
+	for (int i = 0; i < 4; i++)
+	{
+ 	   data->map.map[i] = my_malloc(NULL, &data->malloc_list, 4 * sizeof(int));
+	}
+	int hardcoded[4][4] = {
+    {1, 1, 1, 1},
+    {1, 0, 0, 1},
+    {1, 0, 0, 1},
+    {1, 1, 1, 1}
+	};
+
+	for (int i = 0; i < 4; i++)
+	{
+ 	   for (int j = 0; j < 4; j++)
+ 	   {
+	      data->map.map[i][j] = hardcoded[i][j];
+	    }
+	}
+}
+
+
 // After a key is pressed, this function is used to create
 // the new img according to the current situation and render it.
 int	main_logic(t_data *data)
@@ -12,9 +37,9 @@ int	main_logic(t_data *data)
 	// TEMP ======================================
 	set_dir_from_pos(&data->direction, &data->position, data->direction_angle, data->win_width / 2);	
 	draw_line(data->position, data->direction, P_WHITE, data->img_buff);
-	draw_minimap(data, data->map);
 	// ===========================================
 
+	draw_minimap(data, data->map);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;
 	data->curr_mouse_pos->y = -1;
@@ -38,6 +63,9 @@ void init(t_data *data)
 	// MOUSE POS
 	data->curr_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
+
+	// MINIMAP
+	hardcoded_minimap(data);
 
 	get_position(data);
 	set_hooks(data);

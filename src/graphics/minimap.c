@@ -15,5 +15,4 @@ void	draw_minimap(t_data *data, t_map map)
 				draw_rectangle(x, y, map.height, map.width, data);
 		}
 	}
-
 }
