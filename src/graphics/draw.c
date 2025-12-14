@@ -63,3 +63,25 @@ void	draw_line(t_point a, t_point b, int color, t_img *img)
         }
 	}
 }
+
+void	draw_rectangle(int x, int y, int height, int width, t_data *data)
+{
+	int x_backup;
+
+	x *= MINIMAP_SCALE;
+	y *= MINIMAP_SCALE;
+
+	x_backup = x;
+	height *= MINIMAP_SCALE;
+	width *= MINIMAP_SCALE;
+	while (y < height)
+	{
+		x = x_backup;
+		while (x < width)
+		{
+			my_pixel_put(data->img_buff, x, y, P_WHITE);
+			x++;
+		}
+		y++;
+	}
+}

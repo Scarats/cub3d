@@ -23,16 +23,16 @@ double set_angle(double	prev_angle, double	pixel_pov_shift)
 	return (angle);
 }
 
-// t_vector get_vector(t_point position, double angle)
-// {
-// 	t_vector vector;
-// 	double rad;
+t_vector get_vector(double angle)
+{
+	t_vector vector;
+	double rad;
 
-// 	rad = angle * M_PI / 180.0;
-// 	vector.dx = cos(rad);
-// 	vector.dy = sin(rad);
-// 	return (vector);
-// }
+	rad = angle * M_PI / 180.0;
+	vector.dx = cos(rad);
+	vector.dy = sin(rad);
+	return (vector);
+}
 
 // Only use for testing or drawing the minimap, it gives the direction point from the position the angle and the length.
 // Currently used to draw a line for testing.

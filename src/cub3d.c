@@ -12,6 +12,7 @@ int	main_logic(t_data *data)
 	// TEMP ======================================
 	set_dir_from_pos(&data->direction, &data->position, data->direction_angle, data->win_width / 2);	
 	draw_line(data->position, data->direction, P_WHITE, data->img_buff);
+	draw_minimap(data, data->map);
 	// ===========================================
 
 	refresh_images(data);

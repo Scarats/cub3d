@@ -23,6 +23,7 @@
 #define POV	10 // Pixels shift per click
 #define M_PI 3.14159265358979323846
 #define FOV	66
+#define MINIMAP_SCALE 550
 
 typedef enum e_event
 {
@@ -90,6 +91,13 @@ typedef struct s_img
 	void *data;
 }	t_img;
 
+typedef struct s_map
+{
+	int	height;
+	int width;
+	int **map;
+} t_map;
+
 typedef struct s_data
 {
 	// MLX && WINDOW
@@ -106,9 +114,10 @@ typedef struct s_data
 	int error;
 
 	// PLAYER
-	// t_point		direction; // Just for testing
-	t_vector	direction;
-	t_dpoint	position;
+	t_point		direction; // Just for testing
+	t_point		position;
+	t_vector	d_dir;
+	t_dpoint	d_pos;
 	double		direction_angle;
 	t_controls	controls; 
 
@@ -117,6 +126,9 @@ typedef struct s_data
 	t_dpoint	side_dist;
 	t_point		step;
 	t_point		map_pos;
+
+	// MINIMAP
+	t_map map;
 
 	// MOUSE
 	t_point *last_mouse_pos;
@@ -130,20 +142,21 @@ typedef struct s_data
 int		main_logic(t_data *data);
 
 // UTILS
-int stop(t_data *data);
+int		stop(t_data *data);
 
 // WINDOWS
-void create_window(t_data *data);
-int close_window(int keycode, t_data *data);
+void	create_window(t_data *data);
+int		close_window(int keycode, t_data *data);
 
 // IMAGES
 void	init_new_img(t_img *img, t_data *data);
 void	reset_img(t_img *img);
 
 // DRAW
-void my_pixel_put(t_img *img, int x, int y, int color);
+void	my_pixel_put(t_img *img, int x, int y, int color);
 void	draw_line(t_point a, t_point b, int color, t_img *img);
-int get_offset(int y, int x, int line_length, int bits_per_pixel);
+int		get_offset(int y, int x, int line_length, int bits_per_pixel);
+void	draw_rectangle(int x, int y, int height, int width, t_data *data);
 
 // HOOKS
 void	set_hooks(t_data *data);
@@ -169,12 +182,13 @@ void    mouse_edge(t_data *data);
 // DIRECTION
 double	set_angle(double prev_angle, double	pixel_pov_shift);
 void    set_dir_from_pos(t_point *direction, t_point *position, double angle, double length);
-// t_vector	get_vector(t_point position, double angle);
+t_vector	get_vector(double angle);
 
 // POSITION
 void	get_position(t_data *data);
 
 // MINIMAP
 void	print_direction(t_data *data);
+void	draw_minimap(t_data *data, t_map map);
 
 #endif
