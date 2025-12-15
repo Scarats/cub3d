@@ -6,7 +6,7 @@
 /*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 14:24:00 by tcardair          #+#    #+#             */
-/*   Updated: 2025/12/15 18:41:47 by chboegne         ###   ########.fr       */
+/*   Updated: 2025/12/15 18:42:07 by chboegne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
-int					ft_isspace(const char str);
+bool				ft_isspace(const char str);
 // Checks if the character is printable
 int					ft_isprint(int c);
 

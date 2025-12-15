@@ -257,6 +257,8 @@ void				ft_error(t_data **s, const char *str, int code);
 void				ft_free_str(char **str);
 void				ft_free_arr(char ***arr);
 void				ft_free_struct(t_data **s);
+bool				ft_is_char_in_str(const char c, const char *type);
+
 // static void			ft_init_struct(t_data *s, char *map);
 
 #endif

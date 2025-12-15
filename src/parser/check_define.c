@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-void	ft_map_size(t_main *s)
+void	ft_map_size(t_data *s)
 {
 	int	i;
 	int	j;
@@ -43,7 +43,7 @@ bool	ft_check_unclosed_map(char **map, int x, int y)
 		&& ft_check_unclosed_map(map, x - 1, y + 1));
 }
 
-int	ft_nbr_and_player_orientation(t_main *s)
+int	ft_nbr_and_player_orientation(t_data *s)
 {
 	int	i;
 	int	j;
@@ -72,7 +72,7 @@ int	ft_nbr_and_player_orientation(t_main *s)
 	return (cnt);
 }
 
-void	ft_isolate_map(t_main *s)
+void	ft_isolate_map(t_data *s)
 {
 	int		siz;
 	int		start;
@@ -92,7 +92,7 @@ void	ft_isolate_map(t_main *s)
 	ft_free_str(&map);
 }
 
-void	ft_convert_color(t_main *s)
+void	ft_convert_color(t_data *s)
 {
 	int		i;
 	char	**tmp;
