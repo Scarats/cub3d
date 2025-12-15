@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-static t_vector build_input_vectors(t_controls *dir)
+t_vector build_input_vectors(t_controls *dir)
 {
 	t_vector input;
 	double len;
@@ -15,7 +15,7 @@ static t_vector build_input_vectors(t_controls *dir)
 	if (dir->left)
 		input.dx -= 1;
 	if (dir->right)
-		input.dy += 1;
+		input.dx += 1;
 
 	len = sqrt(input.dx * input.dx + input.dy * input.dy);
 	if (len > 0)
@@ -35,7 +35,7 @@ void	set_position(t_controls *dir, t_data *data)
 	
 	input = build_input_vectors(dir);
 
-	if (input.dx == 0 || input.dy == 0)
+	if (input.dx == 0 && input.dy == 0)
 		return;
 	
 	forward = data->v_dir;

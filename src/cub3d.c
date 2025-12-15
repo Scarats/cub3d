@@ -7,8 +7,8 @@ int	main_logic(t_data *data)
 	if (!data || !data->img_buff || !data->img_main)
 		return (perror("main_logic"), 1);
 	mouse_edge(data);
-	// draw_minimap(data, data->map);
 	printf("(%f, %f)\n", data->position.x, data->position.y);
+	// draw_minimap(data, data->map);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;
 	data->curr_mouse_pos->y = -1;
@@ -32,6 +32,8 @@ void	init(t_data *data)
 	// init_minimap_ratio(data);
 	data->position.x = 2;
 	data->position.y = 2;
+	data->v_dir.dx = 0;
+	data->v_dir.dy = 0;
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);
