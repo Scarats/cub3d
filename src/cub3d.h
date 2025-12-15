@@ -26,7 +26,7 @@
 # define MINIMAP_SCALE 95   // in % of the screen
 # define BORDER_THICKNESS 1 // In pixels
 # define PADDING 5          // in pixel
-# define WALK_SPEED 0.5     // In blocks of the map per frame
+# define WALK_SPEED 5     // In blocks of the map per frame
 
 // PARSING
 typedef struct s_parse

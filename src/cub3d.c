@@ -1,7 +1,5 @@
 #include "cub3d.h"
 
-
-
 // After a key is pressed, this function is used to create
 // the new img according to the current situation and render it.
 int	main_logic(t_data *data)
@@ -32,6 +30,8 @@ void	init(t_data *data)
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	// MAP TO SCREEN RATIO
 	// init_minimap_ratio(data);
+	data->position.x = 2;
+	data->position.y = 2;
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);
@@ -46,7 +46,7 @@ int	main(void)
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (perror("mlx"), 1);
-	ft_parsing(&data);
+	// ft_parsing(&data);
 	my_addtolist(&data.malloc_list, data.mlx);
 	create_window(&data);
 	init(&data);

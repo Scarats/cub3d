@@ -4,7 +4,7 @@ SRCS	= src/cub3d.c src/utils/stop.c src/graphics/window_handler.c \
 			src/inputs/pov_handler.c src/graphics/draw.c  src/inputs/position.c \
 			src/inputs/mouse.c src/raycasting/raycasting.c \
 			src/parser/parsing.c src/parser/check_define.c src/utils/str.c \
-			src/utils/free.c src/utils/str.c src/utils/stop.c 
+			src/utils/free.c
 
 # add GL_SILENCE_DEPRECATION to silence mac OpenGL warnings
 FLAGS = -Wall -Wextra -Werror -g -DGL_SILENCE_DEPRECATION
@@ -15,7 +15,7 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 NAME	= cub3d
 
-# point to your mlx folders explicitly
+# point to your mlx folders explicitl
 MLX_LINUX_DIR = ./src/libraries/minilibx-linux
 MLX_MAC_DIR   = ./src/libraries/minilibx_mms_20200219
 
