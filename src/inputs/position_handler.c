@@ -1,17 +1,5 @@
 #include "../cub3d.h"
 
-void	set_position(t_controls *dir)
-{
-	if (dir->total == 1)
-	{
-
-	}
-	else if (dir->total == 2)
-	{
-
-	}
-}
-
 void	go_straight(t_data *data, bool stop)
 {
 	if (stop)

@@ -159,7 +159,7 @@ typedef struct s_data
 	int				error;
 
 	// PLAYER
-	t_dpoint		direction; // Just for testing
+	t_dpoint		direction; // The point where the main vector hit a wall
 	t_dpoint		position;
 	t_vector		v_dir;
 	// t_dpoint	d_pos;
@@ -234,6 +234,10 @@ t_vector			get_vector(double angle);
 
 // POSITION
 void				go_straight(t_data *data, bool stop);
+void				go_back(t_data *data, bool stop);
+void				go_left(t_data *data, bool stop);
+void				go_right(t_data *data, bool stop);
+void				set_position(t_controls *dir);
 
 // MINIMAP
 void				print_direction(t_data *data);
