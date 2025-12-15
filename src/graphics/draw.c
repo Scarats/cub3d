@@ -84,7 +84,7 @@ void	draw_d_line(t_dpoint a, t_dpoint b, int color, t_img *img)
 	l.error = l.dx - l.dy;	
 	while(1)
 	{
-		my_pixel_put(img, map_to_pixel(a.x, img->data), map_to_pixel(a.y, img->data), color);
+		my_pixel_put(img, a.x, a.y, color);
 
 		if (a.x == b.x && a.y== b.y)
 			break;

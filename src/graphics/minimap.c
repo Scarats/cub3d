@@ -2,7 +2,7 @@
 
 void	draw_minimap(t_data *data, t_map map)
 {
-	printf("draw_minimap\n");
+	// printf("draw_minimap\n");
 	(void)map;
 	// TEMP ==================
 	set_dir_from_pos(&data->direction_point, &data->position_point, data->direction_angle, data->win_width / 2);	
