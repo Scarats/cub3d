@@ -10,7 +10,7 @@ void	go_straight(t_data *data, bool stop)
 	}
 	data->controls.straight = true;
 	data->controls.total += 1;
-	set_position(&data->controls);
+	set_position(&data->controls, data);
 }
 
 void	go_right(t_data *data, bool stop)
@@ -23,7 +23,7 @@ void	go_right(t_data *data, bool stop)
 	}
 	data->controls.right = true;
 	data->controls.total += 1;
-	set_position(&data->controls);
+	set_position(&data->controls, data);
 }
 
 void	go_left(t_data *data, bool stop)
@@ -36,7 +36,7 @@ void	go_left(t_data *data, bool stop)
 	}
 	data->controls.left = true;
 	data->controls.total += 1;
-	set_position(&data->controls);
+	set_position(&data->controls, data);
 }
 
 void	go_back(t_data *data, bool stop)
@@ -49,5 +49,5 @@ void	go_back(t_data *data, bool stop)
 	}
 	data->controls.back = true;
 	data->controls.total += 1;
-	set_position(&data->controls);
+	set_position(&data->controls, data);
 }

@@ -105,17 +105,6 @@ typedef struct s_controls
 	bool			back;
 	bool			left;
 	bool			right;
-	unsigned int	total;
-
-	// Vectors
-	t_vector		w;
-	t_vector		wd;
-	t_vector		wa;
-	t_vector		s;
-	t_vector		sd;
-	t_vector		sa;
-	t_vector		a;
-	t_vector		d;
 
 	// POV
 	bool			look_left;
@@ -239,7 +228,7 @@ void				go_straight(t_data *data, bool stop);
 void				go_back(t_data *data, bool stop);
 void				go_left(t_data *data, bool stop);
 void				go_right(t_data *data, bool stop);
-void				set_position(t_controls *dir);
+void				set_position(t_controls *dir, t_data *data);
 
 // MINIMAP
 void				print_direction(t_data *data);
