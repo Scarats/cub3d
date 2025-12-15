@@ -15,7 +15,7 @@ int	main_logic(t_data *data)
 	if (!data || !data->img_buff || !data->img_main)
 		return (perror("main_logic"), 1);
 	mouse_edge(data);
-	draw_minimap(data, data->map);
+	// draw_minimap(data, data->map);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;
 	data->curr_mouse_pos->y = -1;
@@ -36,7 +36,7 @@ void	init(t_data *data)
 	data->curr_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	// MAP TO SCREEN RATIO
-	init_minimap_ratio(data);
+	// init_minimap_ratio(data);
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);

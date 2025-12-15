@@ -236,20 +236,20 @@ t_vector			get_vector(double angle);
 void				go_straight(t_data *data, bool stop);
 
 // MINIMAP
-void				print_direction(t_data *data);
-void				draw_minimap(t_data *data, t_map map);
-void				init_minimap_ratio(t_data *data);
-int					map_to_pixel(double map_point, t_data *data);
+// void				print_direction(t_data *data);
+// void				draw_minimap(t_data *data, t_map map);
+// void				init_minimap_ratio(t_data *data);
+// int					map_to_pixel(double map_point, t_data *data);
 
 // PARSING
 // check_define.c
-void				ft_map_size(t_data *data);
+void				ft_map_size(t_data *s);
 bool				ft_check_unclosed_map(char **map, int x, int y);
-int					ft_nbr_and_player_orientation(t_data *data);
-void				ft_isolate_map(t_data *data);
+int					ft_nbr_and_player_orientation(t_data *s);
+void				ft_isolate_map(t_data *s);
 // void				ft_convert_color(t_data *data);
 // parsing.c
-void				ft_parsing(t_data *data);
+void				ft_parsing(t_data *s);
 
 // MAIN
 void				ft_error(t_data **s, const char *str, int code);
