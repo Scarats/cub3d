@@ -39,19 +39,19 @@ void	ft_free_struct(t_data **s)
 	*s = NULL;
 }
 
-static void	ft_init_struct(t_data *s, char *map)
-{
-	s->parse.file = map;
-	s->parse.stock = NULL;
-	s->parse.element = NULL;
-	s->parse.element = ft_split("NO-SO-WE-EA-F-C", '-');
-	if (!s->parse.element)
-		ft_error(&s, "💥 S->PARSE.ELEMENTS FT_INIT_STRUCT 💥", 1);
-	s->parse.map = NULL;
-	s->file.north = NULL;
-	s->file.south = NULL;
-	s->file.west = NULL;
-	s->file.east = NULL;
-	s->file.floor = NULL;
-	s->file.ceiling = NULL;
-}
+// static void	ft_init_struct(t_data *s, char *map)
+// {
+// 	s->parse.file = map;
+// 	s->parse.stock = NULL;
+// 	s->parse.element = NULL;
+// 	s->parse.element = ft_split("NO-SO-WE-EA-F-C", '-');
+// 	if (!s->parse.element)
+// 		ft_error(&s, "💥 S->PARSE.ELEMENTS FT_INIT_STRUCT 💥", 1);
+// 	s->parse.map = NULL;
+// 	s->file.north = NULL;
+// 	s->file.south = NULL;
+// 	s->file.west = NULL;
+// 	s->file.east = NULL;
+// 	s->file.floor = NULL;
+// 	s->file.ceiling = NULL;
+// }

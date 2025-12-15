@@ -25,7 +25,7 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 		./fdprintf/fdprintf.c \
 		./fdprintf/fdto_hexa.c ./fdprintf/fdtype_c.c \
 		./fdprintf/fdtype_i.c ./fdprintf/fdtype_p.c ./fdprintf/fdtype_s.c \
-		./fdprintf/fdtype_u.c ./fdprintf/fdtype_xx.c \
+		./fdprintf/fdtype_u.c ./fdprintf/fdtype_xx.c  ft_strndup.c \
 
 
 FLAGS	= -Wall -Wextra -Werror 
