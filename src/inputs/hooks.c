@@ -11,12 +11,15 @@ int key_released(int keycode, t_data *data)
 
 int key_pressed(int keycode, t_data *data)
 {
+	printf("%i\n", keycode);
 	if (keycode == KEY_LEFT)
 		look_left(data);
 	else if (keycode == KEY_RIGHT)
 		look_right(data);
 	else if (keycode == KEY_ESC)
 		stop(data);
+	else if (keycode == KEY_W)
+		go_straight(data, 0);
 	return (0);
 }
 

@@ -19,13 +19,24 @@
 #define P_RESET   0x000000
 
 // CONTROLS
-#define SENSITIVITY 0.2
+#define SENSITIVITY 0.2 // From 0 to 1
 #define POV	10 // Pixels shift per click
 #define M_PI 3.14159265358979323846
-#define FOV	66
+#define FOV	66 // An angle
 #define MINIMAP_SCALE 95 // in % of the screen
-#define BORDER_THICKNESS 1
+#define BORDER_THICKNESS 1 // In pixels
 #define PADDING 5 // in pixel
+#define WALK_SPEED 0.5 // In blocks of the map per frame 
+
+// DIRECTION IN RAD IN CARDINAL DIRECTION
+#define DIR_N
+#define DIR_NE	
+#define DIR_E
+#define DIR_SE
+#define DIR_S
+#define DIR_SW
+#define	DIR_W
+#define	DIR_NW
 
 typedef enum e_event
 {
@@ -41,6 +52,10 @@ typedef enum e_key
 	KEY_RIGHT = 65363,
 	KEY_UP = 65362,
 	KEY_DOWN = 63364,
+	KEY_W = 119,
+	KEY_A = 97,
+	KEY_D = 100,
+	KEY_S = 115
 } t_key;
 
  typedef struct s_line
@@ -73,10 +88,11 @@ typedef struct s_point
 typedef struct s_controls
 {
 	// Direction
-	bool up;
-	bool down;
+	bool straight;
+	bool back;
 	bool left;
 	bool right;
+	unsigned int total;
 	// POV
 	bool look_left;
 	bool look_right;
@@ -189,7 +205,7 @@ void    set_dir_from_pos(t_dpoint *direction, t_dpoint *position, double angle, 
 t_vector	get_vector(double angle);
 
 // POSITION
-void	get_position(t_data *data);
+void	go_straight(t_data *data, bool stop);
 
 // MINIMAP
 void	print_direction(t_data *data);
