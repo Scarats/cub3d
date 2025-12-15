@@ -1,6 +1,7 @@
 # ToDo
 ## ALL
 ## Charles
-- [ ] Position
+- [ ] minimap
 ## Thomas
+- [ ] Position
 - [ ] Raycasting
