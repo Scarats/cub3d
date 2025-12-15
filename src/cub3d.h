@@ -188,7 +188,7 @@ typedef struct s_data
 int					main_logic(t_data *data);
 
 // UTILS
-int					stop(t_data *data);
+int					stop(t_data **data);
 
 // WINDOWS
 void				create_window(t_data *data);
@@ -253,6 +253,6 @@ void				ft_convert_color(t_data *data);
 void				ft_parsing(t_data *data);
 
 // MAIN
-void				ft_error(t_data **s, const char *str);
+void				ft_error(t_data **s, const char *str, int code);
 
 #endif

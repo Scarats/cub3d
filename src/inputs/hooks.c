@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-int key_released(int keycode, t_data *data)
+int	key_released(int keycode, t_data *data)
 {
 	if (keycode == KEY_LEFT)
 		stop_look_left(data);
@@ -9,7 +9,7 @@ int key_released(int keycode, t_data *data)
 	return (0);
 }
 
-int key_pressed(int keycode, t_data *data)
+int	key_pressed(int keycode, t_data *data)
 {
 	printf("%i\n", keycode);
 	if (keycode == KEY_LEFT)
@@ -17,7 +17,7 @@ int key_pressed(int keycode, t_data *data)
 	else if (keycode == KEY_RIGHT)
 		look_right(data);
 	else if (keycode == KEY_ESC)
-		stop(data);
+		stop(&data);
 	else if (keycode == KEY_W)
 		go_straight(data, 0);
 	return (0);

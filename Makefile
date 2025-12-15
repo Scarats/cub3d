@@ -1,6 +1,6 @@
 SRCS	= src/cub3d.c src/utils/stop.c src/graphics/window_handler.c \
 			src/graphics/image_handler.c src/inputs/hooks.c \
-			src/inputs/direction.c src/graphics/render.c src/inputs/position.c \
+			src/inputs/direction.c src/graphics/render.c src/inputs/position_handler.c \
 			src/inputs/pov_handler.c src/graphics/draw.c src/graphics/minimap.c \
 			src/inputs/mouse.c src/raycasting/raycasting.c src/graphics/map_to_screen.c \
 			src/parser/parsing.c src/parser/check_define.c

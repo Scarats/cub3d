@@ -5,7 +5,7 @@ void	ft_error(t_data **s, const char *str, int code)
 	(*s)->error = code;
 	if (str)
 		printf("%s\n", str);
-	stop(s);
+	stop(*s);
 }
 
 // After a key is pressed, this function is used to create
@@ -35,11 +35,8 @@ void	init(t_data *data)
 	// MOUSE POS
 	data->curr_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
-	// MINIMAP
-	hardcoded_minimap(data);
 	// MAP TO SCREEN RATIO
 	init_minimap_ratio(data);
-	get_position(data);
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);

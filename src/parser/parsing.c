@@ -29,7 +29,7 @@ static void	ft_read_file(t_data *s)
 
 	fd = open(s->parse.file, O_RDONLY);
 	if (fd == -1)
-		ft_error(&s, "💥 FILE DOES'NT EXIST 💥");
+		ft_error(&s, "💥 FILE DOES'NT EXIST 💥", 1);
 	bytes = 1;
 	while (bytes > 0)
 	{
@@ -39,7 +39,7 @@ static void	ft_read_file(t_data *s)
 		str[bytes] = '\0';
 		s->parse.stock = ft_stock_file(s->parse.stock, str);
 		if (!s->parse.stock)
-			return (close(fd), ft_error(&s, "💥 MALLOC FT_STOCK_MAP 💥"));
+			return (close(fd), ft_error(&s, "💥 MALLOC FT_STOCK_MAP 💥", 1));
 	}
 	close(fd);
 }
@@ -106,13 +106,13 @@ void	ft_parsing(t_data *s)
 	ft_search_in_file(s);
 	if (!s->file.ceiling || !s->file.floor || !s->file.east || !s->file.north
 		|| !s->file.south || !s->file.west)
-		ft_error(&s, "💥 MISSING TEXTURE 💥");
+		ft_error(&s, "💥 MISSING TEXTURE 💥", 1);
 	ft_convert_color(s);
 	ft_isolate_map(s);
 	if (ft_nbr_and_player_orientation(s) != 1)
-		ft_error(&s, "💥 THERE MUST BE ONLY ONE PLAYER IN THE MAP 💥");
+		ft_error(&s, "💥 THERE MUST BE ONLY ONE PLAYER IN THE MAP 💥", 1);
 	// if (!ft_check_unclosed_map(s->parse.map, s->player.posx, s->player.posy))
-	// 	ft_error(&s, "💥 INCORRECT MAP 💥");
+	// 	ft_error(&s, "💥 INCORRECT MAP 💥", 1);
 	ft_map_size(s);
 	for (int i = 0; s->parse.map[i]; i++)
 		printf("+%s+\n", s->parse.map[i]);
