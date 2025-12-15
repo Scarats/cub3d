@@ -1,5 +1,13 @@
 #include "cub3d.h"
 
+void	draw_player(t_data *data)
+{
+	int x = data->position.x * 10;
+	int y = data->position.y * 10;
+
+	draw_line((t_point){x, y}, *data->curr_mouse_pos, P_WHITE, data->img_buff);
+}
+
 // After a key is pressed, this function is used to create
 // the new img according to the current situation and render it.
 int	main_logic(t_data *data)
@@ -31,8 +39,8 @@ void	init(t_data *data)
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	// MAP TO SCREEN RATIO
 	// init_minimap_ratio(data);
-	data->position.x = 2;
-	data->position.y = 2;
+	data->position.x = 50;
+	data->position.y = 50;
 	data->v_dir.dx = 1;
 	data->v_dir.dy = 1;
 	set_hooks(data);
