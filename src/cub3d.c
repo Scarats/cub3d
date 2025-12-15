@@ -5,7 +5,7 @@ void	ft_error(t_data **s, const char *str, int code)
 	(*s)->error = code;
 	if (str)
 		printf("%s\n", str);
-	stop(*s);
+	stop(s);
 }
 
 // After a key is pressed, this function is used to create

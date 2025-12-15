@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 14:24:00 by tcardair          #+#    #+#             */
-/*   Updated: 2025/12/10 15:19:31 by tcardair         ###   ########.fr       */
+/*   Updated: 2025/12/15 18:41:47 by chboegne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <fcntl.h>
+# include <stdbool.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -44,7 +45,7 @@ int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
-int					ft_isspace(char *str);
+int					ft_isspace(const char str);
 // Checks if the character is printable
 int					ft_isprint(int c);
 
@@ -55,6 +56,8 @@ int					ft_strlen(const char *s);
 void				*ft_memset(void *s, int c, size_t n);
 
 // Sets memory to zero
+void				ft_bzero(void *s, size_t n);
+
 void				ft_bzero(void *s, size_t n);
 
 // Copies memory area
@@ -187,5 +190,6 @@ int					fdprintf(int fd, const char *str, ...);
 void				free_2d_array(void **arr);
 int					ft_strcmp(const char *s1, const char *s2);
 int					gen_random(int size);
+char				*ft_strndup(const char *str, const int n);
 
 #endif

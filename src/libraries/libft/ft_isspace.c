@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 15:19:33 by tcardair          #+#    #+#             */
-/*   Updated: 2025/09/03 15:19:55 by tcardair         ###   ########.fr       */
+/*   Updated: 2025/12/15 18:41:14 by chboegne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isspace(char *str)
-{
-	int	i;
+#include "libft.h"
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == ' ')
-			return (1);
-		i++;
-	}
-	return (0);
+bool	ft_isspace(const char c)
+{
+	if (!c)
+		return (false);
+	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\f'
+		|| c == '\r' || c == ' ')
+		return (true);
+	return (false);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_gc.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:10:38 by tcardair          #+#    #+#             */
-/*   Updated: 2025/12/08 16:27:56 by tcardair         ###   ########.fr       */
+/*   Updated: 2025/12/15 18:39:36 by chboegne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void				my_array_addtolist(t_list **list, void **data);
 
 // CUSTOM FUNCTIONS
 char				*my_strdup(t_list **malloc_list, char *src);
+char				*my_strndup(t_list **malloc_list, char *str, int n);
 
 // FREE
 void				my_free_one(t_list **list, void *target);
