@@ -37,6 +37,7 @@ void	init(t_data *data)
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	// MAP TO SCREEN RATIO
 	// init_minimap_ratio(data);
+	init_dir_vectors(data->controls);
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);

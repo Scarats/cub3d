@@ -28,16 +28,6 @@
 # define PADDING 5          // in pixel
 # define WALK_SPEED 0.5     // In blocks of the map per frame
 
-// DIRECTION IN DEGREES IN CARDINAL DIRECTION
-# define DIR_N 90
-# define DIR_NE 
-# define DIR_E
-# define DIR_SE
-# define DIR_S
-# define DIR_SW
-# define DIR_W
-# define DIR_NW
-
 // PARSING
 typedef struct s_parse
 {
@@ -116,6 +106,17 @@ typedef struct s_controls
 	bool			left;
 	bool			right;
 	unsigned int	total;
+
+	// Vectors
+	t_vector		w;
+	t_vector		wd;
+	t_vector		wa;
+	t_vector		s;
+	t_vector		sd;
+	t_vector		sa;
+	t_vector		a;
+	t_vector		d;
+
 	// POV
 	bool			look_left;
 	bool			look_right;
@@ -231,6 +232,7 @@ double				set_angle(double prev_angle, double pixel_pov_shift);
 void				set_dir_from_pos(t_dpoint *direction, t_dpoint *position,
 						double angle, double length);
 t_vector			get_vector(double angle);
+void				init_dir_vectors(t_controls *dir);
 
 // POSITION
 void				go_straight(t_data *data, bool stop);

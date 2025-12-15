@@ -7,6 +7,8 @@ void	one_direction(t_controls *dir)
 
 void	two_directions(t_controls *dir)
 {
+	t_vector new_dir;
+
 	if (dir->straight && dir->left)
 	{
 		
