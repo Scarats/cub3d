@@ -22,6 +22,7 @@ int	mouse_pov(int x, int y, t_data *data)
 	last_x = x;
 
 	data->direction_angle = set_angle(data->direction_angle, -delta);
+	data->v_dir = get_vector(data->direction_angle);
 	return (0);
 }
 
@@ -31,9 +32,15 @@ void    mouse_edge(t_data *data)
 	if (data->curr_mouse_pos->x == -1 && data->curr_mouse_pos->y == -1)
 	{
 		if (data->last_mouse_pos->x <= 0)
+		{
 			data->direction_angle = set_angle(data->direction_angle, POV);
+			data->v_dir = get_vector(data->direction_angle);
+		}
 		else if (data->last_mouse_pos->x >= data->win_width - 1)
+		{
 			data->direction_angle = set_angle(data->direction_angle, -POV);
+			data->v_dir = get_vector(data->direction_angle);
+		}
 	}
 	else
 		*data->last_mouse_pos = *data->curr_mouse_pos;

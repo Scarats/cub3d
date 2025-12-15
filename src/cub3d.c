@@ -7,8 +7,8 @@ int	main_logic(t_data *data)
 	if (!data || !data->img_buff || !data->img_main)
 		return (perror("main_logic"), 1);
 	mouse_edge(data);
-	printf("dir (%f, %f)\n", data->v_dir.dx, data->v_dir.dy);
-	// printf("(%f, %f)\n", data->position.x, data->position.y);
+	printf(RED"dir (%f, %f)\n"RESET, data->v_dir.dx, data->v_dir.dy);
+	printf(ORANGE"(%f, %f)\n"RESET, data->position.x, data->position.y);
 	// draw_minimap(data, data->map);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;

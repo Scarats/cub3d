@@ -2,7 +2,6 @@
 
 void	go_straight(t_data *data, bool stop)
 {
-	printf("go_straight %d\n", stop);
 	if (stop)
 	{
 		data->controls.straight = false;
@@ -14,7 +13,6 @@ void	go_straight(t_data *data, bool stop)
 
 void	go_right(t_data *data, bool stop)
 {
-	printf("go_right %d\n", stop);
 	if (stop)
 	{
 		data->controls.right = false;
@@ -26,7 +24,6 @@ void	go_right(t_data *data, bool stop)
 
 void	go_left(t_data *data, bool stop)
 {
-	printf("go_left %d\n", stop);
 	if (stop)
 	{
 		data->controls.left = false;
@@ -38,7 +35,6 @@ void	go_left(t_data *data, bool stop)
 
 void	go_back(t_data *data, bool stop)
 {
-	printf("go_back %d\n", stop);
 	if (stop)
 	{
 		data->controls.back = false;
