@@ -6,6 +6,14 @@ int	key_released(int keycode, t_data *data)
 		stop_look_left(data);
 	else if (keycode == KEY_RIGHT)
 		stop_look_right(data);
+	else if (keycode == KEY_W)
+		go_straight(data, 1);
+	else if (keycode == KEY_S)
+		go_back(data, 1);
+	else if (keycode == KEY_A)
+		go_left(data, 1);
+	else if (keycode == KEY_D)
+		go_right(data, 1);
 	return (0);
 }
 
@@ -20,6 +28,12 @@ int	key_pressed(int keycode, t_data *data)
 		stop(&data);
 	else if (keycode == KEY_W)
 		go_straight(data, 0);
+	else if (keycode == KEY_S)
+		go_back(data, 0);
+	else if (keycode == KEY_A)
+		go_left(data, 0);
+	else if (keycode == KEY_D)
+		go_right(data, 0);
 	return (0);
 }
 

@@ -28,9 +28,9 @@
 # define PADDING 5          // in pixel
 # define WALK_SPEED 0.5     // In blocks of the map per frame
 
-// DIRECTION IN RAD IN CARDINAL DIRECTION
-# define DIR_N
-# define DIR_NE
+// DIRECTION IN DEGREES IN CARDINAL DIRECTION
+# define DIR_N 90
+# define DIR_NE 
 # define DIR_E
 # define DIR_SE
 # define DIR_S
@@ -240,20 +240,20 @@ void				go_right(t_data *data, bool stop);
 void				set_position(t_controls *dir);
 
 // MINIMAP
-// void				print_direction(t_data *data);
-// void				draw_minimap(t_data *data, t_map map);
-// void				init_minimap_ratio(t_data *data);
-// int					map_to_pixel(double map_point, t_data *data);
+void				print_direction(t_data *data);
+void				draw_minimap(t_data *data, t_map map);
+void				init_minimap_ratio(t_data *data);
+int					map_to_pixel(double map_point, t_data *data);
 
 // PARSING
 // check_define.c
-void				ft_map_size(t_data *s);
+void				ft_map_size(t_data *data);
 bool				ft_check_unclosed_map(char **map, int x, int y);
-int					ft_nbr_and_player_orientation(t_data *s);
-void				ft_isolate_map(t_data *s);
+int					ft_nbr_and_player_orientation(t_data *data);
+void				ft_isolate_map(t_data *data);
 // void				ft_convert_color(t_data *data);
 // parsing.c
-void				ft_parsing(t_data *s);
+void				ft_parsing(t_data *data);
 
 // MAIN
 void				ft_error(t_data **s, const char *str, int code);

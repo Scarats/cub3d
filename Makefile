@@ -1,7 +1,7 @@
 SRCS	= src/cub3d.c src/utils/stop.c src/graphics/window_handler.c \
 			src/graphics/image_handler.c src/inputs/hooks.c \
 			src/inputs/direction.c src/graphics/render.c src/inputs/position_handler.c \
-			src/inputs/pov_handler.c src/graphics/draw.c  \
+			src/inputs/pov_handler.c src/graphics/draw.c  src/inputs/position.c \
 			src/inputs/mouse.c src/raycasting/raycasting.c \
 			src/parser/parsing.c src/parser/check_define.c src/utils/str.c \
 			src/utils/free.c src/utils/str.c src/utils/stop.c 
