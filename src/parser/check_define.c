@@ -59,8 +59,8 @@ int	ft_nbr_and_player_orientation(t_data *s)
 		{
 			if (ft_is_char_in_str(s->parse.map[i][j], "NSEW"))
 			{
-				s->player.posx = j;
-				s->player.posy = i;
+				s->position.x = j;
+				s->position.y = i;
 				s->parse.orientation = s->parse.map[i][j];
 				s->parse.map[i][j] = '0';
 				cnt++;
@@ -92,21 +92,21 @@ void	ft_isolate_map(t_data *s)
 	ft_free_str(&map);
 }
 
-void	ft_convert_color(t_data *s)
-{
-	int		i;
-	char	**tmp;
+// void	ft_convert_color(t_data *s)
+// {
+// 	int		i;
+// 	char	**tmp;
 
-	i = 0;
-	while (s->file.ceiling[i] >= '0' && s->file.ceiling[i] <= '9')
-		i++;
-	tmp = ft_split(s->file.ceiling, s->file.ceiling[i]);
-	s->image.ceiling = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
-	ft_free_arr(&tmp);
-	i = 0;
-	while (s->file.floor[i] >= '0' && s->file.floor[i] <= '9')
-		i++;
-	tmp = ft_split(s->file.floor, s->file.floor[i]);
-	s->image.floor = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
-	ft_free_arr(&tmp);
-}
+// 	i = 0;
+// 	while (s->file.ceiling[i] >= '0' && s->file.ceiling[i] <= '9')
+// 		i++;
+// 	tmp = ft_split(s->file.ceiling, s->file.ceiling[i]);
+// 	// s->image.ceiling = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
+// 	ft_free_arr(&tmp);
+// 	i = 0;
+// 	while (s->file.floor[i] >= '0' && s->file.floor[i] <= '9')
+// 		i++;
+// 	tmp = ft_split(s->file.floor, s->file.floor[i]);
+// 	s->image.floor = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
+// 	ft_free_arr(&tmp);
+// }

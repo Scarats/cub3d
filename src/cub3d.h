@@ -159,9 +159,9 @@ typedef struct s_data
 	int				error;
 
 	// PLAYER
-	t_dpoint direction_point; // Just for testing
-	t_dpoint		position_point;
-	// t_vector	d_dir;
+	t_dpoint		direction; // Just for testing
+	t_dpoint		position;
+	t_vector		v_dir;
 	// t_dpoint	d_pos;
 	double			direction_angle;
 	t_controls		controls;
@@ -173,7 +173,6 @@ typedef struct s_data
 	t_point			map_pos;
 
 	// MINIMAP
-	int map_ratio; // From map point to pixel point for the minimap
 	t_map			map;
 
 	// MOUSE
@@ -248,7 +247,7 @@ void				ft_map_size(t_data *data);
 bool				ft_check_unclosed_map(char **map, int x, int y);
 int					ft_nbr_and_player_orientation(t_data *data);
 void				ft_isolate_map(t_data *data);
-void				ft_convert_color(t_data *data);
+// void				ft_convert_color(t_data *data);
 // parsing.c
 void				ft_parsing(t_data *data);
 
