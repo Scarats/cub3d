@@ -1,12 +1,6 @@
 #include "cub3d.h"
 
-void	ft_error(t_data **s, const char *str, int code)
-{
-	(*s)->error = code;
-	if (str)
-		printf("%s\n", str);
-	stop(s);
-}
+
 
 // After a key is pressed, this function is used to create
 // the new img according to the current situation and render it.
@@ -16,6 +10,7 @@ int	main_logic(t_data *data)
 		return (perror("main_logic"), 1);
 	mouse_edge(data);
 	// draw_minimap(data, data->map);
+	printf("(%f, %f)\n", data->position.x, data->position.y);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;
 	data->curr_mouse_pos->y = -1;
@@ -37,7 +32,6 @@ void	init(t_data *data)
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	// MAP TO SCREEN RATIO
 	// init_minimap_ratio(data);
-	init_dir_vectors(data->controls);
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);

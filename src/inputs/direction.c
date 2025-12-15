@@ -49,25 +49,3 @@ void	set_dir_from_pos(t_dpoint *direction, t_dpoint *position, double angle, dou
     direction->x = position->x + (int)round(dx * length);
     direction->y = position->y - (int)round(dy * length);
 }
-
-void init_dir_vectors(t_controls *dir)
-{
-	const double diag = 1 / sqrt(2);
-
-	dir->w.dx =  0;
-	dir->w.dy = -1;
-	dir->s.dx =  0;
-	dir->s.dy =  1;
-	dir->a.dx = -1;
-	dir->a.dy =  0;
-	dir->d.dx =  1;
-	dir->d.dy =  0;
-	dir->wd.dx =  diag;
-	dir->wd.dy = -diag;
-	dir->wa.dx = -diag;
-	dir->wa.dy = -diag;
-	dir->sd.dx =  diag;
-	dir->sd.dy =  diag;
-	dir->sa.dx = -diag;
-	dir->sa.dy =  diag;
-}

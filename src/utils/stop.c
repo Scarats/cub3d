@@ -34,3 +34,11 @@ int	stop(t_data **data)
 	ft_memset(data, 0, sizeof(t_data));
 	exit(error);
 }
+
+void	ft_error(t_data **s, const char *str, int code)
+{
+	(*s)->error = code;
+	if (str)
+		printf("%s\n", str);
+	stop(s);
+}
