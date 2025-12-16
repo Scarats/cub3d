@@ -222,6 +222,7 @@ void				set_dir_from_pos(t_dpoint *direction, t_dpoint *position,
 						double angle, double length);
 t_vector			get_vector(double angle);
 void				init_dir_vectors(t_controls *dir);
+void				apply_pov(t_data *data);
 
 // POSITION
 void				go_straight(t_data *data, bool stop);
