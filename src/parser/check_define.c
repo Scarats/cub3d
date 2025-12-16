@@ -1,49 +1,55 @@
 #include "../cub3d.h"
 
-void	ft_map_size(t_data *s)
+void	ft_map_size(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	s->parse.width = 0;
-	s->parse.height = 0;
-	while (s->parse.map[i])
+	data->parse.width = 0;
+	data->parse.height = 0;
+	while (data->parse.map[i])
 	{
 		j = 0;
-		while (s->parse.map[i][j])
-		{
-			if (s->parse.map[i][j] == '0')
-				s->parse.map[i][j] = ' ';
+		while (data->parse.map[i][j])
 			j++;
-		}
-		while (s->parse.map[i][j] != '1')
+		while (j > 0 && data->parse.map[i][j - 1] != '1')
 			j--;
-		s->parse.map[i][j + 1] = '\0';
-		if (j > s->parse.width)
-			s->parse.width = j;
+		data->parse.map[i][j + 1] = '\0';
+		if (j > data->parse.width)
+			data->parse.width = j;
 		i++;
 	}
-	s->parse.height = i - 1;
+	data->parse.height = i;
 }
 
-bool	ft_check_unclosed_map(char **map, int x, int y)
+bool	ft_check_unclosed_map(char **map)
 {
-	if (x < 0 || y < 0 || map[x] == NULL || map[x][y] == '\0')
-		return (false);
-	if (map[x][y] == '1' || map[x][y] == '0')
-		return (true);
-	if (map[x][y] != 'D')
-		map[x][y] = '0';
-	return (ft_check_unclosed_map(map, x + 1, y) && ft_check_unclosed_map(map, x
-			- 1, y) && ft_check_unclosed_map(map, x, y + 1)
-		&& ft_check_unclosed_map(map, x, y - 1) && ft_check_unclosed_map(map, x
-			+ 1, y + 1) && ft_check_unclosed_map(map, x - 1, y - 1)
-		&& ft_check_unclosed_map(map, x + 1, y - 1)
-		&& ft_check_unclosed_map(map, x - 1, y + 1));
+	int	x;
+	int	y;
+
+	x = 0;
+	while (map[x])
+	{
+		y = 0;
+		while (map[x][y])
+		{
+			if (map[x][y] == '0' && (!map[x][y + 1] || !map[x][y - 1] || !map[x
+					+ 1][y] || !map[x + 1][y - 1] || !map[x + 1][y + 1]
+					|| !map[x - 1][y] || !map[x - 1][y - 1] || !map[x - 1][y
+					+ 1] || map[x][y + 1] == ' ' || map[x][y - 1] == ' '
+					|| map[x + 1][y] == ' ' || map[x + 1][y - 1] == ' ' || map[x
+					+ 1][y + 1] == ' ' || map[x - 1][y] == ' ' || map[x - 1][y
+					- 1] == ' ' || map[x - 1][y + 1] == ' '))
+				return (false);
+			y++;
+		}
+		x++;
+	}
+	return (true);
 }
 
-int	ft_nbr_and_player_orientation(t_data *s)
+int	ft_nbr_and_player_orientation(t_data *data)
 {
 	int	i;
 	int	j;
@@ -51,18 +57,18 @@ int	ft_nbr_and_player_orientation(t_data *s)
 
 	i = 0;
 	cnt = 0;
-	s->parse.orientation = '\0';
-	while (s->parse.map[i])
+	data->parse.orientation = '\0';
+	while (data->parse.map[i])
 	{
 		j = 0;
-		while (s->parse.map[i][j])
+		while (data->parse.map[i][j])
 		{
-			if (ft_is_char_in_str(s->parse.map[i][j], "NSEW"))
+			if (ft_is_char_in_str(data->parse.map[i][j], "NSEW"))
 			{
-				s->position.x = j;
-				s->position.y = i;
-				s->parse.orientation = s->parse.map[i][j];
-				s->parse.map[i][j] = '0';
+				data->position.x = j;
+				data->position.y = i;
+				data->parse.orientation = data->parse.map[i][j];
+				data->parse.map[i][j] = '0';
 				cnt++;
 			}
 			j++;
@@ -72,23 +78,23 @@ int	ft_nbr_and_player_orientation(t_data *s)
 	return (cnt);
 }
 
-void	ft_isolate_map(t_data *s)
+void	ft_isolate_map(t_data *data)
 {
 	int		siz;
 	int		start;
 	char	*map;
 
 	start = 0;
-	siz = ft_strlen(s->parse.stock);
-	while (s->parse.stock[start] && s->parse.stock[start] != '1')
+	siz = ft_strlen(data->parse.stock);
+	while (data->parse.stock[start] && data->parse.stock[start] != '1')
 		start++;
-	while (start > 0 && s->parse.stock[start] != '\n')
+	while (start > 0 && data->parse.stock[start] != '\n')
 		start--;
-	while (siz > 0 && s->parse.stock[siz] != '1')
+	while (siz > 0 && data->parse.stock[siz] != '1')
 		siz--;
 	siz++;
-	map = ft_strndup(s->parse.stock + start, siz - start);
-	s->parse.map = ft_split(map, '\n');
+	map = ft_strndup(data->parse.stock + start, siz - start);
+	data->parse.map = ft_split(map, '\n');
 	ft_free_str(&map);
 }
 

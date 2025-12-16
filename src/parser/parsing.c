@@ -44,7 +44,7 @@ static void	ft_read_file(t_data *s)
 	close(fd);
 }
 
-static void	ft_stock_element(t_data *s, char *element, char *file)
+static void	ft_stock_element(t_data *data, char *element, char *file)
 {
 	int	siz;
 
@@ -52,68 +52,67 @@ static void	ft_stock_element(t_data *s, char *element, char *file)
 	while (file[siz] && !ft_isspace(file[siz]))
 		siz++;
 	if (!ft_strncmp(element, "NO", 2))
-		return (ft_free_str(&s->file.north),
-			(void)(s->file.north = ft_strndup(file, siz)));
+		return (ft_free_str(&data->file.north),
+			(void)(data->file.north = ft_strndup(file, siz)));
 	if (!ft_strncmp(element, "SO", 2))
-		return (ft_free_str(&s->file.south),
-			(void)(s->file.south = ft_strndup(file, siz)));
+		return (ft_free_str(&data->file.south),
+			(void)(data->file.south = ft_strndup(file, siz)));
 	if (!ft_strncmp(element, "WE", 2))
-		return (ft_free_str(&s->file.west),
-			(void)(s->file.west = ft_strndup(file, siz)));
+		return (ft_free_str(&data->file.west),
+			(void)(data->file.west = ft_strndup(file, siz)));
 	if (!ft_strncmp(element, "EA", 2))
-		return (ft_free_str(&s->file.east),
-			(void)(s->file.east = ft_strndup(file, siz)));
+		return (ft_free_str(&data->file.east),
+			(void)(data->file.east = ft_strndup(file, siz)));
 	if (!ft_strncmp(element, "F", 1))
-		return (ft_free_str(&s->file.floor),
-			(void)(s->file.floor = ft_strndup(file, siz), ','));
+		return (ft_free_str(&data->file.floor),
+			(void)(data->file.floor = ft_strndup(file, siz), ','));
 	if (!ft_strncmp(element, "C", 1))
-		return (ft_free_str(&s->file.ceiling),
-			(void)(s->file.ceiling = ft_strndup(file, siz), ','));
+		return (ft_free_str(&data->file.ceiling),
+			(void)(data->file.ceiling = ft_strndup(file, siz), ','));
 }
 
-static void	ft_search_in_file(t_data *s)
+static void	ft_search_in_file(t_data *data)
 {
 	int	i;
 	int	j;
 	int	siz;
 
-	i = 0;
-	while (s->parse.stock[i])
+	i = -1;
+	while (data->parse.stock[++i])
 	{
 		j = 0;
-		while (ft_strncmp(s->parse.stock + i, s->parse.element[j],
-				ft_strlen(s->parse.element[j])))
+		while (ft_strncmp(data->parse.stock + i, data->parse.element[j],
+				ft_strlen(data->parse.element[j])))
 			j++;
-		if (s->parse.element[j])
+		if (data->parse.element[j])
 		{
-			siz = ft_strlen(s->parse.element[j]) + i;
-			while (ft_isspace(s->parse.stock[i]) || i < siz)
-				s->parse.stock[i++] = ' ';
-			ft_stock_element(s, s->parse.element[j], s->parse.stock + i);
-			while (!ft_isspace(s->parse.stock[i]))
-				s->parse.stock[i++] = ' ';
+			siz = ft_strlen(data->parse.element[j]) + i;
+			while (ft_isspace(data->parse.stock[i]) || i < siz)
+				data->parse.stock[i++] = ' ';
+			ft_stock_element(data, data->parse.element[j], data->parse.stock
+				+ i);
+			while (!ft_isspace(data->parse.stock[i]))
+				data->parse.stock[i++] = ' ';
 		}
-		else if (!ft_is_char_in_str(s->parse.stock[i], "1NSEWD\n"))
-			s->parse.stock[i++] = ' ';
-		else
-			i++;
+		else if (!ft_is_char_in_str(data->parse.stock[i], "10NSEWD\n"))
+			data->parse.stock[i++] = ' ';
 	}
 }
 
-void	ft_parsing(t_data *s)
+void	ft_parsing(t_data *data)
 {
-	ft_read_file(s);
-	ft_search_in_file(s);
-	if (!s->file.ceiling || !s->file.floor || !s->file.east || !s->file.north
-		|| !s->file.south || !s->file.west)
-		ft_error(&s, "💥 MISSING TEXTURE 💥", 1);
-	// ft_convert_color(s);
-	ft_isolate_map(s);
-	if (ft_nbr_and_player_orientation(s) != 1)
-		ft_error(&s, "💥 THERE MUST BE ONLY ONE PLAYER IN THE MAP 💥", 1);
-	// if (!ft_check_unclosed_map(s->parse.map, s->player.posx, s->player.posy))
-	// 	ft_error(&s, "💥 INCORRECT MAP 💥", 1);
-	ft_map_size(s);
-	for (int i = 0; s->parse.map[i]; i++)
-		printf("+%s+\n", s->parse.map[i]);
+	ft_read_file(data);
+	ft_search_in_file(data);
+	if (!data->file.ceiling || !data->file.floor || !data->file.east
+		|| !data->file.north || !data->file.south || !data->file.west)
+		ft_error(&data, "💥 MISSING TEXTURE 💥", 1);
+	// ft_convert_color(data);
+	ft_isolate_map(data);
+	if (ft_nbr_and_player_orientation(data) != 1)
+		ft_error(&data, "💥 THERE MUST BE ONLY ONE PLAYER IN THE MAP 💥", 1);
+	if (!ft_check_unclosed_map(data->parse.map))
+		ft_error(&data, "💥 INCORRECT MAP 💥", 1);
+	ft_map_size(data);
+	// for (int i = 0; data->parse.map[i]; i++)
+	// 	printf("+%s+\n", data->parse.map[i]);
 }
