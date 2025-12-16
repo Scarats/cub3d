@@ -124,13 +124,11 @@ static void	draw_point(t_img *img, int x, int y, int color, int radius)
 
 void draw_player(t_data *data)
 {
-    const double scale = 10.0;
-
-    int px = (int)round(data->position.x * scale);
-    int py = (int)round(data->position.y * scale);
+    int px = (int)round(data->position.x * MINIMAP_SCALE);
+    int py = (int)round(data->position.y * MINIMAP_SCALE);
 
     // draw a small point at player position (3x3 square)
-    draw_point(data->img_buff, px, py, P_RED, 10);
+    draw_point(data->img_buff, px, py, P_RED, MINIMAP_SCALE);
 
     int len_px = 80; // length of the direction line in pixels
 
@@ -139,3 +137,5 @@ void draw_player(t_data *data)
 
     draw_line((t_point){px, py}, (t_point){ex, ey}, P_WHITE, data->img_buff);
 }
+
+// ===========================================================

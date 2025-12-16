@@ -33,7 +33,16 @@ void	init(t_data *data)
 	data->curr_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	// MAP TO SCREEN RATIO
-	// init_minimap_ratio(data);
+    static char row0[] = {1,1,1,1};
+    static char row1[] = {1,0,0,1};
+    static char row2[] = {1,0,0,1};
+    static char row3[] = {1,1,1,1};
+    static char *table[] = { row0, row1, row2, row3 };
+
+    data->map.map = table;
+    data->map.height = 4;
+    data->map.width = 4;
+	
 	data->position.x = 50;
 	data->position.y = 50;
 	data->v_dir.dx = 1;
