@@ -9,9 +9,9 @@ t_vector build_input_vectors(t_controls *dir)
 	input.dy = 0;
 
 	if (dir->straight)
-		input.dy -= 1;
-	if (dir->back)
 		input.dy += 1;
+	if (dir->back)
+		input.dy -= 1;
 	if (dir->left)
 		input.dx -= 1;
 	if (dir->right)
@@ -47,5 +47,5 @@ void	set_position(t_controls *dir, t_data *data)
 	move.dy = forward.dy * input.dy + perpendicular.dy * input.dx;
 
 	data->position.x += move.dx * WALK_SPEED;
-	data->position.y += move.dy * WALK_SPEED;
+	data->position.y -= move.dy * WALK_SPEED;
 }

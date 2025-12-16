@@ -30,7 +30,7 @@ t_vector get_vector(double angle)
 
 	rad = angle * M_PI / 180.0;
 	vector.dx = cos(rad);
-	vector.dy = sin(rad);
+	vector.dy = -sin(rad);
 	return (vector);
 }
 
