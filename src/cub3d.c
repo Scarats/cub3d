@@ -12,13 +12,10 @@ int	main_logic(t_data *data)
 	draw_player(data);
 	printf(RED "dir (%f, %f)\n" RESET, data->v_dir.dx, data->v_dir.dy);
 	printf(ORANGE "(%f, %f)\n" RESET, data->position.x, data->position.y);
-	// draw_minimap(data, data->map);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;
 	data->curr_mouse_pos->y = -1;
 	return (0);
-	// Raycast
-	// Switch buff_img and main_img
 }
 
 int	main(int argc, char **argv)
@@ -28,8 +25,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (printf("💥 PLEASE ENTER ONLY ONE .cub FILE 💥\n"), 1);
 	data = malloc(sizeof(t_data));
-	ft_memset(&data, 0, sizeof(t_data));
-	my_addtolist(&data->malloc_list, data);
+	ft_memset(data, 0, sizeof(t_data));
 	// Check the map
 	data->mlx = mlx_init();
 	if (!data->mlx)
@@ -41,5 +37,6 @@ int	main(int argc, char **argv)
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);
+	stop(&data);
 	return (0);
 }

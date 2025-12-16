@@ -31,7 +31,8 @@ int	stop(t_data **data)
 		(*data)->mlx = NULL;
 	}
 	my_free(&(*data)->malloc_list);
-	ft_memset(data, 0, sizeof(t_data));
+	ft_memset(*data, 0, sizeof(t_data));
+	free(*data);
 	exit(error);
 }
 
