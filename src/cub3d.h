@@ -22,7 +22,7 @@
 # define SENSITIVITY 0.2 // From 0 to 1
 # define POV 15          // Pixels shift per click
 # define M_PI 3.14159265358979323846
-# define FOV 66 // An angle
+# define FOV 0.66 // An angle
 # define MINIMAP_SCALE 10
 # define BORDER_THICKNESS 1 // In pixels
 # define PADDING 5          // in pixel
@@ -133,9 +133,18 @@ typedef struct s_player
 {
 	t_dpoint	dir; // The point where the main vector hit a wall
 	t_dpoint	pos;
+	t_vector	v_plane;
 	t_vector	v_dir;
 	double		dir_angle;
 }	t_player;
+
+typedef struct s_dda
+{
+	t_point		map_pos;
+	t_point		step;
+	t_dpoint 	delta_dist;
+	t_dpoint 	side_dist;
+}	t_dda;
 
 typedef struct s_data
 {
@@ -158,6 +167,7 @@ typedef struct s_data
 
 	// PLAYER
 	t_player	p;
+	t_dda		dda;
 
 	// t_dpoint	d_pos;
 	t_controls	controls;
