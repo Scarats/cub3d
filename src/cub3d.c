@@ -20,7 +20,7 @@ int	main_logic(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	*data;
 
 	if (argc != 2)
 		return (printf("💥 PLEASE ENTER ONLY ONE .cub FILE 💥\n"), 1);

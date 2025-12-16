@@ -6,7 +6,7 @@
 /*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 14:24:00 by tcardair          #+#    #+#             */
-/*   Updated: 2025/12/15 18:42:07 by chboegne         ###   ########.fr       */
+/*   Updated: 2025/12/16 22:48:54 by chboegne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 
 // Compares two strings up to a specified number of characters
-int					ft_strncmp(const char *s1, const char *s2, size_t n);
+int					ft_strncmp(const char *s1, const char *s2, const int n);
 
 // Locates a substring within a string, searching up to a specified length
 char				*ft_strnstr(const char *source, const char *target,

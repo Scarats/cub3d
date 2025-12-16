@@ -3,35 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:47:34 by tcardair          #+#    #+#             */
-/*   Updated: 2024/10/28 13:54:46 by tcardair         ###   ########.fr       */
+/*   Updated: 2025/12/16 22:47:28 by chboegne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include <stdio.h>
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t			i;
-	unsigned char	*ps1;
-	unsigned char	*ps2;
+// int	ft_strncmp(const char *s1, const char *s2, size_t n)
+// {
+// 	size_t			i;
+// 	unsigned char	*ps1;
+// 	unsigned char	*ps2;
 
-	ps1 = (unsigned char *)s1;
-	ps2 = (unsigned char *)s2;
+// 	ps1 = (unsigned char *)s1;
+// 	ps2 = (unsigned char *)s2;
+// 	i = 0;
+// 	while (ps1[i] != '\0' && ps2[i] != '\0' && i < n)
+// 	{
+// 		if (ps1[i] != ps2[i])
+// 			return (ps1[i] - ps2[i]);
+// 		i++;
+// 	}
+// 	if (i < n)
+// 		return (ps1[i] - ps2[i]);
+// 	return (0);
+// }
+
+int	ft_strncmp(const char *s1, const char *s2, const int n)
+{
+	int	i;
+
+	if (!s1 || !s2 || !n)
+		return (0);
 	i = 0;
-	while (ps1[i] != '\0' && ps2[i] != '\0' && i < n)
-	{
-		if (ps1[i] != ps2[i])
-			return (ps1[i] - ps2[i]);
+	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n - 1)
 		i++;
-	}
-	if (i < n)
-		return (ps1[i] - ps2[i]);
-	return (0);
+	return (s1[i] - s2[i]);
 }
+
 /*int main() {
 	char str1[] = "Hello";
 	char str2[] = "Hello, World!";
