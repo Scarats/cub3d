@@ -30,7 +30,7 @@ void	set_position(t_controls *dir, t_data *data)
 {
 	t_vector input;
 	t_vector forward;
-	t_vector perpendicular;
+	t_vector right;
 	t_vector move;
 	
 	input = build_input_vectors(dir);
@@ -40,12 +40,12 @@ void	set_position(t_controls *dir, t_data *data)
 	
 	forward = data->v_dir;
 
-	perpendicular.dx = -forward.dy;
-	perpendicular.dy = forward.dx;
+	right.dx = -forward.dy;
+	right.dy = forward.dx;
 
-	move.dx = forward.dx * input.dy + perpendicular.dx * input.dx;
-	move.dy = forward.dy * input.dy + perpendicular.dy * input.dx;
+	move.dx = forward.dx * input.dy + right.dx * input.dx;
+	move.dy = forward.dy * input.dy + right.dy * input.dx;
 
 	data->position.x += move.dx * WALK_SPEED;
-	data->position.y -= move.dy * WALK_SPEED;
+	data->position.y += move.dy * WALK_SPEED;
 }

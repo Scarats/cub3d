@@ -4,8 +4,10 @@ void	draw_player(t_data *data)
 {
 	int x = data->position.x * 10;
 	int y = data->position.y * 10;
-	t_point mouse = (data->curr_mouse_pos->x == -1 || data->curr_mouse_pos->y == -1) ? *data->last_mouse_pos : *data->curr_mouse_pos;
-	draw_line((t_point){x, y}, mouse, P_WHITE, data->img_buff);
+	// t_point mouse = (data->curr_mouse_pos->x == -1 || data->curr_mouse_pos->y == -1) ? *data->last_mouse_pos : *data->curr_mouse_pos;
+	t_dpoint dir;
+	set_dir_from_pos(&dir, &data->position, data->direction_angle, 50);
+	draw_d_line((t_dpoint){x, y}, dir, P_WHITE, data->img_buff);
 }
 
 // After a key is pressed, this function is used to create
