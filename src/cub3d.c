@@ -1,13 +1,18 @@
 #include "cub3d.h"
 
-void	draw_player(t_data *data)
+void draw_player(t_data *data)
 {
-	int x = data->position.x * 10;
-	int y = data->position.y * 10;
-	// t_point mouse = (data->curr_mouse_pos->x == -1 || data->curr_mouse_pos->y == -1) ? *data->last_mouse_pos : *data->curr_mouse_pos;
-	t_dpoint dir;
-	set_dir_from_pos(&dir, &data->position, data->direction_angle, 50);
-	draw_d_line((t_dpoint){x, y}, dir, P_WHITE, data->img_buff);
+    const double scale = 10.0;
+
+    int px = (int)round(data->position.x * scale);
+    int py = (int)round(data->position.y * scale);
+
+    int len_px = 80; // length of the direction line in pixels
+
+    int ex = px + (int)round(data->v_dir.dx * len_px);
+    int ey = py + (int)round(data->v_dir.dy * len_px);
+
+    draw_line((t_point){px, py}, (t_point){ex, ey}, P_WHITE, data->img_buff);
 }
 
 // After a key is pressed, this function is used to create
