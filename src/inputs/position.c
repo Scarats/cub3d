@@ -38,7 +38,7 @@ void	set_position(t_controls *dir, t_data *data)
 	if (input.dx == 0 && input.dy == 0)
 		return;
 	
-	forward = data->v_dir;
+	forward = data->p.v_dir;
 
 	right.dx = -forward.dy;
 	right.dy = forward.dx;
@@ -46,6 +46,6 @@ void	set_position(t_controls *dir, t_data *data)
 	move.dx = forward.dx * input.dy + right.dx * input.dx;
 	move.dy = forward.dy * input.dy + right.dy * input.dx;
 
-	data->position.x += move.dx * WALK_SPEED;
-	data->position.y += move.dy * WALK_SPEED;
+	data->p.pos.x += move.dx * WALK_SPEED;
+	data->p.pos.y += move.dy * WALK_SPEED;
 }

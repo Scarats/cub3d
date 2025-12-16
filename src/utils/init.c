@@ -21,10 +21,10 @@ void	init(t_data *data)
 	data->map.map = table;
 	data->map.height = 4;
 	data->map.width = 4;
-	data->position.x = 50;
-	data->position.y = 50;
-	data->v_dir.dx = 1;
-	data->v_dir.dy = 1;
+	data->p.pos.x = 50;
+	data->p.pos.y = 50;
+	data->p.v_dir.dx = 1;
+	data->p.v_dir.dy = 1;
 }
 
 void	ft_init_struct(t_data *data, char *map)

@@ -65,8 +65,8 @@ int	ft_nbr_and_player_orientation(t_data *data)
 		{
 			if (ft_is_char_in_str(data->parse.map[i][j], "NSEW"))
 			{
-				data->position.x = j;
-				data->position.y = i;
+				data->p.pos.x = j;
+				data->p.pos.y = i;
 				data->parse.orientation = data->parse.map[i][j];
 				data->parse.map[i][j] = '0';
 				cnt++;

@@ -129,6 +129,14 @@ typedef struct s_map
 	char		**map;
 }				t_map;
 
+typedef struct s_player
+{
+	t_dpoint	dir; // The point where the main vector hit a wall
+	t_dpoint	pos;
+	t_vector	v_dir;
+	double		dir_angle;
+}	t_player;
+
 typedef struct s_data
 {
 	// CARLOS PARSER
@@ -149,11 +157,9 @@ typedef struct s_data
 	int			error;
 
 	// PLAYER
-	t_dpoint direction; // The point where the main vector hit a wall
-	t_dpoint	position;
-	t_vector	v_dir;
+	t_player	p;
+
 	// t_dpoint	d_pos;
-	double		direction_angle;
 	t_controls	controls;
 
 	// RAYCASTING

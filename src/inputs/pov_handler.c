@@ -3,11 +3,11 @@
 void	apply_pov(t_data *data)
 {
 	if (data->controls.look_left)
-		data->direction_angle = set_angle(data->direction_angle, POV);
+		data->p.dir_angle = set_angle(data->p.dir_angle, POV);
 	if (data->controls.look_right)
-		data->direction_angle = set_angle(data->direction_angle, -POV);
+		data->p.dir_angle = set_angle(data->p.dir_angle, -POV);
 	if (data->controls.look_left || data->controls.look_right)
-		data->v_dir = get_vector(data->direction_angle);
+		data->p.v_dir = get_vector(data->p.dir_angle);
 }
 
 void	look_left(t_data *data)
