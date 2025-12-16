@@ -103,3 +103,39 @@ void	draw_d_line(t_dpoint a, t_dpoint b, int color, t_img *img)
 }
 
 
+// AI ========================================================
+static void	draw_point(t_img *img, int x, int y, int color, int radius)
+{
+	int dy;
+	int dx;
+
+	dy = -radius;
+	while (dy <= radius)
+	{
+		dx = -radius;
+		while (dx <= radius)
+		{
+			my_pixel_put(img, x + dx, y + dy, color);
+			dx++;
+		}
+		dy++;
+	}
+}
+
+void draw_player(t_data *data)
+{
+    const double scale = 10.0;
+
+    int px = (int)round(data->position.x * scale);
+    int py = (int)round(data->position.y * scale);
+
+    // draw a small point at player position (3x3 square)
+    draw_point(data->img_buff, px, py, P_RED, 10);
+
+    int len_px = 80; // length of the direction line in pixels
+
+    int ex = px + (int)round(data->v_dir.dx * len_px);
+    int ey = py + (int)round(data->v_dir.dy * len_px);
+
+    draw_line((t_point){px, py}, (t_point){ex, ey}, P_WHITE, data->img_buff);
+}

@@ -20,13 +20,13 @@
 
 // CONTROLS
 # define SENSITIVITY 0.2 // From 0 to 1
-# define POV 10          // Pixels shift per click
+# define POV 15          // Pixels shift per click
 # define M_PI 3.14159265358979323846
 # define FOV 66             // An angle
 # define MINIMAP_SCALE 95   // in % of the screen
 # define BORDER_THICKNESS 1 // In pixels
 # define PADDING 5          // in pixel
-# define WALK_SPEED 0.5     // In blocks of the map per frame
+# define WALK_SPEED 0.4     // In blocks of the map per frame
 
 // PARSING
 typedef struct s_parse
@@ -193,7 +193,7 @@ void				draw_line(t_point a, t_point b, int color, t_img *img);
 void				draw_d_line(t_dpoint a, t_dpoint b, int color, t_img *img);
 int					get_offset(int y, int x, int line_length,
 						int bits_per_pixel);
-void				draw_square(int x, int y, t_data *data);
+void				draw_player(t_data *data);
 
 // HOOKS
 void				set_hooks(t_data *data);

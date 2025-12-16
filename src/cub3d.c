@@ -1,20 +1,5 @@
 #include "cub3d.h"
 
-void draw_player(t_data *data)
-{
-    const double scale = 10.0;
-
-    int px = (int)round(data->position.x * scale);
-    int py = (int)round(data->position.y * scale);
-
-    int len_px = 80; // length of the direction line in pixels
-
-    int ex = px + (int)round(data->v_dir.dx * len_px);
-    int ey = py + (int)round(data->v_dir.dy * len_px);
-
-    draw_line((t_point){px, py}, (t_point){ex, ey}, P_WHITE, data->img_buff);
-}
-
 // After a key is pressed, this function is used to create
 // the new img according to the current situation and render it.
 int	main_logic(t_data *data)
