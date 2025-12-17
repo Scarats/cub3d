@@ -11,8 +11,8 @@ int	main_logic(t_data *data)
 	apply_pov(data);
 	raycasting(data, &data->p);
 	draw_player(data);
-	printf(RED "dir (%f, %f)\n" RESET, data->p.v_dir.dx, data->p.v_dir.dy);
-	printf(ORANGE "(%f, %f)\n" RESET, data->p.pos.x, data->p.pos.y);
+	// printf(RED "dir (%f, %f)\n" RESET, data->p.v_dir.dx, data->p.v_dir.dy);
+	// printf(ORANGE "(%f, %f)\n" RESET, data->p.pos.x, data->p.pos.y);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;
 	data->curr_mouse_pos->y = -1;

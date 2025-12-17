@@ -20,9 +20,10 @@ int	mouse_pov(int x, int y, t_data *data)
 	delta = x - last_x;
 
 	last_x = x;
-
 	data->p.dir_angle = set_angle(data->p.dir_angle, -delta);
 	data->p.v_dir = get_vector(data->p.dir_angle);
+	data->p.v_plane.dx = -data->p.v_dir.dy * FOV;
+	data->p.v_plane.dy =  data->p.v_dir.dx * FOV;
 	return (0);
 }
 
