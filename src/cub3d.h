@@ -22,7 +22,7 @@
 # define SENSITIVITY 0.2 // From 0 to 1
 # define POV 15          // Pixels shift per click
 # define M_PI 3.14159265358979323846
-# define FOV 0.66 // An angle
+# define FOV 0.99 // An angle
 # define MINIMAP_SCALE 100
 # define BORDER_THICKNESS 1 // In pixels
 # define PADDING 5          // in pixel
