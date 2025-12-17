@@ -15,7 +15,7 @@ void	ft_map_size(t_data *data)
 			j++;
 		while (j > 0 && data->parse.map[i][j - 1] != '1')
 			j--;
-		data->parse.map[i][j + 1] = '\0';
+		data->parse.map[i][j] = '\0';
 		if (j > data->parse.width)
 			data->parse.width = j;
 		i++;
@@ -34,13 +34,21 @@ bool	ft_check_unclosed_map(char **map)
 		y = 0;
 		while (map[x][y])
 		{
-			if (map[x][y] == '0' && (!map[x][y + 1] || !map[x][y - 1] || !map[x
-					+ 1][y] || !map[x + 1][y - 1] || !map[x + 1][y + 1]
-					|| !map[x - 1][y] || !map[x - 1][y - 1] || !map[x - 1][y
-					+ 1] || map[x][y + 1] == ' ' || map[x][y - 1] == ' '
-					|| map[x + 1][y] == ' ' || map[x + 1][y - 1] == ' ' || map[x
-					+ 1][y + 1] == ' ' || map[x - 1][y] == ' ' || map[x - 1][y
-					- 1] == ' ' || map[x - 1][y + 1] == ' '))
+			// if (map[x][y] == '0' && (x == 0 || y == 0 || !map[x][y + 1] || !map[x][y - 1] || !map[x
+			// 		+ 1][y] || !map[x + 1][y - 1] || !map[x + 1][y + 1]
+			// 		|| !map[x - 1][y] || !map[x - 1][y - 1] || !map[x - 1][y
+			// 		+ 1] || map[x][y + 1] == ' ' || map[x][y - 1] == ' '
+			// 		|| map[x + 1][y] == ' ' || map[x + 1][y - 1] == ' ' || map[x
+			// 		+ 1][y + 1] == ' ' || map[x - 1][y] == ' ' || map[x - 1][y
+			// 		- 1] == ' ' || map[x - 1][y + 1] == ' '))
+			 if (map[x][y] == '0' && ((x == 0 || map[x-1][y] == ' ') ||
+                    (x == 0 || y == 0 || map[x-1][y-1] == ' ') ||
+                    (x == 0 || y == ft_strlen(map[x])-1 || map[x-1][y+1] == ' ') ||
+                    (y == 0 || map[x][y-1] == ' ') ||
+                    (y == ft_strlen(map[x])-1 || map[x][y+1] == ' ') ||
+                    (!map[x+1] || map[x+1][y] == ' ') ||
+                    (!map[x+1] || y == 0 || map[x+1][y-1] == ' ') ||
+                    (!map[x+1] || y == ft_strlen(map[x+1])-1 || map[x+1][y+1] == ' ')))
 				return (false);
 			y++;
 		}

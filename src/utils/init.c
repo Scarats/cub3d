@@ -17,6 +17,9 @@ void	init(t_data *data)
 	// MOUSE POS
 	data->curr_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
+	data->curr_mouse_pos->x = 1;
+	data->curr_mouse_pos->y = 1;
+	
 	// MAP TO SCREEN RATIO
 	data->map.map = table;
 	data->map.height = 4;

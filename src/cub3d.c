@@ -10,8 +10,9 @@ int	main_logic(t_data *data)
 	set_position(&data->controls, data);
 	mouse_edge(data);
 	draw_player(data);
-	printf(RED "dir (%f, %f)\n" RESET, data->v_dir.dx, data->v_dir.dy);
-	printf(ORANGE "(%f, %f)\n" RESET, data->position.x, data->position.y);
+	ft_draw_minimap(data);
+	// printf(RED "dir (%f, %f)\n" RESET, data->v_dir.dx, data->v_dir.dy);
+	// printf(ORANGE "(%f, %f)\n" RESET, data->position.x, data->position.y);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;
 	data->curr_mouse_pos->y = -1;
@@ -34,6 +35,10 @@ int	main(int argc, char **argv)
 	create_window(data);
 	ft_init_struct(data, argv[1]);
 	ft_parsing(data);
+	// printf("\n");
+	// for (int i = 0; data->parse.map[i]; i++)
+	// 	printf("%s\n", data->parse.map[i]);
+	// printf("\n");
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);

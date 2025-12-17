@@ -27,6 +27,7 @@
 # define BORDER_THICKNESS 1 // In pixels
 # define PADDING 5          // in pixel
 # define WALK_SPEED 0.4     // In blocks of the map per frame
+# define MINI_MAP 0.5	// 0 to 1 surface d'occupation de la mini_map
 
 // PARSING
 typedef struct s_parse
@@ -233,6 +234,7 @@ void			go_right(t_data *data, bool stop);
 void			set_position(t_controls *dir, t_data *data);
 
 // CARLOS PARSING
+void ft_draw_minimap(t_data *data);
 // check_define.c
 void			ft_map_size(t_data *data);
 bool			ft_check_unclosed_map(char **map);
