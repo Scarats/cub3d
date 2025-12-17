@@ -6,9 +6,9 @@ int	main_logic(t_data *data)
 {
 	if (!data || !data->img_buff || !data->img_main)
 		return (perror("main_logic"), 1);
-	apply_pov(data);
 	set_position(&data->controls, data);
 	mouse_edge(data);
+	apply_pov(data);
 	raycasting(data, &data->p);
 	draw_player(data);
 	printf(RED "dir (%f, %f)\n" RESET, data->p.v_dir.dx, data->p.v_dir.dy);

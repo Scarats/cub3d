@@ -4,10 +4,10 @@ void	init(t_data *data)
 {
 	fdprintf(1, "init\n");
 	// Use chars '0'/'1' so raycasting checks against '0' work
-	static char	row0[] = "1111";
-	static char	row1[] = "1001";
-	static char	row2[] = "1001";
-	static char	row3[] = "1111";
+	static char	row0[] = "11111";
+	static char	row1[] = "10001111";
+	static char	row2[] = "10000001";
+	static char	row3[] = "11000111";
 	static char	*table[] = {row0, row1, row2, row3};
 
 	data->map.height = 4;

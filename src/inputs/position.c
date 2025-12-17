@@ -26,6 +26,11 @@ t_vector build_input_vectors(t_controls *dir)
 	return (input);
 }
 
+// bool	check_collision()
+// {
+
+// }
+
 void	set_position(t_controls *dir, t_data *data)
 {
 	t_vector input;
@@ -45,7 +50,8 @@ void	set_position(t_controls *dir, t_data *data)
 
 	move.dx = forward.dx * input.dy + right.dx * input.dx;
 	move.dy = forward.dy * input.dy + right.dy * input.dx;
-
+	
+	// Check for colision here.
 	data->p.pos.x += move.dx * WALK_SPEED;
 	data->p.pos.y += move.dy * WALK_SPEED;
 }

@@ -3,5 +3,5 @@
 ## Charles
 - [ ] minimap
 ## Thomas
-- [ ] Correct fisheye effect.
+- [ ] if mouse moving, make the same system as for apply_pov with the changed flag.
 - [ ] Collision.

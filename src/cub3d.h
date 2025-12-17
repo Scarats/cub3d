@@ -19,7 +19,7 @@
 # define P_RESET 0x000000
 
 // MACROS
-# define SENSITIVITY 0.2 // From 0 to 1
+# define SENSITIVITY 0.8 // From 0 to 1
 # define POV 15          // Pixels shift per click
 # define M_PI 3.14159265358979323846
 # define FOV 0.66 // An angle
