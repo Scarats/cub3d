@@ -220,6 +220,7 @@ void			render_img(t_img *img, t_data *data);
 void			refresh_images(t_data *data);
 
 // RAYCASTING
+void			raycasting(t_data *data, t_player *p);
 
 // ANGLE
 // void			get_direction(t_data *data, double pixel_pov_shift);

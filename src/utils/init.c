@@ -18,12 +18,18 @@ void	init(t_data *data)
 	// MOUSE POS
 	data->curr_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
+	// data->curr_mouse_pos->y = 1;
+	// data->curr_mouse_pos->x = 1;
+
 	// MAP TO SCREEN RATIO
 	data->map.map = table;
-	data->p.pos.x = 50;
-	data->p.pos.y = 50;
+	data->p.pos.x = 2;
+	data->p.pos.y = 2;
+	data->p.dir.x = 2;
+	data->p.dir.y = 2;
+	data->p.dir_angle = 0;
 	data->p.v_dir.dx = 1;
-	data->p.v_dir.dy = 1;
+	data->p.v_dir.dy = 0;
 	data->p.v_plane.dx = 0;
 	data->p.v_plane.dx = FOV;
 }

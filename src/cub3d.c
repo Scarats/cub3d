@@ -9,7 +9,11 @@ int	main_logic(t_data *data)
 	apply_pov(data);
 	set_position(&data->controls, data);
 	mouse_edge(data);
+	raycasting(data, &data->p);
 	draw_player(data);
+	t_point pos = {data->p.pos.x, data->p.pos.y};
+	t_point dir = {data->p.dir.x, data->p.dir.y};
+	draw_line(pos, dir, P_GREEN, data->img_buff);
 	printf(RED "dir (%f, %f)\n" RESET, data->p.v_dir.dx, data->p.v_dir.dy);
 	printf(ORANGE "(%f, %f)\n" RESET, data->p.pos.x, data->p.pos.y);
 	refresh_images(data);
