@@ -23,10 +23,10 @@
 # define POV 15          // Pixels shift per click
 # define M_PI 3.14159265358979323846
 # define FOV 0.66 // An angle
-# define MINIMAP_SCALE 10
+# define MINIMAP_SCALE 100
 # define BORDER_THICKNESS 1 // In pixels
 # define PADDING 5          // in pixel
-# define WALK_SPEED 0.4     // In blocks of the map per frame
+# define WALK_SPEED 0.1     // In blocks of the map per frame
 
 // PARSING
 typedef struct s_parse
@@ -218,6 +218,7 @@ void			set_hooks(t_data *data);
 // RENDERING
 void			render_img(t_img *img, t_data *data);
 void			refresh_images(t_data *data);
+int				cast_forward_hit(t_data *data, t_dpoint *hit_cell);
 
 // RAYCASTING
 void			raycasting(t_data *data, t_player *p);

@@ -128,14 +128,14 @@ void draw_player(t_data *data)
     int py = (int)round(data->p.pos.y * MINIMAP_SCALE);
 
     // draw a small point at player position (3x3 square)
-    draw_point(data->img_buff, px, py, P_RED, MINIMAP_SCALE);
+    draw_point(data->img_buff, px, py, P_RED, 10);
 
-    int len_px = 80; // length of the direction line in pixels
+    // int len_px = 80; // length of the direction line in pixels
 
-    int ex = px + (int)round(data->p.v_dir.dx * len_px);
-    int ey = py + (int)round(data->p.v_dir.dy * len_px);
+    // int ex = px + (int)round(data->p.v_dir.dx * len_px);
+    // int ey = py + (int)round(data->p.v_dir.dy * len_px);
 
-    draw_line((t_point){px, py}, (t_point){ex, ey}, P_WHITE, data->img_buff);
+    // draw_line((t_point){px, py}, (t_point){ex, ey}, P_WHITE, data->img_buff);
 }
 
 // ===========================================================

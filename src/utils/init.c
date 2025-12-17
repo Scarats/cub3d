@@ -3,13 +3,16 @@
 void	init(t_data *data)
 {
 	fdprintf(1, "init\n");
-	static char	row0[] = {1, 1, 1, 1};
-	static char	row1[] = {1, 0, 0, 1};
-	static char	row2[] = {1, 0, 0, 1};
-	static char	row3[] = {1, 1, 1, 1};
+	// Use chars '0'/'1' so raycasting checks against '0' work
+	static char	row0[] = "1111";
+	static char	row1[] = "1001";
+	static char	row2[] = "1001";
+	static char	row3[] = "1111";
 	static char	*table[] = {row0, row1, row2, row3};
+
 	data->map.height = 4;
 	data->map.width = 4;
+
 	// IMG
 	data->img_buff = my_malloc(NULL, &data->malloc_list, sizeof(t_img));
 	init_new_img(data->img_buff, data);
@@ -18,20 +21,19 @@ void	init(t_data *data)
 	// MOUSE POS
 	data->curr_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
 	data->last_mouse_pos = my_malloc(NULL, &data->malloc_list, sizeof(t_point));
-	// data->curr_mouse_pos->y = 1;
-	// data->curr_mouse_pos->x = 1;
+	data->curr_mouse_pos->x = 1;
+	data->curr_mouse_pos->y = 1;
 
 	// MAP TO SCREEN RATIO
 	data->map.map = table;
 	data->p.pos.x = 2;
 	data->p.pos.y = 2;
-	data->p.dir.x = 2;
-	data->p.dir.y = 2;
 	data->p.dir_angle = 0;
-	data->p.v_dir.dx = 1;
+	data->p.v_dir.dx = 1;      // facing east
 	data->p.v_dir.dy = 0;
-	data->p.v_plane.dx = 0;
-	data->p.v_plane.dx = FOV;
+	// plane perpendicular to v_dir, scaled by FOV
+	data->p.v_plane.dx = -data->p.v_dir.dy * FOV;
+	data->p.v_plane.dy =  data->p.v_dir.dx * FOV;
 }
 
 void	ft_init_struct(t_data *data, char *map)
