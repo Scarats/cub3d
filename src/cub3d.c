@@ -9,26 +9,8 @@ int	main_logic(t_data *data)
 	apply_pov(data);
 	set_position(&data->controls, data);
 	mouse_edge(data);
-	// raycasting(data, &data->p);
+	raycasting(data, &data->p);
 	draw_player(data);
-
-	// AI ========================================================
-	// Draw green line toward first wall in facing direction
-	t_point pos_px = {
-		(int)round(data->p.pos.x * MINIMAP_SCALE),
-		(int)round(data->p.pos.y * MINIMAP_SCALE)
-	};
-	t_dpoint hit_cell;
-	if (cast_forward_hit(data, &hit_cell))
-	{
-		t_point hit_px = {
-			(int)round(hit_cell.x * MINIMAP_SCALE),
-			(int)round(hit_cell.y * MINIMAP_SCALE)
-		};
-		draw_line(pos_px, hit_px, P_GREEN, data->img_buff);
-	}
-	// AI ========================================================
-
 	printf(RED "dir (%f, %f)\n" RESET, data->p.v_dir.dx, data->p.v_dir.dy);
 	printf(ORANGE "(%f, %f)\n" RESET, data->p.pos.x, data->p.pos.y);
 	refresh_images(data);

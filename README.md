@@ -3,5 +3,5 @@
 ## Charles
 - [ ] minimap
 ## Thomas
-- [ ] Position
-- [ ] Raycasting
+- [ ] Correct fisheye effect.
+- [ ] Collision.

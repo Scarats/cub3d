@@ -68,11 +68,66 @@ void	dda_wall_detection(t_dda *dda, t_data *data, int *side)
 	}
 }
 
+void compute_hit_point(t_player *player, t_dda *dda, int side, t_dpoint *hit_point, t_vector *ray_dir)
+{
+	double distance;
+
+	if (side == 0)
+		distance = dda->side_dist.x - dda->delta_dist.x;
+	else
+		distance = dda->side_dist.y - dda->delta_dist.y;
+
+	hit_point->x = player->pos.x + ray_dir->dx * distance;
+    hit_point->y = player->pos.y + ray_dir->dy * distance;
+}
+
+double get_distance_wrong(t_dpoint a, t_dpoint b)
+{
+	double dx;
+	double dy;
+
+	dx = b.x - a.x;
+	dy = b.y - a.y;
+
+	return (sqrt(dx * dx + dy * dy));
+}
+
+void draw_wall(int x, double distance, t_data *data, int side)
+{
+	int line_height;
+    int draw_start;
+    int draw_end;
+	static int height = -1;
+
+	if (height == -1)
+		height = data->win_height;
+
+    line_height = (int)(height / distance);
+	draw_start = -line_height / 2 + height / 2;
+	draw_end = line_height / 2 + height / 2;
+
+	if (draw_start < 0)
+		draw_start = 0;
+	if (draw_end >= height)
+		draw_end = height - 1;
+
+	while (draw_start <= draw_end)
+	{
+		if (side == 0)
+			my_pixel_put(data->img_buff, x, draw_start, P_PURPLE);
+		else
+			my_pixel_put(data->img_buff, x, draw_start, P_ORANGE);
+		draw_start++;
+	}
+}
+
 void raycasting(t_data *data, t_player *p)
 {
 	int x;
 	int side;
 	t_vector ray_dir;
+	t_dpoint hit_point;
+	double	distance;
 
 	x = -1;
 	while (++x < data->win_width)
@@ -80,36 +135,8 @@ void raycasting(t_data *data, t_player *p)
 		compute_ray_direction(p, x, data->win_width, &ray_dir);
 		init_dda(&data->dda, p, &ray_dir);
 		dda_wall_detection(&data->dda, data, &side);
-		data->p.dir.x = (double)data->dda.map_pos.x * MINIMAP_SCALE;
-		data->p.dir.y = (double)data->dda.map_pos.y * MINIMAP_SCALE;
+		compute_hit_point(p, &data->dda, side, &hit_point, &ray_dir);
+		distance = get_distance_wrong(p->pos, hit_point);
+		draw_wall(x, distance, data, side);
 	}
-}
-
-
-// AI FOR TESTING ====================
-int cast_forward_hit(t_data *data, t_dpoint *hit_cell)
-{
-	t_vector ray_dir;
-	t_dda dda_local;
-	int side;
-	int center_x;
-
-	if (!data || !hit_cell)
-		return 0;
-	center_x = data->win_width / 2;
-
-	compute_ray_direction(&data->p, center_x, data->win_width, &ray_dir);
-	init_dda(&dda_local, &data->p, &ray_dir);
-	dda_wall_detection(&dda_local, data, &side);
-
-	// Verify we ended inside the map and hit a wall
-	if (dda_local.map_pos.y >= 0 && dda_local.map_pos.y < data->map.height &&
-		dda_local.map_pos.x >= 0 && dda_local.map_pos.x < data->map.width &&
-		data->map.map[dda_local.map_pos.y][dda_local.map_pos.x] != '0')
-	{
-		hit_cell->x = dda_local.map_pos.x;
-		hit_cell->y = dda_local.map_pos.y;
-		return 1;
-	}
-	return 0;
 }
