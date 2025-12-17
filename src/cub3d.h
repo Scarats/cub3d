@@ -22,8 +22,8 @@
 # define SENSITIVITY 0.2 // From 0 to 1
 # define POV 15          // Pixels shift per click
 # define M_PI 3.14159265358979323846
-# define FOV 66 // An angle
-# define MINIMAP_SCALE 10
+# define FOV 0.66 // An angle
+# define MINIMAP_SCALE 100
 # define BORDER_THICKNESS 1 // In pixels
 # define PADDING 5          // in pixel
 # define WALK_SPEED 0.4     // In blocks of the map per frame
@@ -130,6 +130,23 @@ typedef struct s_map
 	char		**map;
 }				t_map;
 
+typedef struct s_player
+{
+	t_dpoint	dir; // The point where the main vector hit a wall
+	t_dpoint	pos;
+	t_vector	v_plane;
+	t_vector	v_dir;
+	double		dir_angle;
+}	t_player;
+
+typedef struct s_dda
+{
+	t_point		map_pos;
+	t_point		step;
+	t_dpoint 	delta_dist;
+	t_dpoint 	side_dist;
+}	t_dda;
+
 typedef struct s_data
 {
 	// CARLOS PARSER
@@ -150,11 +167,10 @@ typedef struct s_data
 	int			error;
 
 	// PLAYER
-	t_dpoint direction; // The point where the main vector hit a wall
-	t_dpoint	position;
-	t_vector	v_dir;
+	t_player	p;
+	t_dda		dda;
+
 	// t_dpoint	d_pos;
-	double		direction_angle;
 	t_controls	controls;
 
 	// RAYCASTING
@@ -203,8 +219,10 @@ void			set_hooks(t_data *data);
 // RENDERING
 void			render_img(t_img *img, t_data *data);
 void			refresh_images(t_data *data);
+int				cast_forward_hit(t_data *data, t_dpoint *hit_cell);
 
 // RAYCASTING
+void			raycasting(t_data *data, t_player *p);
 
 // ANGLE
 // void			get_direction(t_data *data, double pixel_pov_shift);
