@@ -81,15 +81,12 @@ void compute_hit_point(t_player *player, t_dda *dda, int side, t_dpoint *hit_poi
     hit_point->y = player->pos.y + ray_dir->dy * distance;
 }
 
-double get_distance_wrong(t_dpoint a, t_dpoint b)
+double get_distance(int side, t_dda *dda)
 {
-	double dx;
-	double dy;
-
-	dx = b.x - a.x;
-	dy = b.y - a.y;
-
-	return (sqrt(dx * dx + dy * dy));
+	if (side == 0)
+        return dda->side_dist.x - dda->delta_dist.x;
+    else
+        return dda->side_dist.y - dda->delta_dist.y;
 }
 
 void draw_wall(int x, double distance, t_data *data, int side)
@@ -126,7 +123,6 @@ void raycasting(t_data *data, t_player *p)
 	int x;
 	int side;
 	t_vector ray_dir;
-	t_dpoint hit_point;
 	double	distance;
 
 	x = -1;
@@ -135,8 +131,7 @@ void raycasting(t_data *data, t_player *p)
 		compute_ray_direction(p, x, data->win_width, &ray_dir);
 		init_dda(&data->dda, p, &ray_dir);
 		dda_wall_detection(&data->dda, data, &side);
-		compute_hit_point(p, &data->dda, side, &hit_point, &ray_dir);
-		distance = get_distance_wrong(p->pos, hit_point);
+		distance = get_distance(side, &data->dda);
 		draw_wall(x, distance, data, side);
 	}
 }
