@@ -3,15 +3,15 @@
 void	init(t_data *data)
 {
 	fdprintf(1, "init\n");
-	// Use chars '0'/'1' so raycasting checks against '0' work
-	static char	row0[] = "1111";
-	static char	row1[] = "1001";
-	static char	row2[] = "1001";
-	static char	row3[] = "1111";
-	static char	*table[] = {row0, row1, row2, row3};
+	// // Use chars '0'/'1' so raycasting checks against '0' work
+	// static char	row0[] = "1111";
+	// static char	row1[] = "1001";
+	// static char	row2[] = "1001";
+	// static char	row3[] = "1111";
+	// static char	*table[] = {row0, row1, row2, row3};
 
-	data->map.height = 4;
-	data->map.width = 4;
+	// data->map.height = 1;
+	// data->map.width = 1;
 
 	// IMG
 	data->img_buff = my_malloc(NULL, &data->malloc_list, sizeof(t_img));
@@ -25,7 +25,6 @@ void	init(t_data *data)
 	data->curr_mouse_pos->y = 1;
 
 	// MAP TO SCREEN RATIO
-	data->map.map = table;
 	data->p.pos.x = 2;
 	data->p.pos.y = 2;
 	data->p.dir_angle = 0;

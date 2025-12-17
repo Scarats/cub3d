@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	my_addtolist(&data->malloc_list, data->mlx);
 	create_window(data);
 	ft_init_struct(data, argv[1]);
-	// ft_parsing(data);
+	ft_parsing(data);
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);

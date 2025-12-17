@@ -22,12 +22,12 @@
 # define SENSITIVITY 0.2 // From 0 to 1
 # define POV 15          // Pixels shift per click
 # define M_PI 3.14159265358979323846
-# define FOV 0.66 // An angle
+# define FOV 0.99 // An angle
 # define MINIMAP_SCALE 100
 # define BORDER_THICKNESS 1 // In pixels
 # define PADDING 5          // in pixel
-# define WALK_SPEED 0.4     // In blocks of the map per frame
-# define MINI_MAP 0.5	// 0 to 1 surface d'occupation de la mini_map
+# define WALK_SPEED 0.1     // In blocks of the map per frame
+# define MINI_MAP 0.2	// 0 to 1 surface d'occupation de la mini_map
 
 // PARSING
 typedef struct s_parse
@@ -51,6 +51,14 @@ typedef struct s_file
 	char		*floor;
 	char		*ceiling;
 }				t_file;
+
+// MINI_MAP
+typedef struct s_mini
+{
+	int width;
+	int height;
+	int pixel;
+} t_mini;
 
 typedef enum e_event
 {
@@ -152,6 +160,7 @@ typedef struct s_data
 	// CARLOS PARSER
 	t_parse		parse;
 	t_file		file;
+	t_mini		mini;
 
 	// MLX && WINDOW
 	void		*mlx;

@@ -115,7 +115,9 @@ static void	draw_point(t_img *img, int x, int y, int color, int radius)
 		dx = -radius;
 		while (dx <= radius)
 		{
-			my_pixel_put(img, x + dx, y + dy, color);
+			// my_pixel_put(img, x + dx, y + dy, color);
+			if (img && x && y && color && radius)
+			{}
 			dx++;
 		}
 		dy++;
@@ -124,8 +126,10 @@ static void	draw_point(t_img *img, int x, int y, int color, int radius)
 
 void draw_player(t_data *data)
 {
-    int px = (int)round(data->p.pos.x * MINIMAP_SCALE);
-    int py = (int)round(data->p.pos.y * MINIMAP_SCALE);
+    // int px = (int)round(data->p.pos.x * 30);
+    // int py = (int)round(data->p.pos.y * 30);
+	int px = data->p.pos.x * 100;
+	int py = data->p.pos.y * 100;
 
     // draw a small point at player position (3x3 square)
     draw_point(data->img_buff, px, py, P_RED, 10);

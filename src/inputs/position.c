@@ -33,7 +33,7 @@ bool	check_collision(t_data *data, t_vector *move)
 	curr_pos = data->p.pos;
 	curr_pos.x += move->dx;
 	curr_pos.y += move->dy;
-	if (data->map.map[(int)curr_pos.y][(int)curr_pos.x] > '0')
+	if (data->parse.map[(int)curr_pos.y][(int)curr_pos.x] > '0')
 		return (false);
 	return (true);
 }

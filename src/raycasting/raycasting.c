@@ -58,10 +58,10 @@ void	dda_wall_detection(t_dda *dda, t_data *data, int *side)
 			dda->map_pos.y += dda->step.y;
 			*side = 1;	
 		}
-		if (dda->map_pos.y < 0 || dda->map_pos.y >= data->map.height ||
-            dda->map_pos.x < 0 || dda->map_pos.x >= data->map.width)
+		if (dda->map_pos.y < 0 || dda->map_pos.y >= data->parse.height ||
+            dda->map_pos.x < 0 || dda->map_pos.x >= data->parse.width)
             break;
-		if (data->map.map[dda->map_pos.y][dda->map_pos.x] != '0')
+		if (data->parse.map[dda->map_pos.y][dda->map_pos.x] != '0')
 			hit = 1;
 	}
 }
