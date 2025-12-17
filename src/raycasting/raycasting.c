@@ -14,10 +14,8 @@ void init_dda(t_dda *dda, t_player *p, t_vector *ray_dir)
 {
     dda->map_pos.x = (int)p->pos.x;
     dda->map_pos.y = (int)p->pos.y;
-
     dda->delta_dist.x = fabs(1.0 / ray_dir->dx);
     dda->delta_dist.y = fabs(1.0 / ray_dir->dy);
-
     if (ray_dir->dx < 0)
     {
         dda->step.x = -1;

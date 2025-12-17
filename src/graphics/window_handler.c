@@ -12,7 +12,7 @@ void	get_screen_dimentions(t_data *data)
 		stop(&data);
 	}
 	// FOR HALF SCREEN
-	data->win_width /= 2;
+	// data->win_width /= 2;
 }
 
 void	create_window(t_data *data)
