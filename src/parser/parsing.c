@@ -114,17 +114,5 @@ void	ft_parsing(t_data *data)
 	if (!ft_check_unclosed_map(data->parse.map))
 		ft_error(&data, "💥 INCORRECT MAP 💥", 1);
 	ft_map_size(data);
-	if (data->parse.width >= data->parse.height)
-	{
-		data->mini.width = data->win_width * MINI_MAP;
-		data->mini.height = (data->parse.height * data->mini.width)
-			/ data->parse.width;
-	}
-	else
-	{
-		data->mini.height = (int)(data->win_height * MINI_MAP);
-		data->mini.width = (data->parse.width * data->mini.height)
-			/ data->parse.height;
-	}
-	data->mini.pixel = data->mini.height / data->parse.height;
+	ft_save_assets(data);
 }

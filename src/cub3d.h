@@ -63,7 +63,6 @@ typedef struct s_parse
 	char		orientation;
 }				t_parse;
 
-// TEXTURES
 typedef struct s_file
 {
 	char		*north;
@@ -74,14 +73,26 @@ typedef struct s_file
 	char		*ceiling;
 }				t_file;
 
-// IMAGES
-typedef struct s_image
+typedef struct s_pex
 {
+	void		*img;
+	int			*data;
 	int			w;
 	int			h;
+	int			bpp;
+	int			size;
+	int			endian;
+}				t_pex;
+
+typedef struct s_tex
+{
+	t_pex		north;
+	t_pex		south;
+	t_pex		west;
+	t_pex		east;
 	int			floor;
 	int			ceiling;
-}				t_image;
+}				t_tex;
 
 // MINI_MAP
 typedef struct s_mini
@@ -172,7 +183,7 @@ typedef struct s_data
 	t_parse		parse;
 	t_file		file;
 	t_mini		mini;
-	t_image		image;
+	t_tex		tex;
 
 	// MLX && WINDOW
 	void		*mlx;
@@ -276,6 +287,7 @@ void			ft_convert_color(t_data *data);
 // parsing.c
 void			ft_parsing(t_data *data);
 void			ft_draw_floor_and_celling(t_data *data);
+void			ft_save_assets(t_data *data);
 
 // MAIN
 void			ft_error(t_data **data, const char *str, int code);

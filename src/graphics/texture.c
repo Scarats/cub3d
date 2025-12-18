@@ -12,9 +12,9 @@ void	ft_draw_floor_and_celling(t_data *data)
 		while (x < data->win_height)
 		{
 			if (x < data->win_height / 2)
-				my_pixel_put(data->img_buff, y, x, data->image.ceiling);
+				my_pixel_put(data->img_buff, y, x, data->tex.ceiling);
 			else
-				my_pixel_put(data->img_buff, y, x, data->image.floor);
+				my_pixel_put(data->img_buff, y, x, data->tex.floor);
 			x++;
 		}
 		y++;
