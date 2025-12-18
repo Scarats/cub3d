@@ -46,4 +46,8 @@ void	ft_save_assets(t_data *data)
 {
 	ft_minimap_mesure(data);
 	ft_save_images(data);
+	// my_addtolist(&data->malloc_list, &data->tex.north.img);
+	// my_addtolist(&data->malloc_list, &data->tex.east.img);
+	// my_addtolist(&data->malloc_list, &data->tex.south.img);
+	// my_addtolist(&data->malloc_list, &data->tex.west.img);
 }

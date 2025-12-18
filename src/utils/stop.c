@@ -1,11 +1,11 @@
 #include "../cub3d.h"
 
-void	destroy_image(t_img *img, t_data *data)
+void	destroy_image(void *img, t_data *data)
 {
-	if (img->mlx_img)
+	if (img)
 	{
-		mlx_destroy_image(data->mlx, img->mlx_img);
-		img->mlx_img = NULL;
+		mlx_destroy_image(data->mlx, img);
+		img = NULL;
 	}
 }
 
@@ -18,9 +18,17 @@ int	stop(t_data **data)
 	error = (*data)->error;
 	ft_free_struct(data);
 	if ((*data)->img_buff)
-		destroy_image((*data)->img_buff, *data);
+		destroy_image((*data)->img_buff->mlx_img, *data);
 	if ((*data)->img_main)
-		destroy_image((*data)->img_main, *data);
+		destroy_image((*data)->img_main->mlx_img, *data);
+	if ((*data)->tex.north.img)
+		destroy_image((*data)->tex.north.img, *data);
+	if ((*data)->tex.east.img)
+		destroy_image((*data)->tex.east.img, *data);
+	if ((*data)->tex.south.img)
+		destroy_image((*data)->tex.south.img, *data);
+	if ((*data)->tex.west.img)
+		destroy_image((*data)->tex.west.img, *data);
 	if ((*data)->window)
 	{
 		mlx_destroy_window((*data)->mlx, (*data)->window);
