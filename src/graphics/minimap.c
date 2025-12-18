@@ -32,11 +32,11 @@ void ft_draw_player(t_data *data)
     int i;
     int j;
 
-    i = -data->mini.pixel / 10;
-    while (i < data->mini.pixel / 10)
+    i = -data->mini.pixel / 5;
+    while (i < data->mini.pixel / 5)
     {
-        j = -data->mini.pixel / 10;
-        while (j < data->mini.pixel / 10)
+        j = -data->mini.pixel / 5;
+        while (j < data->mini.pixel / 5)
         {
             my_pixel_put(data->img_buff, (data->p.pos.x * data->mini.pixel) + i, (data->p.pos.y * data->mini.pixel) + j, P_RED);
             j++;
