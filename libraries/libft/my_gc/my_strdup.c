@@ -33,7 +33,7 @@ char	*my_strndup(t_list **malloc_list, char *str, int n)
 
 	if (!malloc_list || !str)
 		return (NULL);
-	new = my_malloc(NULL, &malloc_list, sizeof(char) * (n + 1));
+	new = my_malloc(NULL, malloc_list, sizeof(char) * (n + 1));
 	if (!new)
 		return (NULL);
 	i = 0;

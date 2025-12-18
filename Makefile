@@ -20,18 +20,18 @@ MLX_MAC_DIR   = ./libraries/minilibx_mms_20200219
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@${CC} ${FLAGS} -c $< -o $@ 2>&1
+	@${CC} ${FLAGS} -c $< -o $@
 
 ${NAME}: 	${OBJS}
-	@make -C ./libraries/libft > /dev/null 2>&1
-	@make -C ${MLX_LINUX_DIR} > /dev/null 2>&1
+	@make -C ./libraries/libft 
+	@make -C ${MLX_LINUX_DIR}
 	@${CC} ${OBJS} -L${MLX_LINUX_DIR} -lmlx -L/usr/lib -I${MLX_LINUX_DIR} -lXext -lX11 -lm -lz -L ./libraries/libft -lft -o ${NAME} 2>&1
 
 all: 		${NAME}
 
 clean:
-	@make fclean -C ./libraries/libft > /dev/null 2>&1
-	@make clean -C ${MLX_LINUX_DIR} > /dev/null 2>&1
+	@make fclean -C ./libraries/libft
+	@make clean -C ${MLX_LINUX_DIR}
 	@${RM} -r ${OBJ_DIR}
 
 fclean:		clean
