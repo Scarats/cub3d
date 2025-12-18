@@ -101,21 +101,21 @@ void	ft_isolate_map(t_data *data)
 	free(map);
 }
 
-// void	ft_convert_color(t_data *s)
-// {
-// 	int		i;
-// 	char	**tmp;
+void	ft_convert_color(t_data *data)
+{
+	int		i;
+	char	**tmp;
 
-// 	i = 0;
-// 	while (s->file.ceiling[i] >= '0' && s->file.ceiling[i] <= '9')
-// 		i++;
-// 	tmp = ft_split(s->file.ceiling, s->file.ceiling[i]);
-// 	// s->image.ceiling = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
-// 	ft_free_arr(&tmp);
-// 	i = 0;
-// 	while (s->file.floor[i] >= '0' && s->file.floor[i] <= '9')
-// 		i++;
-// 	tmp = ft_split(s->file.floor, s->file.floor[i]);
-// 	s->image.floor = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
-// 	ft_free_arr(&tmp);
-// }
+	i = 0;
+	while (data->file.ceiling[i] >= '0' && data->file.ceiling[i] <= '9')
+		i++;
+	tmp = ft_split(data->file.ceiling, data->file.ceiling[i]);
+	data->image.ceiling = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
+	ft_free_arr(&tmp);
+	i = 0;
+	while (data->file.floor[i] >= '0' && data->file.floor[i] <= '9')
+		i++;
+	tmp = ft_split(data->file.floor, data->file.floor[i]);
+	data->image.floor = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
+	ft_free_arr(&tmp);
+}

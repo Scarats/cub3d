@@ -4,7 +4,8 @@ SRCS	= src/cub3d.c src/utils/stop.c src/graphics/window_handler.c \
 			src/inputs/pov_handler.c src/graphics/draw.c  src/inputs/position.c \
 			src/inputs/mouse.c src/raycasting/raycasting.c \
 			src/parser/parsing.c src/parser/check_define.c \
-			src/utils/free.c src/utils/init.c src/graphics/minimap.c
+			src/utils/free.c src/utils/init.c src/graphics/minimap.c \
+			src/graphics/texture.c
 
 FLAGS = -Wall -Wextra -Werror -g -DGL_SILENCE_DEPRECATION
 CC    = cc
@@ -29,7 +30,7 @@ ${NAME}: 	${OBJS}
 all: 		${NAME}
 
 clean:
-	@make fclean -C ./src/libft > /dev/null 2>&1
+	@make fclean -C ./libraries/libft > /dev/null 2>&1
 	@make clean -C ${MLX_LINUX_DIR} > /dev/null 2>&1
 	@${RM} -r ${OBJ_DIR}
 

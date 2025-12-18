@@ -9,6 +9,7 @@ int	main_logic(t_data *data)
 	set_position(&data->controls, data);
 	mouse_edge(data);
 	apply_pov(data);
+	ft_draw_floor_and_celling(data);
 	raycasting(data, &data->p);
 	ft_draw_minimap(data);
 	refresh_images(data);
@@ -32,6 +33,7 @@ int	main(int argc, char **argv)
 	create_window(data);
 	ft_init_struct(data, argv[1]);
 	ft_parsing(data);
+	// printf("i\n");
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);

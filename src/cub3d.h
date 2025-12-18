@@ -74,6 +74,15 @@ typedef struct s_file
 	char		*ceiling;
 }				t_file;
 
+// IMAGES
+typedef struct s_image
+{
+	int			w;
+	int			h;
+	int			floor;
+	int			ceiling;
+}				t_image;
+
 // MINI_MAP
 typedef struct s_mini
 {
@@ -163,6 +172,7 @@ typedef struct s_data
 	t_parse		parse;
 	t_file		file;
 	t_mini		mini;
+	t_image		image;
 
 	// MLX && WINDOW
 	void		*mlx;
@@ -261,10 +271,11 @@ void			ft_map_size(t_data *data);
 bool			ft_check_unclosed_map(char **map);
 int				ft_nbr_and_player_orientation(t_data *data);
 void			ft_isolate_map(t_data *data);
-// void				ft_convert_color(t_data *data);
+void			ft_convert_color(t_data *data);
 
 // parsing.c
 void			ft_parsing(t_data *data);
+void			ft_draw_floor_and_celling(t_data *data);
 
 // MAIN
 void			ft_error(t_data **data, const char *str, int code);

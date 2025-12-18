@@ -107,7 +107,7 @@ void	ft_parsing(t_data *data)
 	if (!data->file.ceiling || !data->file.floor || !data->file.east
 		|| !data->file.north || !data->file.south || !data->file.west)
 		ft_error(&data, "💥 MISSING TEXTURE 💥", 1);
-	// ft_convert_color(data);
+	ft_convert_color(data);
 	ft_isolate_map(data);
 	if (ft_nbr_and_player_orientation(data) != 1)
 		ft_error(&data, "💥 THERE MUST BE ONLY ONE PLAYER IN THE MAP 💥", 1);
