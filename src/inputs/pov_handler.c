@@ -2,7 +2,7 @@
 
 void	apply_pov(t_data *data)
 {
-	bool changed;
+	bool	changed;
 
 	changed = false;
 	if (data->controls.look_left)
@@ -24,7 +24,7 @@ void	apply_pov(t_data *data)
 	{
 		data->p.v_dir = get_vector(data->p.dir_angle);
 		data->p.v_plane.dx = -data->p.v_dir.dy * FOV;
-		data->p.v_plane.dy =  data->p.v_dir.dx * FOV;
+		data->p.v_plane.dy = data->p.v_dir.dx * FOV;
 	}
 }
 

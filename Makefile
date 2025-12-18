@@ -3,7 +3,7 @@ SRCS	= src/cub3d.c src/utils/stop.c src/graphics/window_handler.c \
 			src/inputs/direction.c src/graphics/render.c src/inputs/position_handler.c \
 			src/inputs/pov_handler.c src/graphics/draw.c  src/inputs/position.c \
 			src/inputs/mouse.c src/raycasting/raycasting.c \
-			src/parser/parsing.c src/parser/check_define.c src/utils/str.c \
+			src/parser/parsing.c src/parser/check_define.c \
 			src/utils/free.c src/utils/init.c src/graphics/minimap.c
 
 FLAGS = -Wall -Wextra -Werror -g -DGL_SILENCE_DEPRECATION
@@ -14,22 +14,22 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 NAME	= cub3d
 
-MLX_LINUX_DIR = ./src/libraries/minilibx-linux
-MLX_MAC_DIR   = ./src/libraries/minilibx_mms_20200219
+MLX_LINUX_DIR = ./libraries/minilibx-linux
+MLX_MAC_DIR   = ./libraries/minilibx_mms_20200219
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@${CC} ${FLAGS} -c $< -o $@ 2>&1
 
 ${NAME}: 	${OBJS}
-	@make -C ./src/libraries/libft > /dev/null 2>&1
+	@make -C ./libraries/libft > /dev/null 2>&1
 	@make -C ${MLX_LINUX_DIR} > /dev/null 2>&1
-	@${CC} ${OBJS} -L${MLX_LINUX_DIR} -lmlx -L/usr/lib -I${MLX_LINUX_DIR} -lXext -lX11 -lm -lz -L./src/libraries/libft -lft -o ${NAME} 2>&1
+	@${CC} ${OBJS} -L${MLX_LINUX_DIR} -lmlx -L/usr/lib -I${MLX_LINUX_DIR} -lXext -lX11 -lm -lz -L ./libraries/libft -lft -o ${NAME} 2>&1
 
 all: 		${NAME}
 
 clean:
-	@make fclean -C ./src/libraries/libft > /dev/null 2>&1
+	@make fclean -C ./src/libft > /dev/null 2>&1
 	@make clean -C ${MLX_LINUX_DIR} > /dev/null 2>&1
 	@${RM} -r ${OBJ_DIR}
 

@@ -10,10 +10,7 @@ int	main_logic(t_data *data)
 	mouse_edge(data);
 	apply_pov(data);
 	raycasting(data, &data->p);
-	draw_player(data);
 	ft_draw_minimap(data);
-	// printf(RED "dir (%f, %f)\n" RESET, data->v_dir.dx, data->v_dir.dy);
-	// printf(ORANGE "(%f, %f)\n" RESET, data->position.x, data->position.y);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;
 	data->curr_mouse_pos->y = -1;
@@ -28,7 +25,6 @@ int	main(int argc, char **argv)
 		return (printf("💥 PLEASE ENTER ONLY ONE .cub FILE 💥\n"), 1);
 	data = malloc(sizeof(t_data));
 	ft_memset(data, 0, sizeof(t_data));
-	// Check the map
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (perror("mlx"), 1);

@@ -1,5 +1,21 @@
 #include "../cub3d.h"
 
+bool	ft_is_char_in_str(const char c, const char *type)
+{
+	int	i;
+
+	if (!c || !type)
+		return (true);
+	i = 0;
+	while (type[i] != '\0')
+	{
+		if (type[i] == c)
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
 void	ft_free_str(char **str)
 {
 	if (!*str)
@@ -26,9 +42,6 @@ void	ft_free_arr(char ***arr)
 
 void	ft_free_struct(t_data **s)
 {
-	// ft_free_str(&(*s)->parse.stock);
-	// ft_free_arr(&(*s)->parse.element);
-	// ft_free_arr(&(*s)->parse.map);
 	ft_free_str(&(*s)->file.north);
 	ft_free_str(&(*s)->file.south);
 	ft_free_str(&(*s)->file.west);

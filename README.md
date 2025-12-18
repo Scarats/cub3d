@@ -1,7 +1,7 @@
 # ToDo
 ## ALL
 ## Charles
-- [ ] minimap
+- [ ] minimap rays
 ## Thomas
 - [ ] Starting position
-- [ ] player in minimap
+- [ ] starting direction

@@ -1,8 +1,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "./libraries/libft/libft.h"
-# include "./libraries/minilibx-linux/mlx.h"
+# include "../libraries/libft/libft.h"
+# include "../libraries/minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdbool.h>
 # include <string.h>
@@ -27,7 +27,29 @@
 # define BORDER_THICKNESS 1 // In pixels
 # define PADDING 5          // in pixel
 # define WALK_SPEED 0.1     // In blocks of the map per frame
-# define MINI_MAP 0.2	// 0 to 1 surface d'occupation de la mini_map
+# define MINI_MAP 0.2       // 0 to 1 surface d'occupation de la mini_map
+
+// EVENT
+typedef enum e_event
+{
+	EVENT_KEY_PRESSED = 2,
+	EVENT_KEY_RELEASED = 3
+}				t_event;
+
+// KEYS
+typedef enum e_key
+{
+	MOUSE = 6,
+	KEY_ESC = 65307,
+	KEY_LEFT = 65361,
+	KEY_RIGHT = 65363,
+	KEY_UP = 65362,
+	KEY_DOWN = 63364,
+	KEY_W = 119,
+	KEY_A = 97,
+	KEY_D = 100,
+	KEY_S = 115
+}				t_key;
 
 // PARSING
 typedef struct s_parse
@@ -55,30 +77,10 @@ typedef struct s_file
 // MINI_MAP
 typedef struct s_mini
 {
-	int width;
-	int height;
-	int pixel;
-} t_mini;
-
-typedef enum e_event
-{
-	EVENT_KEY_PRESSED = 2,
-	EVENT_KEY_RELEASED = 3
-}				t_event;
-
-typedef enum e_key
-{
-	MOUSE = 6,
-	KEY_ESC = 65307,
-	KEY_LEFT = 65361,
-	KEY_RIGHT = 65363,
-	KEY_UP = 65362,
-	KEY_DOWN = 63364,
-	KEY_W = 119,
-	KEY_A = 97,
-	KEY_D = 100,
-	KEY_S = 115
-}				t_key;
+	int			width;
+	int			height;
+	int			pixel;
+}				t_mini;
 
 typedef struct s_line
 {
@@ -97,14 +99,14 @@ typedef struct s_vector
 
 typedef struct s_dpoint
 {
-	double x; // Width
-	double y; // Height
+	double		x;
+	double		y;
 }				t_dpoint;
 
 typedef struct s_point
 {
-	int x; // Width
-	int y; // Height
+	int			x;
+	int			y;
 }				t_point;
 
 typedef struct s_controls
@@ -140,20 +142,20 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	t_dpoint	dir; // The point where the main vector hit a wall
+	t_dpoint dir; // The point where the main vector hit a wall
 	t_dpoint	pos;
 	t_vector	v_plane;
 	t_vector	v_dir;
 	double		dir_angle;
-}	t_player;
+}				t_player;
 
 typedef struct s_dda
 {
 	t_point		map_pos;
 	t_point		step;
-	t_dpoint 	delta_dist;
-	t_dpoint 	side_dist;
-}	t_dda;
+	t_dpoint	delta_dist;
+	t_dpoint	side_dist;
+}				t_dda;
 
 typedef struct s_data
 {
@@ -219,8 +221,6 @@ void			my_pixel_put(t_img *img, int x, int y, int color);
 void			draw_line(t_point a, t_point b, int color, t_img *img);
 void			draw_d_line(t_dpoint a, t_dpoint b, int color, t_img *img);
 int				get_offset(int y, int x, int line_length, int bits_per_pixel);
-void			draw_player(t_data *data);
-void			draw_minimap(t_data *data, t_map *map);
 
 // HOOKS
 void			set_hooks(t_data *data);
@@ -228,14 +228,9 @@ void			set_hooks(t_data *data);
 // RENDERING
 void			render_img(t_img *img, t_data *data);
 void			refresh_images(t_data *data);
-int				cast_forward_hit(t_data *data, t_dpoint *hit_cell);
 
 // RAYCASTING
 void			raycasting(t_data *data, t_player *p);
-
-// ANGLE
-// void			get_direction(t_data *data, double pixel_pov_shift);
-// void			key_direction(void);
 
 // POV
 void			look_right(t_data *data);
@@ -250,7 +245,6 @@ double			set_angle(double prev_angle, double pixel_pov_shift);
 void			set_dir_from_pos(t_dpoint *direction, t_dpoint *position,
 					double angle, double length);
 t_vector		get_vector(double angle);
-void			init_dir_vectors(t_controls *dir);
 void			apply_pov(t_data *data);
 
 // POSITION
@@ -261,13 +255,14 @@ void			go_right(t_data *data, bool stop);
 void			set_position(t_controls *dir, t_data *data);
 
 // CARLOS PARSING
-void ft_draw_minimap(t_data *data);
+void			ft_draw_minimap(t_data *data);
 // check_define.c
 void			ft_map_size(t_data *data);
 bool			ft_check_unclosed_map(char **map);
 int				ft_nbr_and_player_orientation(t_data *data);
 void			ft_isolate_map(t_data *data);
 // void				ft_convert_color(t_data *data);
+
 // parsing.c
 void			ft_parsing(t_data *data);
 
