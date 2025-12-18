@@ -96,7 +96,8 @@ void	ft_isolate_map(t_data *data)
 	siz++;
 	map = ft_strndup(data->parse.stock + start, siz - start);
 	data->parse.map = ft_split(map, '\n');
-	ft_free_str(&map);
+	my_array_addtolist(&data->malloc_list, (void **)data->parse.map);
+	free(map);
 }
 
 // void	ft_convert_color(t_data *s)

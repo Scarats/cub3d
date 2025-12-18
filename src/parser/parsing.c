@@ -21,15 +21,15 @@ static char	*ft_stock_file(char *stock, char *str)
 	return (new);
 }
 
-static void	ft_read_file(t_data *s)
+static void	ft_read_file(t_data *data)
 {
 	int		fd;
 	int		bytes;
 	char	str[1024];
 
-	fd = open(s->parse.file, O_RDONLY);
+	fd = open(data->parse.file, O_RDONLY);
 	if (fd == -1)
-		ft_error(&s, "💥 FILE DOES'NT EXIST 💥", 1);
+		ft_error(&data, "💥 FILE DOES'NT EXIST 💥", 1);
 	bytes = 1;
 	while (bytes > 0)
 	{
@@ -37,11 +37,12 @@ static void	ft_read_file(t_data *s)
 		if (bytes <= 0)
 			break ;
 		str[bytes] = '\0';
-		s->parse.stock = ft_stock_file(s->parse.stock, str);
-		if (!s->parse.stock)
-			return (close(fd), ft_error(&s, "💥 MALLOC FT_STOCK_MAP 💥", 1));
+		data->parse.stock = ft_stock_file(data->parse.stock, str);
+		if (!data->parse.stock)
+			return (close(fd), ft_error(&data, "💥 MALLOC FT_STOCK_MAP 💥", 1));
 	}
 	close(fd);
+	my_addtolist(&data->malloc_list, data->parse.stock);
 }
 
 static void	ft_stock_element(t_data *data, char *element, char *file)
@@ -65,10 +66,10 @@ static void	ft_stock_element(t_data *data, char *element, char *file)
 			(void)(data->file.east = ft_strndup(file, siz)));
 	if (!ft_strncmp(element, "F", 1))
 		return (ft_free_str(&data->file.floor),
-			(void)(data->file.floor = ft_strndup(file, siz), ','));
+			(void)(data->file.floor = ft_strndup(file, siz)));
 	if (!ft_strncmp(element, "C", 1))
 		return (ft_free_str(&data->file.ceiling),
-			(void)(data->file.ceiling = ft_strndup(file, siz), ','));
+			(void)(data->file.ceiling = ft_strndup(file, siz)));
 }
 
 static void	ft_search_in_file(t_data *data)

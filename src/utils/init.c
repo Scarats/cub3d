@@ -41,8 +41,7 @@ void	ft_init_struct(t_data *data, char *map)
 	data->parse.stock = NULL;
 	data->parse.element = NULL;
 	data->parse.element = ft_split("NO-SO-WE-EA-F-C", '-');
-	if (!data->parse.element)
-		ft_error(&data, "💥 DATA->PARSE.ELEMENTS FT_INIT_STRUCT 💥", 1);
+	my_array_addtolist(&data->malloc_list, (void **)data->parse.element);
 	data->parse.map = NULL;
 	data->file.north = NULL;
 	data->file.south = NULL;
