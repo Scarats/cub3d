@@ -1,7 +1,10 @@
 # ToDo
 ## ALL
+- [ ] Textures
+- [ ] Error\n
 ## Charles
-- [ ] minimap rays
+- [ ] Doors open close
 ## Thomas
+- [ ] Sprites
 - [ ] Starting position
 - [ ] starting direction
