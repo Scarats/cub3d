@@ -14,8 +14,11 @@
 # define P_ORANGE 0xFFA500
 # define P_GREEN 0x00FF00
 # define P_BLUE 0x0000FF
+# define P_LIGHT_BLUE 0xFFADD8E6
+# define P_SUNSET 0xFFFFA500
 # define P_BROWN 0x8B4513
 # define P_PURPLE 0x800080
+# define P_GREY 0xFF2E2E2E
 # define P_RESET 0x000000
 
 // MACROS
