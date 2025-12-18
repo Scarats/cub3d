@@ -16,6 +16,7 @@ int	stop(t_data **data)
 
 	fdprintf(1, "stop\n");
 	error = (*data)->error;
+	ft_free_struct(data);
 	if ((*data)->img_buff)
 		destroy_image((*data)->img_buff, *data);
 	if ((*data)->img_main)
