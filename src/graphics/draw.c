@@ -23,7 +23,8 @@ void my_pixel_put(t_img *img, int x, int y, int color)
     if (!(x >= 0 && x < data->win_width && y >= 0 && y < data->win_height))
 		return;
     dest = img->addr + get_offset(y, x, img->line_length, img->bits_per_pixel);
-    *(unsigned int *)dest = color;
+	if (*(int *)dest != color)
+    	*(unsigned int *)dest = color;
 }
 
 void	draw_line(t_point a, t_point b, int color, t_img *img)

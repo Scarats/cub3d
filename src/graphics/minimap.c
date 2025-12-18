@@ -17,18 +17,26 @@ void ft_draw_big_pixel(t_data *data, int x, int y)
         i++;
     }
 }
+// t_point edges(t_point *p, t_data *data)
+// {
+//     int pixel = data->mini.pixel;
+//     t_dpoint 
+//     if (p->x < pixel)
+//     {
 
+//     }
+// }
 
 void ft_draw_player(t_data *data)
 {
     int i;
     int j;
 
-    i = 0;
-    while (i < data->mini.pixel)
+    i = -data->mini.pixel / 10;
+    while (i < data->mini.pixel / 10)
     {
-        j = 0;
-        while (j < data->mini.pixel)
+        j = -data->mini.pixel / 10;
+        while (j < data->mini.pixel / 10)
         {
             my_pixel_put(data->img_buff, (data->p.pos.x * data->mini.pixel) + i, (data->p.pos.y * data->mini.pixel) + j, P_RED);
             j++;
