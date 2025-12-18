@@ -1,7 +1,7 @@
 NO ./assets/amertens.xpm
-SO ./assets/gomerovi.xpm
 WE ./assets/mberthol.xpm
-EA ./assets/milamber.xpm
+SO ./assets/milamber.xpm
+EA ./assets/gomerovi.xpm
 F 250-000-0
 C 000a255a000
 

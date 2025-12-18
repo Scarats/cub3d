@@ -88,310 +88,108 @@ double	get_distance(int side, t_dda *dda)
 		return (dda->side_dist.y - dda->delta_dist.y);
 }
 
-// void	draw_wall(int x, double distance, t_data *data, int side)
-// {
-// 	int			line_height;
-// 	int			draw_start;
-// 	int			draw_end;
-// 	static int	height = -1;
+void	draw_wall(int x, double distance, t_data *data, int side,
+		t_vector ray_dir)
+{
+	int		draw_start;
+	int		draw_end;
+	int		tex_x;
+	int		tex_y;
+	double	wall_x;
+	t_pex	*current_tex;
 
-// 	if (height == -1)
-// 		height = data->win_height;
-// 	line_height = (int)(height / distance);
-// 	draw_start = -line_height / 2 + height / 2;
-// 	draw_end = line_height / 2 + height / 2;
-// 	if (draw_start < 0)
-// 		draw_start = 0;
-// 	if (draw_end >= height)
-// 		draw_end = height - 1;
-// 	while (draw_start <= draw_end)
-// 	{
-// 		if (side == 0 && data->dda.step.x == -1)
-// 			my_pixel_put(data->img_buff, x, draw_start, P_PURPLE);
-// 		else if (side == 0)
-// 			my_pixel_put(data->img_buff, x, draw_start, P_BLUE);
-// 		else if (data->dda.step.y == -1)
-// 			my_pixel_put(data->img_buff, x, draw_start, P_WHITE);
-// 		else
-// 			my_pixel_put(data->img_buff, x, draw_start, P_ORANGE);
-// 		draw_start++;
-// 	}
-// }
-
-// void	draw_wall(int x, double distance, t_data *data, int side)
-// {
-// 	int				line_height;
-// 	int				draw_start;
-// 	int				draw_end;
-// 	static int		height = -1;
-// 	int				tex_x;
-// 	int				tex_y;
-// 	int				d;
-// 	unsigned int	color;
-// 	double			wall_x;
-// 	int				current_y;
-// 	int				pixel_offset;
-
-// 	// Initialiser la hauteur une seule fois
-// 	if (height == -1)
-// 		height = data->win_height;
-// 	// Calculer la hauteur de la ligne et les limites de dessin
-// 	line_height = (int)(height / distance);
-// 	draw_start = -line_height / 2 + height / 2;
-// 	draw_end = line_height / 2 + height / 2;
-// 	// Corriger les limites si nécessaire
-// 	if (draw_start < 0)
-// 		draw_start = 0;
-// 	if (draw_end >= height)
-// 		draw_end = height - 1;
-// 	// Calculer la position horizontale dans la texture
-// 	// Utiliser toujours la même image (data->image)
-// 	if (side == 0)
-// 		wall_x = data->p.pos.y + distance * data->p.v_dir.dy;
-// 	else
-// 		wall_x = data->p.pos.x + distance * data->p.v_dir.dx;
-// 	wall_x -= floor(wall_x);
-// 	tex_x = (int)(wall_x * (double)data->tex.north.w);
-// 	if (tex_x < 0)
-// 		tex_x = 0;
-// 	if (tex_x >= data->tex.north.w)
-// 		tex_x = data->tex.north.w - 1;
-// 	// Initialiser la position verticale actuelle
-// 	current_y = draw_start;
-// 	// Dessiner chaque pixel de la colonne
-// 	while (current_y <= draw_end)
-// 	{
-// 		// Calculer la position verticale dans la texture
-// 		d = current_y * 256 - height * 128 + line_height * 128;
-// 		tex_y = ((d * data->tex.north.h) / line_height) / 256;
-// 		if (tex_y < 0)
-// 			tex_y = 0;
-// 		if (tex_y >= data->tex.north.h)
-// 			tex_y = data->tex.north.h - 1;
-// 		// Récupérer la couleur du pixel dans la texture
-// 		pixel_offset = get_offset(tex_y, tex_x, data->tex.north.size,
-// 				data->tex.north.bpp);
-// 		color = *(unsigned int *)(data->tex.north.img + pixel_offset);
-// 		// Dessiner le pixel
-// 		my_pixel_put(data->img_buff, x, current_y, color);
-// 		current_y++;
-// 	}
-// }
-
-// void	draw_wall(int x, double distance, t_data *data, int side)
-// {
-// 	int				line_height;
-// 	int				draw_start;
-// 	int				draw_end;
-// 	static int		height = -1;
-// 	int				tex_x;
-// 	int				tex_y;
-// 	int				d;
-// 	unsigned int	color;
-// 	double			wall_x;
-// 	int				current_y;
-// 	int				pixel_offset;
-
-// 	// Initialiser la hauteur une seule fois
-// 	if (height == -1)
-// 		height = data->win_height;
-// 	// Calculer la hauteur de la ligne et les limites de dessin
-// 	line_height = (int)(height / distance);
-// 	draw_start = -line_height / 2 + height / 2;
-// 	draw_end = line_height / 2 + height / 2;
-// 	// Corriger les limites si nécessaire
-// 	if (draw_start < 0)
-// 		draw_start = 0;
-// 	if (draw_end >= height)
-// 		draw_end = height - 1;
-// 	// Calculer la position horizontale dans la texture
-// 	if (side == 0)
-// 		wall_x = data->p.pos.y + distance * data->p.v_dir.dy;
-// 	else
-// 		wall_x = data->p.pos.x + distance * data->p.v_dir.dx;
-// 	wall_x -= floor(wall_x);
-// 	tex_x = (int)(wall_x * (double)data->tex.north.w);
-// 	if (tex_x < 0)
-// 		tex_x = 0;
-// 	if (tex_x >= data->tex.north.w)
-// 		tex_x = data->tex.north.w - 1;
-// 	// Dessiner chaque pixel de la colonne
-// 	current_y = draw_start;
-// 	while (current_y <= draw_end)
-// 	{
-// 		// Calculer la position verticale dans la texture
-// 		d = current_y * 256 - height * 128 + line_height * 128;
-// 		tex_y = ((d * data->tex.north.h) / line_height) / 256;
-// 		if (tex_y < 0)
-// 			tex_y = 0;
-// 		if (tex_y >= data->tex.north.h)
-// 			tex_y = data->tex.north.h - 1;
-// 		// Calculer l'offset du pixel dans la texture
-// 		pixel_offset = tex_y * (data->tex.north.size / 4) + tex_x;
-// 		// Simplifié pour 32 bits (ARGB)
-// 		// Lire la couleur directement depuis data->tex.north.data
-// 		color = data->tex.north.data[pixel_offset];
-// 		// Dessiner le pixel
-// 		my_pixel_put(data->img_buff, x, current_y, color);
-// 		current_y++;
-// 	}
-// }
-
-// void	raycasting(t_data *data, t_player *p)
-// {
-// 	int			x;
-// 	int			side;
-// 	t_vector	ray_dir;
-// 	double		distance;
-
-// 	x = -1;
-// 	while (++x < data->win_width)
-// 	{
-// 		compute_ray_direction(p, x, data->win_width, &ray_dir);
-// 		init_dda(&data->dda, p, &ray_dir);
-// 		dda_wall_detection(&data->dda, data, &side);
-// 		distance = get_distance(side, &data->dda);
-// 		draw_wall(x, distance, data, side);
-// 	}
-// }
+	draw_start = -(data->win_height / distance) / 2 + data->win_height / 2;
+	draw_end = (data->win_height / distance) / 2 + data->win_height / 2;
+	if (data->parse.orientation == 'N') // Nord
+		current_tex = &data->tex.north;
+	else if (data->parse.orientation == 'S') // Sud
+		current_tex = &data->tex.south;
+	else if (data->parse.orientation == 'W') // Ouest
+		current_tex = &data->tex.west;
+	else // Est
+		current_tex = &data->tex.east;
+	if (side == 0)
+		wall_x = (data->p.pos.y + distance * ray_dir.dy);
+	else
+		wall_x = (data->p.pos.x + distance * ray_dir.dx);
+	tex_x = (int)((wall_x - floor(wall_x)) * (double)current_tex->w);
+	if (tex_x < 0)
+		tex_x = 0;
+	if (tex_x >= current_tex->w)
+		tex_x = current_tex->w - 1;
+	while (draw_start <= draw_end)
+	{
+		tex_y = (((draw_start * 256 - data->win_height * 128 + (data->win_height
+							/ distance) * 128) * current_tex->h)
+				/ (data->win_height / distance)) / 256;
+		if (tex_y < 0)
+			tex_y = 0;
+		if (tex_y >= current_tex->h)
+			tex_y = current_tex->h - 1;
+		my_pixel_put(data->img_buff, x, draw_start, current_tex->data[tex_y
+			* (current_tex->size / 4) + tex_x]);
+		draw_start++;
+	}
+}
 
 // void	draw_wall(int x, double distance, t_data *data, int side,
-// 		int orientation)
+// 		t_vector ray_dir)
 // {
-// 	int				line_height;
-// 	int				draw_start;
-// 	int				draw_end;
-// 	static int		height = -1;
-// 	int				tex_x;
-// 	int				tex_y;
-// 	int				d;
-// 	unsigned int	color;
-// 	double			wall_x;
-// 	int				current_y;
-// 	int				pixel_offset;
-// 	t_pex			*current_tex;
+// 	int		draw_start;
+// 	int		draw_end;
+// 	int		tex_x;
+// 	int		tex_y;
+// 	double	wall_x;
+// 	t_pex	*current_tex;
+// 	int		line_height;
+// 	double	tex_step;
+// 	double	tex_pos;
 
-// 	// Initialiser la hauteur une seule fois
-// 	if (height == -1)
-// 		height = data->win_height;
-// 	// Calculer la hauteur de la ligne et les limites de dessin
-// 	line_height = (int)(height / distance);
-// 	draw_start = -line_height / 2 + height / 2;
-// 	draw_end = line_height / 2 + height / 2;
-// 	// Corriger les limites si nécessaire
+// 	// 1. Pré-calcul des hauteurs de dessin
+// 	line_height = (int)(data->win_height / distance);
+// 	draw_start = -line_height / 2 + data->win_height / 2;
+// 	draw_end = line_height / 2 + data->win_height / 2;
 // 	if (draw_start < 0)
 // 		draw_start = 0;
-// 	if (draw_end >= height)
-// 		draw_end = height - 1;
-// 	// Choisir la texture en fonction de l'orientation
-// 	if (orientation == 0) // Nord
+// 	if (draw_end >= data->win_height)
+// 		draw_end = data->win_height - 1;
+// 	// 2. Sélection de la texture (inchangé)
+// 	if (data->parse.orientation == 'N')
 // 		current_tex = &data->tex.north;
-// 	else if (orientation == 1) // Sud
+// 	else if (data->parse.orientation == 'S')
 // 		current_tex = &data->tex.south;
-// 	else if (orientation == 2) // Ouest
+// 	else if (data->parse.orientation == 'W')
 // 		current_tex = &data->tex.west;
-// 	else // Est
-// 		current_tex = &data->tex.east;
-// 	// Calculer la position horizontale dans la texture
-// 	if (side == 0)
-// 		wall_x = data->p.pos.y + distance * data->p.v_dir.dy;
 // 	else
-// 		wall_x = data->p.pos.x + distance * data->p.v_dir.dx;
+// 		current_tex = &data->tex.east;
+// 	// 3. Calcul de wall_x et tex_x (inchangé)
+// 	if (side == 0)
+// 		wall_x = data->p.pos.y + distance * ray_dir.dy;
+// 	else
+// 		wall_x = data->p.pos.x + distance * ray_dir.dx;
 // 	wall_x -= floor(wall_x);
 // 	tex_x = (int)(wall_x * (double)current_tex->w);
 // 	if (tex_x < 0)
 // 		tex_x = 0;
 // 	if (tex_x >= current_tex->w)
 // 		tex_x = current_tex->w - 1;
-// 	// Dessiner chaque pixel de la colonne
-// 	current_y = draw_start;
-// 	while (current_y <= draw_end)
+// 	// 4. Pré-calcul pour la texture
+// 	tex_step = (double)current_tex->h / (double)line_height;
+// 	tex_pos = (draw_start - data->win_height / 2 + line_height / 2) * tex_step;
+// 	// 5. Boucle optimisée
+// 	while (draw_start <= draw_end)
 // 	{
-// 		// Calculer la position verticale dans la texture
-// 		d = current_y * 256 - height * 128 + line_height * 128;
-// 		tex_y = ((d * current_tex->h) / line_height) / 256;
+// 		tex_y = (int)tex_pos;
 // 		if (tex_y < 0)
 // 			tex_y = 0;
 // 		if (tex_y >= current_tex->h)
 // 			tex_y = current_tex->h - 1;
-// 		// Calculer l'offset du pixel dans la texture
-// 		pixel_offset = tex_y * (current_tex->size / 4) + tex_x;
-// 		// Lire la couleur directement depuis current_tex->data
-// 		color = current_tex->data[pixel_offset];
-// 		// Dessiner le pixel
-// 		my_pixel_put(data->img_buff, x, current_y, color);
-// 		current_y++;
+// 		my_pixel_put(data->img_buff, x, draw_start, current_tex->data[tex_y
+// 			* (current_tex->size / 4) + tex_x]);
+// 		tex_pos += tex_step;
+// 		draw_start++;
 // 	}
 // }
-
-void	draw_wall(int x, double distance, t_data *data, int side,
-		int orientation, t_vector ray_dir)
-{
-	int				line_height;
-	int				draw_start;
-	int				draw_end;
-	static int		height = -1;
-	int				tex_x;
-	int				tex_y;
-	int				d;
-	unsigned int	color;
-	double			wall_x;
-	int				current_y;
-	int				pixel_offset;
-	t_pex			*current_tex;
-
-	// Initialiser la hauteur une seule fois
-	if (height == -1)
-		height = data->win_height;
-	// Calculer la hauteur de la ligne et les limites de dessin
-	line_height = (int)(height / distance);
-	draw_start = -line_height / 2 + height / 2;
-	draw_end = line_height / 2 + height / 2;
-	// Corriger les limites si nécessaire
-	if (draw_start < 0)
-		draw_start = 0;
-	if (draw_end >= height)
-		draw_end = height - 1;
-	// Choisir la texture en fonction de l'orientation
-	if (orientation == 0) // Nord
-		current_tex = &data->tex.north;
-	else if (orientation == 1) // Sud
-		current_tex = &data->tex.south;
-	else if (orientation == 2) // Ouest
-		current_tex = &data->tex.west;
-	else // Est
-		current_tex = &data->tex.east;
-	// Calculer la position horizontale dans la texture
-	if (side == 0) // Mur vertical (est/ouest)
-		wall_x = data->p.pos.y + distance * ray_dir.dy;
-	else // Mur horizontal (nord/sud)
-		wall_x = data->p.pos.x + distance * ray_dir.dx;
-	wall_x -= floor(wall_x); // Garder uniquement la partie fractionnaire
-	tex_x = (int)(wall_x * (double)current_tex->w);
-	if (tex_x < 0)
-		tex_x = 0;
-	if (tex_x >= current_tex->w)
-		tex_x = current_tex->w - 1;
-	// Dessiner chaque pixel de la colonne
-	current_y = draw_start;
-	while (current_y <= draw_end)
-	{
-		// Calculer la position verticale dans la texture
-		d = current_y * 256 - height * 128 + line_height * 128;
-		tex_y = ((d * current_tex->h) / line_height) / 256;
-		if (tex_y < 0)
-			tex_y = 0;
-		if (tex_y >= current_tex->h)
-			tex_y = current_tex->h - 1;
-		// Calculer l'offset du pixel dans la texture
-		pixel_offset = tex_y * (current_tex->size / 4) + tex_x;
-		// Lire la couleur directement depuis current_tex->data
-		color = current_tex->data[pixel_offset];
-		// Dessiner le pixel
-		my_pixel_put(data->img_buff, x, current_y, color);
-		current_y++;
-	}
-}
 
 void	raycasting(t_data *data, t_player *p)
 {
@@ -400,29 +198,29 @@ void	raycasting(t_data *data, t_player *p)
 	t_vector	ray_dir;
 	double		distance;
 
-	int orientation; // 0: nord, 1: sud, 2: ouest, 3: est
 	x = -1;
 	while (++x < data->win_width)
 	{
 		compute_ray_direction(p, x, data->win_width, &ray_dir);
 		init_dda(&data->dda, p, &ray_dir);
 		dda_wall_detection(&data->dda, data, &side);
-		// Déterminer l'orientation du mur
-		if (side == 0) // Mur vertical (nord/sud)
+		// MANAGE THE ORIENTATION (find the value in s_file)
+		if (side == 0)
 		{
 			if (ray_dir.dx > 0)
-				orientation = 3; // Est
+				data->parse.orientation = 'E'; // Est
 			else
-				orientation = 2; // Ouest
+				data->parse.orientation = 'W'; // Ouest
 		}
-		else // Mur horizontal (nord/sud)
+		else
 		{
 			if (ray_dir.dy > 0)
-				orientation = 1; // Sud
+				data->parse.orientation = 'S'; // Sud
 			else
-				orientation = 0; // Nord
+				data->parse.orientation = 'N'; // Nord
 		}
+		//
 		distance = get_distance(side, &data->dda);
-		draw_wall(x, distance, data, side, orientation, ray_dir);
+		draw_wall(x, distance, data, side, ray_dir);
 	}
 }
