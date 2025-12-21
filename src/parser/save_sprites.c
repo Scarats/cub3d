@@ -1,6 +1,9 @@
 #include "../cub3d.h"
 
-// Make a function that returns an array of t_img
+// Save an array of t_img with this kinda name : "path/to/file_"
+// After the "_" comes the number. The function will import up to "size"
+// The name is rebuilt using "  .xpm", the 2 spaces are for file number.
+// WARNING: the file number has to be < 99, or add the according amount of spaces.
 t_img **save_sprites(t_data *data, char *path, const unsigned int size)
 {
     int i;
