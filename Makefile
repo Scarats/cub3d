@@ -5,7 +5,7 @@ SRCS	= src/cub3d.c src/utils/stop.c src/graphics/window_handler.c \
 			src/inputs/mouse.c src/raycasting/raycasting.c \
 			src/parser/parsing.c src/parser/check_define.c \
 			src/utils/free.c src/utils/init.c src/graphics/minimap.c \
-			src/graphics/texture.c src/parser/save_assets.c
+			src/graphics/texture.c src/parser/save_assets.c src/parser/save_sprites.c \
 
 FLAGS = -Wall -Wextra -Werror -g -DGL_SILENCE_DEPRECATION
 CC    = cc

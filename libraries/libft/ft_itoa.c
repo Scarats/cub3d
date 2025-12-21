@@ -53,6 +53,31 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
+
+char	*ft_itoa_no_malloc(char *str, int n)
+{
+	int		nbrs;
+	long	num;
+
+	num = n;
+	nbrs = size(n);
+	if (!str)
+		return (NULL);
+	str[nbrs] = '\0';
+	if (num < 0)
+	{
+		str[0] = '-';
+		num *= -1;
+	}
+	if (num == 0)
+		str[0] = '0';
+	while (num > 0)
+	{
+		str[--nbrs] = num % 10 + '0';
+		num /= 10;
+	}
+	return (str);
+}
 /*
 #include <stdio.h>
 #include <stdlib.h>

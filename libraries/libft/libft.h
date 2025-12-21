@@ -123,6 +123,7 @@ char				**ft_split(char const *s, char c);
 
 // Converts an integer to a string
 char				*ft_itoa(int n);
+char				*ft_itoa_no_malloc(char *str, int n);
 
 // Applies function 'f' to each character of 's' to create a new string
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
