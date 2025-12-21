@@ -160,8 +160,8 @@ typedef struct s_img
 
 typedef struct s_sprite
 {
-	int size;
-	int counter;
+	const unsigned int size;
+	unsigned int counter;
 	t_img **frames;
 
 } t_sprite;
