@@ -54,6 +54,8 @@ typedef enum e_key
 	KEY_S = 115
 }				t_key;
 
+
+
 // PARSING
 typedef struct s_parse
 {
@@ -156,6 +158,14 @@ typedef struct s_img
 	void		*data;
 }				t_img;
 
+typedef struct s_sprite
+{
+	int size;
+	int counter;
+	t_img **frames;
+
+} t_sprite;
+
 typedef struct s_map
 {
 	int			height;
@@ -197,6 +207,9 @@ typedef struct s_data
 	// IMAGES
 	t_img *img_buff; // Image being created
 	t_img *img_main; // Currently displayed
+	t_sprite normal;
+	t_sprite fire;
+	t_sprite reload;
 
 	// FLAGS
 	int			error;
