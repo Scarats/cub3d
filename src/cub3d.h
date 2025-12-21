@@ -31,6 +31,7 @@
 # define PADDING 5          // in pixel
 # define WALK_SPEED 0.1     // In blocks of the map per frame
 # define MINI_MAP 0.2       // 0 to 1 surface d'occupation de la mini_map
+# define IMG_PS 4
 
 // EVENT
 typedef enum e_event
@@ -53,8 +54,6 @@ typedef enum e_key
 	KEY_D = 100,
 	KEY_S = 115
 }				t_key;
-
-
 
 // PARSING
 typedef struct s_parse
@@ -155,7 +154,8 @@ typedef struct s_img
 	int			line_length;
 	int			endian;
 
-	void		*data;
+	int			h;
+	int			w;
 }				t_img;
 
 typedef struct s_sprite
@@ -207,9 +207,10 @@ typedef struct s_data
 	// IMAGES
 	t_img *img_buff; // Image being created
 	t_img *img_main; // Currently displayed
-	t_sprite normal;
-	t_sprite fire;
-	t_sprite reload;
+	// SPRITES
+	t_sprite **normal;
+	t_sprite **fire;
+	t_sprite **reload;
 
 	// FLAGS
 	int			error;
