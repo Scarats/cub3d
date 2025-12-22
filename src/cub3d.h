@@ -216,6 +216,7 @@ typedef struct s_data
 	t_sprite	fire;
 	char		flag_reload;
 	t_sprite	reload;
+	t_point		sprite_start;
 
 	// FLAGS
 	int			error;

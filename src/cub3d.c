@@ -11,6 +11,7 @@ int	main_logic(t_data *data)
 	apply_pov(data);
 	ft_draw_floor_and_celling(data);
 	raycasting(data, &data->p);
+	draw_sprites(data);
 	ft_draw_minimap(data);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;

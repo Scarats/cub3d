@@ -60,6 +60,11 @@ t_img **save_sprites(t_data *data, char *path, const unsigned int size)
     return (imgs);
 }
 
+void	compute_sprite_start(t_data *data)
+{
+
+}
+
 void get_sprites(t_data *data)
 {
 	printf("Start sprites\n");
