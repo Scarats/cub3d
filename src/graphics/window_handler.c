@@ -16,7 +16,6 @@ void	get_screen_dimentions(t_data *data)
 void	create_window(t_data *data)
 {
 	fdprintf(1, "create_window\n");
-	get_screen_dimentions(data);
 	data->window = mlx_new_window(data->mlx, data->win_width, data->win_height,
 			"cub3d");
 }

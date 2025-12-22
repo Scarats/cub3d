@@ -252,6 +252,7 @@ void			ft_init_struct(t_data *data, char *map);
 // WINDOWS
 void			create_window(t_data *data);
 int				close_window(int keycode, t_data *data);
+void			get_screen_dimentions(t_data *data);
 
 // IMAGES
 void			init_new_img(t_img *img, t_data *data);
