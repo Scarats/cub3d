@@ -22,17 +22,19 @@ int	main(int argc, char **argv)
 {
 	t_data	*data;
 
+	printf("start cub3\n");
 	if (argc != 2)
 		return (printf("💥 PLEASE ENTER ONLY ONE .cub FILE 💥\n"), 1);
 	data = malloc(sizeof(t_data));
 	ft_memset(data, 0, sizeof(t_data));
-	return (0);
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (perror("mlx"), 1);
 	my_addtolist(&data->malloc_list, data->mlx);
+	printf("before window\n");
 	create_window(data);
 	ft_init_struct(data, argv[1]);
+	printf("before parsing\n");
 	ft_parsing(data);
 	// printf("i\n");
 	set_hooks(data);

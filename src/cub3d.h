@@ -153,6 +153,9 @@ typedef struct s_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	
+	// To store t_data
+	void		*data;
 
 	int			h;
 	int			w;
@@ -208,9 +211,9 @@ typedef struct s_data
 	t_img *img_buff; // Image being created
 	t_img *img_main; // Currently displayed
 	// SPRITES
-	t_sprite **normal;
-	t_sprite **fire;
-	t_sprite **reload;
+	t_sprite	normal;
+	t_sprite	fire;
+	t_sprite	reload;
 
 	// FLAGS
 	int			error;
@@ -269,6 +272,9 @@ void			refresh_images(t_data *data);
 
 // RAYCASTING
 void			raycasting(t_data *data, t_player *p);
+
+// SPRITES
+void			get_sprites(t_data *data);
 
 // POV
 void			look_right(t_data *data);

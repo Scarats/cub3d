@@ -102,6 +102,7 @@ static void	ft_search_in_file(t_data *data)
 
 void	ft_parsing(t_data *data)
 {
+	printf("ft_parsing\n");
 	ft_read_file(data);
 	ft_search_in_file(data);
 	if (!data->file.ceiling || !data->file.floor || !data->file.east
@@ -115,4 +116,5 @@ void	ft_parsing(t_data *data)
 		ft_error(&data, "💥 INCORRECT MAP 💥", 1);
 	ft_map_size(data);
 	ft_save_assets(data);
+	get_sprites(data);
 }
