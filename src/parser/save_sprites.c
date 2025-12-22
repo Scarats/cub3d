@@ -29,10 +29,10 @@ char *build_name(char *name, char *path, int number)
 // After the "_" comes the number. The function will import up to "size"
 // The name is rebuilt using "  .xpm", the 2 spaces are for file number.
 // WARNING: the file number has to be < 99, or add the according amount of spaces.
-t_img **save_sprites(t_data *data, char *path, const unsigned int size)
+t_pex **save_sprites(t_data *data, char *path, const unsigned int size)
 {
     unsigned int i;
-    t_img **imgs;
+    t_pex **imgs;
     char *name;
 
 	if (!data || !path || size <= 0)
@@ -51,19 +51,19 @@ t_img **save_sprites(t_data *data, char *path, const unsigned int size)
 			ft_error(&data, "file not accessible", 2);
 		}
         imgs[i] = my_malloc(NULL, &data->malloc_list, sizeof(t_img));
-        imgs[i]->mlx_img = mlx_xpm_file_to_image(data->mlx, name, &imgs[i]->w, &imgs[i]->h);
-        if (!imgs[i]->mlx_img)
+        imgs[i]->img = mlx_xpm_file_to_image(data->mlx, name, &imgs[i]->w, &imgs[i]->h);
+        if (!imgs[i]->img)
             return (free(name), NULL);
-        imgs[i]->addr = mlx_get_data_addr(imgs[i]->mlx_img, &imgs[i]->bits_per_pixel, &imgs[i]->line_length, &imgs[i]->endian);
+        imgs[i]->data = (int *)mlx_get_data_addr(imgs[i]->img, &imgs[i]->bpp, &imgs[i]->size, &imgs[i]->endian);
     }
     free(name);
     return (imgs);
 }
 
-void	compute_sprite_start(t_data *data)
-{
+// void	compute_sprite_start(t_data *data)
+// {
 
-}
+// }
 
 void get_sprites(t_data *data)
 {

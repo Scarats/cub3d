@@ -16,13 +16,13 @@ void free_sprites(t_data *data)
 	printf("free_sprites\n");
 	i = -1;
 	while (++i < data->normal.size)
-		destroy_image(&data->normal.frames[i]->mlx_img, data);
+		destroy_image(&data->normal.frames[i]->img, data);
 	i = -1;
 	while (++i < data->fire.size)
-		destroy_image(&data->fire.frames[i]->mlx_img, data);
+		destroy_image(&data->fire.frames[i]->img, data);
 	i = -1;
 	while (++i < data->reload.size)
-		destroy_image(&data->reload.frames[i]->mlx_img, data);
+		destroy_image(&data->reload.frames[i]->img, data);
 }
 
 // Free the allocated memory and exit the program using the error number.

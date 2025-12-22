@@ -165,7 +165,7 @@ typedef struct s_sprite
 {
 	unsigned int size;
 	unsigned int counter;
-	t_img **frames;
+	t_pex **frames;
 
 } t_sprite;
 
@@ -322,4 +322,5 @@ void			ft_free_arr(char ***arr);
 void			ft_free_struct(t_data **data);
 bool			ft_is_char_in_str(const char c, const char *type);
 
+void    		sprites_handler(t_sprite *s, t_data *data);
 #endif

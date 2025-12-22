@@ -1,18 +1,30 @@
 #include "../cub3d.h"
 
-void    sprites_to_screen(t_img *img, t_data *data)
+void    sprites_to_screen(t_pex *img, t_data *data)
 {
     t_point p;
+    int color;
+    int pix_per_row;
 
-    p.x = 0;
-    p.y = 0;
-    
+    pix_per_row = img->size / (img->bpp / 8);
+    p = data->sprite_start;
+    while (p.y < img->h)
+    {
+        p.x = 0;
+        while (p.x < img->w)
+        {
+            color = img->data[p.y * pix_per_row + p.x];
+            my_pixel_put(img->img, p.x, p.y, color);
+            p.x++;
+        }
+        p.y++;
+    }
 }
 
 void    sprites_handler(t_sprite *s, t_data *data)
 {
-
-
+    if (s->counter <= s->size)
+        sprites_to_screen(s->frames[s->counter], data);
     if (s->counter >= s->size)
         s->counter = 0;
     else
