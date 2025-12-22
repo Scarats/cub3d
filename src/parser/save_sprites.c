@@ -13,8 +13,7 @@ char *build_name(char *name, char *path, int number)
 	if (!name)
 	{
 		total_size = sizeof(char) * (path_size + size_in_char(number) + 4);
-		name = malloc(total_size + 1);
-		ft_memset(name, 0, total_size);
+		name = ft_calloc(1, total_size + 1);
 		name[total_size] = '\0';
 		ft_strcpy(name, path);
 		return (name);
@@ -41,7 +40,7 @@ t_img **save_sprites(t_data *data, char *path, const unsigned int size)
 	name = NULL;
 	name = build_name(name, path, size);
 	i = -1;
-    imgs = my_malloc(NULL, &data->malloc_list, sizeof(t_img));
+    imgs = my_malloc(NULL, &data->malloc_list, sizeof(t_img *) * size);
     while (++i < size)
     {
 		name = build_name(name, path, i + 1);
