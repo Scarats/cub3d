@@ -26,13 +26,6 @@ int	main(int argc, char **argv)
 		return (printf("💥 PLEASE ENTER ONLY ONE .cub FILE 💥\n"), 1);
 	data = malloc(sizeof(t_data));
 	ft_memset(data, 0, sizeof(t_data));
-	// char *str = build_name("test_",ft_itoa(2), 6);
-    // char *name = ft_strjoin("hey", "  ");
-    // printf("LEN = %i\n", ft_strlen(name));
-	// char *str = ft_strjoin("test_", ft_itoa(2));
-	// printf("%s\n", str);
-	// free(data);
-	// free(str);
 	return (0);
 	data->mlx = mlx_init();
 	if (!data->mlx)
