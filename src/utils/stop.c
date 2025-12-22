@@ -9,6 +9,11 @@ void	destroy_image(void *img, t_data *data)
 	}
 }
 
+void free_sprites(t_data *data)
+{
+	while ()
+}
+
 // Free the allocated memory and exit the program using the error number.
 int	stop(t_data **data)
 {

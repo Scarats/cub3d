@@ -45,6 +45,11 @@ t_img **save_sprites(t_data *data, char *path, const unsigned int size)
     {
 		name = build_name(name, path, i + 1);
 		printf("file %s\n", name);
+		if (access(name, R_OK) != 0)
+		{
+			free(name);
+			ft_error(&data, "file not accessible", 2);
+		}
         imgs[i] = my_malloc(NULL, &data->malloc_list, sizeof(t_img));
         imgs[i]->mlx_img = mlx_xpm_file_to_image(data->mlx, name, &imgs[i]->w, &imgs[i]->h);
         if (!imgs[i]->mlx_img)
@@ -58,13 +63,13 @@ t_img **save_sprites(t_data *data, char *path, const unsigned int size)
 void get_sprites(t_data *data)
 {
 	printf("Start sprites\n");
-    data->normal.frames = save_sprites(data, "../assets/sprites/normal/normal_", 22);
+    data->normal.frames = save_sprites(data, "./assets/sprites/normal/normal_", 22);
     if (!data->normal.frames)
         return (ft_error(&data, "normal_sprites", 1));
-    data->fire.frames = save_sprites(data, "../assets/sprites/fire/fire_", 5);
+    data->fire.frames = save_sprites(data, "./assets/sprites/fire/fire_", 5);
     if (!data->fire.frames)
         return (ft_error(&data, "fire_sprites", 1));
-    data->reload.frames = save_sprites(data, "../assets/sprites/reload/reload_", 62);
+    data->reload.frames = save_sprites(data, "./assets/sprites/reload/reload_", 62);
     if (!data->reload.frames)
 		return (ft_error(&data, "reload_sprites", 1));
 	printf("End sprites\n");
