@@ -19,11 +19,3 @@ void	create_window(t_data *data)
 	data->window = mlx_new_window(data->mlx, data->win_width, data->win_height,
 			"cub3d");
 }
-
-int	close_window(int keycode, t_data *data)
-{
-	(void)keycode;
-	mlx_destroy_window(data->mlx, data->window);
-	stop(&data);
-	return (0);
-}

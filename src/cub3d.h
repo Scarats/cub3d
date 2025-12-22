@@ -212,7 +212,9 @@ typedef struct s_data
 	t_img *img_main; // Currently displayed
 	// SPRITES
 	t_sprite	normal;
+	char		flag_fire;
 	t_sprite	fire;
+	char		flag_reload;
 	t_sprite	reload;
 
 	// FLAGS
@@ -251,7 +253,6 @@ void			ft_init_struct(t_data *data, char *map);
 
 // WINDOWS
 void			create_window(t_data *data);
-int				close_window(int keycode, t_data *data);
 void			get_screen_dimentions(t_data *data);
 
 // IMAGES

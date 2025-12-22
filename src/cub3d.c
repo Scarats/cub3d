@@ -31,13 +31,10 @@ int	main(int argc, char **argv)
 	if (!data->mlx)
 		return (perror("mlx"), 1);
 	my_addtolist(&data->malloc_list, data->mlx);
-	printf("before window\n");
 	get_screen_dimentions(data);
 	ft_init_struct(data, argv[1]);
-	printf("before parsing\n");
 	ft_parsing(data);
 	create_window(data);
-	// printf("i\n");
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);
