@@ -319,6 +319,4 @@ void			ft_free_arr(char ***arr);
 void			ft_free_struct(t_data **data);
 bool			ft_is_char_in_str(const char c, const char *type);
 
-
-char *build_name(char *s1, char *s2, const unsigned int size);
 #endif

@@ -1,24 +1,29 @@
 #include "../cub3d.h"
 
-// if action == 1 it init and allocate name
-// size is for malloc
-// if action == 0 it changes the file number
-// size is the length of the path
-char *build_name(char *name, char *path, int size, char action)
+// if !name it init and allocate name
+// number is the size for malloc, the max file_number
+// if name it changes the file number
+// number is the file_number
+char *build_name(char *name, char *path, int number)
 {
 	int path_size;
-
-	if (action == 1)
+	int total_size;
+	
+	path_size = ft_strlen(path);
+	if (!name)
 	{
-		name = malloc(sizeof(char) * (size + size_in_char(size) + 1));
-		name[sizeof(char) * (size + size_in_char(size) + 1)] = '\0';
-		path_size = ft_strlen(path);
-		name = ft_strcpy()
+		total_size = sizeof(char) * (path_size + size_in_char(number) + 4);
+		name = malloc(total_size + 1);
+		ft_memset(name, 0, total_size);
+		name[total_size] = '\0';
+		ft_strcpy(name, path);
+		return (name);
 	}
-	else
-		path_size = size;
-	ft_strcpy(name, );
-
+	(void)total_size;
+	ft_itoa_no_malloc(&name[path_size], number);
+	path_size = ft_strlen(name);
+	ft_strcpy(&name[path_size], ".xpm");
+	return (name);
 }
 
 // Save an array of t_img with this kinda name : "path/to/file_"
@@ -30,27 +35,22 @@ t_img **save_sprites(t_data *data, char *path, const unsigned int size)
     unsigned int i;
     t_img **imgs;
     char *name;
-    char *number;
-    int name_len;
 
-    if (!data || !path || size <= 0)
-        return (NULL);
-	name_len = ft_strlen(path);
-	name = malloc(sizeof(char) * (name_len + ft_strlen(ft_itoa_no_malloc(size)));
-    name = ft_strjoin(path, "  .xpm");
-    number = &name[name_len];
-    i = -1;
+	if (!data || !path || size <= 0)
+		return (NULL);
+	name = NULL;
+	name = build_name(name, path, size);
+	i = -1;
     imgs = my_malloc(NULL, &data->malloc_list, sizeof(t_img));
     while (++i < size)
     {
-        ft_itoa_no_malloc(number, i + 1);
+		name = build_name(name, path, i + 1);
 		printf("file %s\n", name);
         imgs[i] = my_malloc(NULL, &data->malloc_list, sizeof(t_img));
         imgs[i]->mlx_img = mlx_xpm_file_to_image(data->mlx, name, &imgs[i]->w, &imgs[i]->h);
         if (!imgs[i]->mlx_img)
             return (free(name), NULL);
         imgs[i]->addr = mlx_get_data_addr(imgs[i]->mlx_img, &imgs[i]->bits_per_pixel, &imgs[i]->line_length, &imgs[i]->endian);
-        ft_memset(number, 0, 2);
     }
     free(name);
     return (imgs);
