@@ -1,5 +1,26 @@
 #include "../cub3d.h"
 
+// if action == 1 it init and allocate name
+// size is for malloc
+// if action == 0 it changes the file number
+// size is the length of the path
+char *build_name(char *name, char *path, int size, char action)
+{
+	int path_size;
+
+	if (action == 1)
+	{
+		name = malloc(sizeof(char) * (size + size_in_char(size) + 1));
+		name[sizeof(char) * (size + size_in_char(size) + 1)] = '\0';
+		path_size = ft_strlen(path);
+		name = ft_strcpy()
+	}
+	else
+		path_size = size;
+	ft_strcpy(name, );
+
+}
+
 // Save an array of t_img with this kinda name : "path/to/file_"
 // After the "_" comes the number. The function will import up to "size"
 // The name is rebuilt using "  .xpm", the 2 spaces are for file number.
@@ -14,7 +35,8 @@ t_img **save_sprites(t_data *data, char *path, const unsigned int size)
 
     if (!data || !path || size <= 0)
         return (NULL);
-    name_len = ft_strlen(path);
+	name_len = ft_strlen(path);
+	name = malloc(sizeof(char) * (name_len + ft_strlen(ft_itoa_no_malloc(size)));
     name = ft_strjoin(path, "  .xpm");
     number = &name[name_len];
     i = -1;

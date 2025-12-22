@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 14:24:00 by tcardair          #+#    #+#             */
-/*   Updated: 2025/12/16 22:48:54 by chboegne         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:19:49 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,5 +192,6 @@ void				free_2d_array(void **arr);
 int					ft_strcmp(const char *s1, const char *s2);
 int					gen_random(int size);
 char				*ft_strndup(const char *str, const int n);
+int					size_in_char(int n);
 
 #endif
