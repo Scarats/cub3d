@@ -21,6 +21,10 @@ void	init(t_data *data)
 	// plane perpendicular to v_dir, scaled by FOV
 	data->p.v_plane.dx = -data->p.v_dir.dy * FOV;
 	data->p.v_plane.dy = data->p.v_dir.dx * FOV;
+
+	data->normal.size = 22;
+	data->fire.size = 5;
+	data->reload.size = 62;
 }
 
 void	ft_init_struct(t_data *data, char *map)

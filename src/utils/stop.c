@@ -1,17 +1,28 @@
 #include "../cub3d.h"
 
-void	destroy_image(void *img, t_data *data)
+void	destroy_image(void **img, t_data *data)
 {
-	if (img)
+	if (img && *img)
 	{
-		mlx_destroy_image(data->mlx, img);
-		img = NULL;
+		mlx_destroy_image(data->mlx, *img);
+		*img = NULL;
 	}
 }
 
 void free_sprites(t_data *data)
 {
-	while ()
+	unsigned int i;
+
+	printf("free_sprites\n");
+	i = -1;
+	while (++i < data->normal.size)
+		destroy_image(&data->normal.frames[i]->mlx_img, data);
+	i = -1;
+	while (++i < data->fire.size)
+		destroy_image(&data->fire.frames[i]->mlx_img, data);
+	i = -1;
+	while (++i < data->reload.size)
+		destroy_image(&data->reload.frames[i]->mlx_img, data);
 }
 
 // Free the allocated memory and exit the program using the error number.
@@ -21,19 +32,20 @@ int	stop(t_data **data)
 
 	fdprintf(1, "stop\n");
 	error = (*data)->error;
+	free_sprites(*data);
 	ft_free_struct(data);
 	if ((*data)->img_buff)
-		destroy_image((*data)->img_buff->mlx_img, *data);
+		destroy_image(&(*data)->img_buff->mlx_img, *data);
 	if ((*data)->img_main)
-		destroy_image((*data)->img_main->mlx_img, *data);
+		destroy_image(&(*data)->img_main->mlx_img, *data);
 	if ((*data)->tex.north.img)
-		destroy_image((*data)->tex.north.img, *data);
+		destroy_image(&(*data)->tex.north.img, *data);
 	if ((*data)->tex.east.img)
-		destroy_image((*data)->tex.east.img, *data);
+		destroy_image(&(*data)->tex.east.img, *data);
 	if ((*data)->tex.south.img)
-		destroy_image((*data)->tex.south.img, *data);
+		destroy_image(&(*data)->tex.south.img, *data);
 	if ((*data)->tex.west.img)
-		destroy_image((*data)->tex.west.img, *data);
+		destroy_image(&(*data)->tex.west.img, *data);
 	if ((*data)->window)
 	{
 		mlx_destroy_window((*data)->mlx, (*data)->window);

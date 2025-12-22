@@ -63,13 +63,13 @@ t_img **save_sprites(t_data *data, char *path, const unsigned int size)
 void get_sprites(t_data *data)
 {
 	printf("Start sprites\n");
-    data->normal.frames = save_sprites(data, "./assets/sprites/normal/normal_", 22);
+    data->normal.frames = save_sprites(data, "./assets/sprites/normal/normal_", data->normal.size);
     if (!data->normal.frames)
         return (ft_error(&data, "normal_sprites", 1));
-    data->fire.frames = save_sprites(data, "./assets/sprites/fire/fire_", 5);
+    data->fire.frames = save_sprites(data, "./assets/sprites/fire/fire_", data->fire.size);
     if (!data->fire.frames)
         return (ft_error(&data, "fire_sprites", 1));
-    data->reload.frames = save_sprites(data, "./assets/sprites/reload/reload_", 62);
+    data->reload.frames = save_sprites(data, "./assets/sprites/reload/reload_", data->reload.size);
     if (!data->reload.frames)
 		return (ft_error(&data, "reload_sprites", 1));
 	printf("End sprites\n");
