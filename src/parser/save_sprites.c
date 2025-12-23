@@ -40,7 +40,7 @@ t_pex **save_sprites(t_data *data, char *path, const unsigned int size)
 	name = NULL;
 	name = build_name(name, path, size);
 	i = -1;
-    imgs = my_malloc(NULL, &data->malloc_list, sizeof(t_img *) * size);
+    imgs = my_malloc(NULL, &data->malloc_list, sizeof(t_pex *) * size);
     while (++i < size)
     {
 		name = build_name(name, path, i + 1);
@@ -50,7 +50,7 @@ t_pex **save_sprites(t_data *data, char *path, const unsigned int size)
 			free(name);
 			ft_error(&data, "file not accessible", 2);
 		}
-        imgs[i] = my_malloc(NULL, &data->malloc_list, sizeof(t_img));
+        imgs[i] = my_malloc(NULL, &data->malloc_list, sizeof(t_pex));
         imgs[i]->img = mlx_xpm_file_to_image(data->mlx, name, &imgs[i]->w, &imgs[i]->h);
         if (!imgs[i]->img)
             return (free(name), NULL);
