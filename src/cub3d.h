@@ -221,6 +221,7 @@ typedef struct s_data
 	t_sprite	reload;
 	t_point		sprite_start;
 	struct timeval	last_frame_time;
+	int			bullets;
 
 	// FLAGS
 	int			error;

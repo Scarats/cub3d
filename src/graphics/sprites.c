@@ -46,7 +46,6 @@ void    sprites_handler(t_sprite *s, t_data *data)
     struct timeval curr_time;
     int64_t  time_diff;
     static int64_t  fps = 0;
-
  
     sprites_to_screen(s->frames[s->counter], data);
     if (fps == 0)
@@ -56,7 +55,7 @@ void    sprites_handler(t_sprite *s, t_data *data)
             fps = 500000;
     }
     gettimeofday(&curr_time, NULL);
-    time_diff = (curr_time.tv_sec - data->last_frame_time.tv_sec) * 1000000L +
+    time_diff = (int64_t)(curr_time.tv_sec - data->last_frame_time.tv_sec) * 1000000L +
         (int64_t)(curr_time.tv_usec - data->last_frame_time.tv_usec);
     if (time_diff >= fps || s->counter == 0)
     {
@@ -69,13 +68,11 @@ void    sprites_handler(t_sprite *s, t_data *data)
 
 void    draw_sprites(t_data *data)
 {
-    // printf(PURPLE"fire = %i\nreload = %i\n\n", data->flag_fire, data->flag_reload);
     if (data->flag_fire || data->flag_reload)
     {
         if (data->flag_fire)
         {
             sprites_handler(&data->fire, data);
-            printf("%i\n", data->fire.counter);
             if (data->fire.counter == 0)
                 data->flag_fire = 0;
         }
@@ -87,5 +84,5 @@ void    draw_sprites(t_data *data)
         }
     }
     else
-        sprites_to_screen(data->normal.frames[data->normal.counter], data);
+        sprites_handler(&data->normal, data);
 }

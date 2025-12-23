@@ -26,6 +26,7 @@ void	init(t_data *data)
 	data->fire.size = 5;
 	data->reload.size = 66;
     gettimeofday(&data->last_frame_time, NULL);
+	data->bullets = 10;
 }
 
 void	ft_init_struct(t_data *data, char *map)

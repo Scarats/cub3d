@@ -19,7 +19,7 @@ int	key_released(int keycode, t_data *data)
 
 int	key_pressed(int keycode, t_data *data)
 {
-	printf("%i\n", keycode);
+	// printf("%i\n", keycode);
 	if (keycode == KEY_LEFT)
 		look_left(data);
 	else if (keycode == KEY_RIGHT)
@@ -35,7 +35,10 @@ int	key_pressed(int keycode, t_data *data)
 	else if (keycode == KEY_D)
 		go_right(data, 0);
 	else if (keycode == KEY_R)
+	{
 		data->flag_reload = 1;
+		data->bullets = 10;
+	}
 	return (0);
 }
 
@@ -45,11 +48,11 @@ int mouse_hook(int button, int x, int y, t_data *data)
 	(void)y;
 	(void)button;
 
-	if (!data->flag_reload)
+	if (!data->flag_reload && data->bullets > 0)
 	{
 		data->flag_fire = 1;
+		data->bullets--;
 	}
-	printf(RED"FIRE\n"RESET);
 	return (0);
 }
 
