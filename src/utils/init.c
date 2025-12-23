@@ -25,6 +25,7 @@ void	init(t_data *data)
 	data->normal.size = 19;
 	data->fire.size = 5;
 	data->reload.size = 66;
+    gettimeofday(&data->last_frame_time, NULL);
 }
 
 void	ft_init_struct(t_data *data, char *map)

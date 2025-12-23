@@ -44,11 +44,10 @@ void    sprites_to_screen(t_pex *img, t_data *data)
 void    sprites_handler(t_sprite *s, t_data *data)
 {
     struct timeval curr_time;
-    int  time_diff;
-    static int  fps = 0;
+    int64_t  time_diff;
+    static int64_t  fps = 0;
 
-    if (s->counter >= s->size)
-        s->counter = 0;
+ 
     sprites_to_screen(s->frames[s->counter], data);
     if (fps == 0)
     {
@@ -58,12 +57,14 @@ void    sprites_handler(t_sprite *s, t_data *data)
     }
     gettimeofday(&curr_time, NULL);
     time_diff = (curr_time.tv_sec - data->last_frame_time.tv_sec) * 1000000L +
-        (curr_time.tv_usec - data->last_frame_time.tv_usec);
-    if (time_diff >= fps)
+        (int64_t)(curr_time.tv_usec - data->last_frame_time.tv_usec);
+    if (time_diff >= fps || s->counter == 0)
     {
-        gettimeofday(&data->last_frame_time, NULL);
+        data->last_frame_time = curr_time;
         s->counter++; 
-    }
+    }  
+    if (s->counter >= s->size)
+        s->counter = 0;
 }
 
 void    draw_sprites(t_data *data)
@@ -73,8 +74,8 @@ void    draw_sprites(t_data *data)
     {
         if (data->flag_fire)
         {
-            printf("%i\n", data->fire.counter);
             sprites_handler(&data->fire, data);
+            printf("%i\n", data->fire.counter);
             if (data->fire.counter == 0)
                 data->flag_fire = 0;
         }

@@ -46,7 +46,9 @@ int mouse_hook(int button, int x, int y, t_data *data)
 	(void)button;
 
 	if (!data->flag_reload)
+	{
 		data->flag_fire = 1;
+	}
 	printf(RED"FIRE\n"RESET);
 	return (0);
 }

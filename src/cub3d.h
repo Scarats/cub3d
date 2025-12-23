@@ -30,7 +30,7 @@
 # define WALK_SPEED 0.1     // In blocks of the map per frame
 # define MINI_MAP 0.2       // 0 to 1 surface d'occupation de la mini_map
 // sprites
-# define FPS 10
+# define FPS 15
 # define TRANSPARENCY_THRESHOLD 130
 # define PADDING 10	// To avoid the borders of the .xmp
 # define MAGIC_NUMBER 6
