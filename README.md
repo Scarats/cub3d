@@ -1,10 +1,11 @@
 # ToDo
-## ALL
-- [ ] Textures
-- [ ] Error\n
+
 ## Charles
+
 - [ ] Doors open close
+
 ## Thomas
-- [ ] Sprites
+
+- [x] Sprites
 - [ ] Starting position
 - [ ] starting direction
