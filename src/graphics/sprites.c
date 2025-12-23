@@ -16,7 +16,8 @@ void    sprites_to_screen(t_pex *img, t_data *data)
         while (p.x < img->w)
         {
             color = img->data[p.y * pix_per_row + p.x];
-            my_pixel_put(data->img_buff, p.x, p.y, color);
+            if (color != 0xFCFCFC && color != 0xFDFDFE && color != 0xFDFDFD && color && 0xFAFAFA && color != 0xF7FAFB && color != 0xF5F4FA && color != 0xFEFBF5)
+                my_pixel_put(data->img_buff, p.x, p.y, color);
             p.x++;
         }
         p.y++;
