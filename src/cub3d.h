@@ -32,6 +32,7 @@
 # define IMG_PS 4
 # define TRANSPARENCY_THRESHOLD 130
 # define PADDING 10	// To avoid the borders of the .xmp
+# define MAGIC_NUMBER 6
 
 // EVENT
 typedef enum e_event
