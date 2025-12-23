@@ -21,15 +21,10 @@ void    sprites_to_screen(t_pex *img, t_data *data)
 {
     t_point p;
     int color;
-    int pix_per_row;
-    // static t_point start = {0, 0};
+    static int pix_per_row = 0;
 
-    // if (start.x == 0 || start.y == 0)
-    // {
-    //     start.x = data->sprite_start.x;
-    //     start.y = data->sprite_start.y;
-    // }
-    pix_per_row = img->size / (img->bpp / 8);
+    if (pix_per_row == 0)
+        pix_per_row = img->size / (img->bpp / 8);
     p = data->sprite_start;
     p.y = PADDING;
     while (p.y < img->h)
@@ -71,23 +66,25 @@ void    sprites_handler(t_sprite *s, t_data *data)
     }
 }
 
-// void    draw_sprites(t_data *data)
-// {
-//     if (data->flag_fire || data->flag_reload)
-//     {
-//         if (data->flag_fire)
-//         {
-//             sprites_handler(&data->fire, &data);
-//             if (data->fire.counter == 0)
-//                 data->flag_fire = 0;
-//         }
-//         else
-//         {
-//             sprites_handler(&data->reload, &data);
-//             if (data->reload.counter == 0)
-//                 data->flag_reload = 0;
-//         }
-//     }
-//     else
-//         sprites_to_screen(&data->normal, &data);
-// }
+void    draw_sprites(t_data *data)
+{
+    // printf(PURPLE"fire = %i\nreload = %i\n\n", data->flag_fire, data->flag_reload);
+    if (data->flag_fire || data->flag_reload)
+    {
+        if (data->flag_fire)
+        {
+            printf("%i\n", data->fire.counter);
+            sprites_handler(&data->fire, data);
+            if (data->fire.counter == 0)
+                data->flag_fire = 0;
+        }
+        else
+        {
+            sprites_handler(&data->reload, data);
+            if (data->reload.counter == 0)
+                data->flag_reload = 0;
+        }
+    }
+    else
+        sprites_to_screen(data->normal.frames[data->normal.counter], data);
+}

@@ -54,7 +54,8 @@ typedef enum e_key
 	KEY_W = 119,
 	KEY_A = 97,
 	KEY_D = 100,
-	KEY_S = 115
+	KEY_S = 115,
+	KEY_R = 114,
 }				t_key;
 
 // PARSING
@@ -281,6 +282,7 @@ void			raycasting(t_data *data, t_player *p);
 
 // SPRITES
 void			get_sprites(t_data *data);
+void    		draw_sprites(t_data *data);
 
 // POV
 void			look_right(t_data *data);
@@ -325,5 +327,5 @@ void			ft_free_arr(char ***arr);
 void			ft_free_struct(t_data **data);
 bool			ft_is_char_in_str(const char c, const char *type);
 
-void    		sprites_handler(t_sprite *s, t_data *data);
+// void    		sprites_handler(t_sprite *s, t_data *data);
 #endif
