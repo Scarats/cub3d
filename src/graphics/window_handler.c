@@ -11,6 +11,7 @@ void	get_screen_dimentions(t_data *data)
 		data->error = 1;
 		stop(&data);
 	}
+	data->win_width /= 2;
 }
 
 void	create_window(t_data *data)

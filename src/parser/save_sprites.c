@@ -60,10 +60,11 @@ t_pex **save_sprites(t_data *data, char *path, const unsigned int size)
     return (imgs);
 }
 
-// void	compute_sprite_start(t_data *data)
-// {
-
-// }
+void	compute_sprite_start(t_data *data)
+{
+	data->sprite_start.y = data->win_height - data->normal.frames[0]->h - PADDING * 6;
+	data->sprite_start.x = (data->win_width / 2) - ((data->normal.frames[0]->w - PADDING) / 2);
+}
 
 void get_sprites(t_data *data)
 {
@@ -77,5 +78,6 @@ void get_sprites(t_data *data)
     data->reload.frames = save_sprites(data, "./assets/sprites/reload/reload_", data->reload.size);
     if (!data->reload.frames)
 		return (ft_error(&data, "reload_sprites", 1));
+	compute_sprite_start(data);
 	printf("End sprites\n");
 }

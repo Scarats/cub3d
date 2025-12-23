@@ -19,14 +19,12 @@
 # define P_BROWN 0x8B4513
 # define P_PURPLE 0x800080
 # define P_GREY 0xFF2E2E2E
-# define P_RESET 0x000000
 
 // MACROS
 # define SENSITIVITY 0.2 // From 0 to 1
 # define POV 15          // Pixels shift per click
 # define M_PI 3.14159265358979323846
 # define FOV 0.99 // An angle
-# define MINIMAP_SCALE 100
 # define BORDER_THICKNESS 1 // In pixels
 # define WALK_SPEED 0.1     // In blocks of the map per frame
 # define MINI_MAP 0.2       // 0 to 1 surface d'occupation de la mini_map

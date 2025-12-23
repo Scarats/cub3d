@@ -22,19 +22,24 @@ void    sprites_to_screen(t_pex *img, t_data *data)
     t_point p;
     int color;
     int pix_per_row;
+    static t_point start = {0, 0};
 
+    if (start.x == 0 || start.y == 0)
+    {
+        start.x = data->sprite_start.x;
+        start.y = data->sprite_start.y;
+    }
     pix_per_row = img->size / (img->bpp / 8);
     p = data->sprite_start;
-    p.x = PADDING;
     p.y = PADDING;
     while (p.y < img->h)
     {
-        p.x = 0;
+        p.x = PADDING;
         while (p.x < img->w)
         {
             color = img->data[p.y * pix_per_row + p.x];
             if (!is_transparent(color))
-                my_pixel_put(data->img_buff, p.x, p.y, color);
+                my_pixel_put(data->img_buff, (p.x - PADDING) + start.x, (p.y - PADDING) + start.y, color);
             p.x++;
         }
         p.y++;
@@ -46,6 +51,7 @@ void    sprites_handler(t_sprite *s, t_data *data)
     if (s->counter >= s->size)
         s->counter = 0;
     sprites_to_screen(s->frames[s->counter], data);
+    // Increase the counter according to the IMG_PS
     s->counter++; 
 }
 
