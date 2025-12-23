@@ -28,10 +28,12 @@
 # define FOV 0.99 // An angle
 # define MINIMAP_SCALE 100
 # define BORDER_THICKNESS 1 // In pixels
-# define PADDING 5          // in pixel
 # define WALK_SPEED 0.1     // In blocks of the map per frame
 # define MINI_MAP 0.2       // 0 to 1 surface d'occupation de la mini_map
+// sprites
 # define IMG_PS 4
+# define TRANSPARENCY_THRESHOLD 130
+# define PADDING 10	// To avoid the borders of the .xmp
 
 // EVENT
 typedef enum e_event
