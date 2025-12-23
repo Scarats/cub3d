@@ -6,6 +6,7 @@
 # include <math.h>
 # include <stdbool.h>
 # include <string.h>
+# include <sys/time.h>
 
 // COLORS
 # define P_WHITE 0xFFFFFF
@@ -218,6 +219,7 @@ typedef struct s_data
 	char		flag_reload;
 	t_sprite	reload;
 	t_point		sprite_start;
+	struct timeval	last_frame_time;
 
 	// FLAGS
 	int			error;

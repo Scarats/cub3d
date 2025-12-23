@@ -48,11 +48,18 @@ void    sprites_to_screen(t_pex *img, t_data *data)
 
 void    sprites_handler(t_sprite *s, t_data *data)
 {
+    struct timeval curr_time;
+
     if (s->counter >= s->size)
         s->counter = 0;
     sprites_to_screen(s->frames[s->counter], data);
-    // Increase the counter according to the IMG_PS
-    s->counter++; 
+    gettimeofday(curr_time.tv_sec, NULL);
+    if (curr_time.)
+    {
+        gettimeofday(data->last_frame_time, NULL);
+        s->counter++; 
+    }
+
 }
 
 // void    draw_sprites(t_data *data)
