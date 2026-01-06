@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-void	destroy_image(void **img, t_data *data)
+void destroy_image(void **img, t_data *data)
 {
 	if (img && *img)
 	{
@@ -26,13 +26,14 @@ void free_sprites(t_data *data)
 }
 
 // Free the allocated memory and exit the program using the error number.
-int	stop(t_data **data)
+int stop(t_data **data)
 {
-	int	error;
+	int error;
 
 	fdprintf(1, "stop\n");
 	error = (*data)->error;
-	free_sprites(*data);
+	if ((*data)->saved_sprites == 1)
+		free_sprites(*data);
 	ft_free_struct(data);
 	if ((*data)->img_buff)
 		destroy_image(&(*data)->img_buff->mlx_img, *data);
@@ -62,7 +63,7 @@ int	stop(t_data **data)
 	exit(error);
 }
 
-void	ft_error(t_data **s, const char *str, int code)
+void ft_error(t_data **s, const char *str, int code)
 {
 	(*s)->error = code;
 	if (str)

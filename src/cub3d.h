@@ -214,6 +214,7 @@ typedef struct s_data
 	t_img *img_buff; // Image being created
 	t_img *img_main; // Currently displayed
 	// SPRITES
+	char		saved_sprites;
 	t_sprite	normal;
 	char		flag_fire;
 	t_sprite	fire;
