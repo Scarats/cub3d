@@ -110,12 +110,12 @@ void	ft_convert_color(t_data *data)
 	while (data->file.ceiling[i] >= '0' && data->file.ceiling[i] <= '9')
 		i++;
 	tmp = ft_split(data->file.ceiling, data->file.ceiling[i]);
-	data->tex.ceiling = P_LIGHT_BLUE;
+	data->tex.ceiling = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
 	ft_free_arr(&tmp);
 	i = 0;
 	while (data->file.floor[i] >= '0' && data->file.floor[i] <= '9')
 		i++;
 	tmp = ft_split(data->file.floor, data->file.floor[i]);
-	data->tex.floor = P_GREY;
+	data->tex.floor = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
 	ft_free_arr(&tmp);
 }

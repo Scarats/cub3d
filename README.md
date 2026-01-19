@@ -7,5 +7,5 @@
 ## Thomas
 
 - [x] Sprites
-- [ ] Starting position
-- [ ] starting direction
+- [x] Starting position
+- [x] starting direction
