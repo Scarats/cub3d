@@ -321,6 +321,7 @@ void			ft_convert_color(t_data *data);
 void			ft_parsing(t_data *data);
 void			ft_draw_floor_and_celling(t_data *data);
 void			ft_save_assets(t_data *data);
+void 			set_orientation(t_data *data);
 
 // MAIN
 void			ft_error(t_data **data, const char *str, int code);
@@ -329,5 +330,5 @@ void			ft_free_arr(char ***arr);
 void			ft_free_struct(t_data **data);
 bool			ft_is_char_in_str(const char c, const char *type);
 
-// void    		sprites_handler(t_sprite *s, t_data *data);
+void    		sprites_handler(t_sprite *s, t_data *data);
 #endif

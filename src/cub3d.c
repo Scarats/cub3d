@@ -12,7 +12,6 @@ int	main_logic(t_data *data)
 	ft_draw_floor_and_celling(data);
 	raycasting(data, &data->p);
 	draw_sprites(data);
-	// sprites_handler(&data->normal, data);
 	ft_draw_minimap(data);
 	refresh_images(data);
 	data->curr_mouse_pos->x = -1;
@@ -36,6 +35,7 @@ int	main(int argc, char **argv)
 	get_screen_dimentions(data);
 	ft_init_struct(data, argv[1]);
 	ft_parsing(data);
+	set_orientation(data);
 	create_window(data);
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, main_logic, data);

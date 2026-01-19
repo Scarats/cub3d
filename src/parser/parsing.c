@@ -112,6 +112,7 @@ void	ft_parsing(t_data *data)
 	ft_isolate_map(data);
 	if (ft_nbr_and_player_orientation(data) != 1)
 		ft_error(&data, "💥 THERE MUST BE ONLY ONE PLAYER IN THE MAP 💥", 1);
+	printf(RED "orientation = %c\n" RESET, data->parse.orientation);
 	if (!ft_check_unclosed_map(data->parse.map))
 		ft_error(&data, "💥 INCORRECT MAP 💥", 1);
 	ft_map_size(data);
