@@ -10,6 +10,11 @@ void handle_door(t_data *data)
 	check_dist = 0.5;
 
 	block = data->p.pos;
+	
+	// Early return if player is on an open door (undefined behavior)
+	if (data->parse.map[(int)block.y][(int)block.x] == 'O')
+		return ;
+
 	block.x += data->p.v_dir.dx * check_dist;
 	block.y += data->p.v_dir.dy * check_dist;
 
