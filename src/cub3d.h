@@ -230,6 +230,7 @@ typedef struct s_data
 	// PLAYER
 	t_player	p;
 	t_dda		dda;
+	bool		door;
 
 	// t_dpoint	d_pos;
 	t_controls	controls;
