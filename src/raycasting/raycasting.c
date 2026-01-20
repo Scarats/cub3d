@@ -62,8 +62,9 @@ void	dda_wall_detection(t_dda *dda, t_data *data, int *side)
 		if (dda->map_pos.y < 0 || dda->map_pos.y >= data->parse.height
 			|| dda->map_pos.x < 0 || dda->map_pos.x >= data->parse.width)
 			break ;
-		if (data->parse.map[dda->map_pos.y][dda->map_pos.x] != '0')
+		if (data->parse.map[dda->map_pos.y][dda->map_pos.x] != '0' && data->parse.map[dda->map_pos.y][dda->map_pos.x] != 'O')
 			hit = 1;
+		// if (data->parse.map[dda->map_pos.y][dda->map_pos.x] != '0' && data->parse.map[dda->map_pos.y][dda->map_pos.x] != 'O')
 	}
 }
 

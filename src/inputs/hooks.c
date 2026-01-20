@@ -39,6 +39,9 @@ int	key_pressed(int keycode, t_data *data)
 		data->flag_reload = 1;
 		data->bullets = 10;
 	}
+	else if (keycode == KEY_E)
+		data->door = true;
+	printf("keycode = %i\n", keycode);
 	return (0);
 }
 

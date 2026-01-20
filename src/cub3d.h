@@ -35,6 +35,9 @@
 # define PADDING 10	// To avoid the borders of the .xmp
 # define MAGIC_NUMBER 6
 
+// DOOR
+# define DOOR_DISTANCE 1
+
 // EVENT
 typedef enum e_event
 {
@@ -56,6 +59,7 @@ typedef enum e_key
 	KEY_D = 100,
 	KEY_S = 115,
 	KEY_R = 114,
+	KEY_E = 101
 }				t_key;
 
 // PARSING
@@ -279,6 +283,9 @@ void			set_hooks(t_data *data);
 // RENDERING
 void			render_img(t_img *img, t_data *data);
 void			refresh_images(t_data *data);
+
+// DOORS
+void			handle_door(t_data *data);
 
 // RAYCASTING
 void			raycasting(t_data *data, t_player *p);

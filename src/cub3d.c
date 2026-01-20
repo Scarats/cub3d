@@ -9,6 +9,7 @@ int	main_logic(t_data *data)
 	set_position(&data->controls, data);
 	mouse_edge(data);
 	apply_pov(data);
+	handle_door(data);
 	ft_draw_floor_and_celling(data);
 	raycasting(data, &data->p);
 	draw_sprites(data);
