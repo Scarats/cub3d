@@ -80,6 +80,7 @@ typedef struct s_file
 	char		*south;
 	char		*west;
 	char		*east;
+	char		*door;
 	char		*floor;
 	char		*ceiling;
 }				t_file;
@@ -101,6 +102,7 @@ typedef struct s_tex
 	t_pex		south;
 	t_pex		west;
 	t_pex		east;
+	t_pex		door;
 	int			floor;
 	int			ceiling;
 }				t_tex;

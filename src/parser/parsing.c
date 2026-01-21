@@ -70,6 +70,9 @@ static void	ft_stock_element(t_data *data, char *element, char *file)
 	if (!ft_strncmp(element, "C", 1))
 		return (ft_free_str(&data->file.ceiling),
 			(void)(data->file.ceiling = ft_strndup(file, siz)));
+	if (!ft_strncmp(element, "D", 1))
+		return (ft_free_str(&data->file.door),
+			(void)(data->file.door = ft_strndup(file, siz)));
 }
 
 static void	ft_search_in_file(t_data *data)
