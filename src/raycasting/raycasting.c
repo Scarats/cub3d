@@ -121,6 +121,11 @@ void	draw_wall(int x, double distance, t_data *data, int side,
 	tex_x = (int)((wall_x - floor(wall_x)) * (double)current_tex->w);
 	if (tex_x < 0)
 		tex_x = 0;
+	if (draw_start < 0)
+		draw_start = 0;
+	if (draw_end > data->win_width)
+		draw_end = data->win_width;
+
 	if (tex_x >= current_tex->w)
 		tex_x = current_tex->w - 1;
 	while (draw_start <= draw_end)

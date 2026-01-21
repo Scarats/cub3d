@@ -8,7 +8,7 @@ SRCS	= src/cub3d.c src/utils/stop.c src/graphics/window_handler.c \
 			src/graphics/texture.c src/parser/save_assets.c src/parser/save_sprites.c \
 			src/graphics/sprites.c src/inputs/doors.c
 
-FLAGS = -Wall -Wextra -Werror -g -DGL_SILENCE_DEPRECATION
+FLAGS = -Wall -Wextra -Werror -g
 CC    = cc
 RM    = rm -f
 OBJ_DIR = dot_o
@@ -17,7 +17,6 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 NAME	= cub3D
 
 MLX_LINUX_DIR = ./libraries/minilibx-linux
-MLX_MAC_DIR   = ./libraries/minilibx_mms_20200219
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
