@@ -14,7 +14,7 @@ RM    = rm -f
 OBJ_DIR = dot_o
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
-NAME	= cub3d
+NAME	= cub3D
 
 MLX_LINUX_DIR = ./libraries/minilibx-linux
 MLX_MAC_DIR   = ./libraries/minilibx_mms_20200219
