@@ -62,9 +62,12 @@ void	dda_wall_detection(t_dda *dda, t_data *data, int *side)
 		if (dda->map_pos.y < 0 || dda->map_pos.y >= data->parse.height
 			|| dda->map_pos.x < 0 || dda->map_pos.x >= data->parse.width)
 			break ;
+		//
+		if (data->parse.map[dda->map_pos.y][dda->map_pos.x] == 'D')
+			*side = 2;
+		//
 		if (data->parse.map[dda->map_pos.y][dda->map_pos.x] != '0' && data->parse.map[dda->map_pos.y][dda->map_pos.x] != 'O')
 			hit = 1;
-		// if (data->parse.map[dda->map_pos.y][dda->map_pos.x] != '0' && data->parse.map[dda->map_pos.y][dda->map_pos.x] != 'O')
 	}
 }
 
@@ -107,8 +110,10 @@ void	draw_wall(int x, double distance, t_data *data, int side,
 		current_tex = &data->tex.south;
 	else if (data->parse.orientation == 'W') // Ouest
 		current_tex = &data->tex.west;
-	else // Est
+	else if (data->parse.orientation == 'E')// Est
 		current_tex = &data->tex.east;
+	else
+		current_tex = &data->tex.door;
 	if (side == 0)
 		wall_x = (data->p.pos.y + distance * ray_dir.dy);
 	else
@@ -213,6 +218,8 @@ void	raycasting(t_data *data, t_player *p)
 			else
 				data->parse.orientation = 'W'; // Ouest
 		}
+		else if (side == 2)
+			data->parse.orientation = 'D';
 		else
 		{
 			if (ray_dir.dy > 0)
