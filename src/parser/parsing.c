@@ -117,12 +117,7 @@ void	ft_parsing(t_data *data)
 		ft_error(&data, "💥 WRONG MAP 💥", 1);
 	if (ft_nbr_and_player_orientation(data) != 1)
 		ft_error(&data, "💥 THERE MUST BE ONLY ONE PLAYER IN THE MAP 💥", 1);
-<<<<<<< HEAD
 	if (!ft_check_unclosed_map(data->parse.map, (int)data->p.pos.y, (int)data->p.pos.x))
-=======
-	printf(RED "orientation = %c\n" RESET, data->parse.orientation);
-	if (!ft_check_unclosed_map(data->parse.map))
->>>>>>> doors
 		ft_error(&data, "💥 INCORRECT MAP 💥", 1);
 	i = 0;
 	while (data->parse.map[i])
