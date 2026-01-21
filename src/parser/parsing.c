@@ -85,25 +85,26 @@ static void	ft_search_in_file(t_data *data)
 	int	siz;
 
 	i = 0;
-	while (data->parse.stock[i])
+	while (data->parse.stock && data->parse.stock[i])
 	{
 		j = 0;
 		while (ft_strncmp(data->parse.stock + i, data->parse.element[j],
 				ft_strlen(data->parse.element[j])))
 			j++;
-		if (data->parse.element[j])
+		if (data->parse.stock[i] && data->parse.element[j])
 		{
 			siz = ft_strlen(data->parse.element[j]) + i;
-			while (ft_isspace(data->parse.stock[i]) || i < siz)
+			while (data->parse.stock[i] && (ft_isspace(data->parse.stock[i]) || i < siz))
 				data->parse.stock[i++] = ' ';
 			ft_stock_element(data, data->parse.element[j], data->parse.stock
 				+ i);
-			while (!ft_isspace(data->parse.stock[i]))
+			while (data->parse.stock[i] &&  !ft_isspace(data->parse.stock[i]))
 				data->parse.stock[i++] = ' ';
 		}
-		else if (!ft_is_char_in_str(data->parse.stock[i], "10NSEWD\n"))
+		else if (data->parse.stock[i] && !ft_is_char_in_str(data->parse.stock[i], "10NSEWD\n"))
 			data->parse.stock[i++] = ' ';
-		i++;
+		if (data->parse.stock[i])
+			i++;
 	}
 }
 
