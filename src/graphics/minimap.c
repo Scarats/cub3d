@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-void	ft_draw_big_pixel(t_data *data, int x, int y)
+void	ft_draw_big_pixel(t_data *data, int x, int y, int color)
 {
 	int	i;
 	int	j;
@@ -11,7 +11,7 @@ void	ft_draw_big_pixel(t_data *data, int x, int y)
 		j = 0;
 		while (j < data->mini.pixel)
 		{
-			my_pixel_put(data->img_buff, x + i, y + j, P_WHITE);
+			my_pixel_put(data->img_buff, x + i, y + j, color);
 			j++;
 		}
 		i++;
@@ -50,7 +50,10 @@ void	ft_draw_minimap(t_data *data)
 		{
 			if (data->parse.map[y][x] == '1')
 				ft_draw_big_pixel(data, x * data->mini.pixel, y
-					* data->mini.pixel);
+					* data->mini.pixel, P_WHITE);
+			if (data->parse.map[y][x] == 'D')
+				ft_draw_big_pixel(data, x * data->mini.pixel, y
+					* data->mini.pixel, P_BROWN);
 			x++;
 		}
 		y++;

@@ -12,51 +12,77 @@
 
 #include "libft.h"
 
-static int	wordcount(char const *s, char c)
+///////////////////////////////////////////////
+// compte chaque mot separe par un caractere //
+///////////////////////////////////////////////
+
+static int	ft_count_word(const char *str, const char c)
 {
 	int	i;
-	int	inword;
+	int	word;
 
+	if (!str)
+		return (0);
 	i = 0;
-	inword = 0;
-	while (*s)
+	word = 0;
+	while (str[i])
 	{
-		if (*s != c && !inword)
-		{
-			inword = 1;
+		while (str[i] && str[i] == c)
 			i++;
-		}
-		else if (*s == c)
-			inword = 0;
-		s++;
+		word++;
+		while (str[i] && str[i] != c)
+			i++;
 	}
-	return (i);
+	return (word);
 }
 
-char	**ft_split(char const *s, char c)
-{
-	size_t	length;
-	size_t	i;
-	char	**ptr;
+////////////////////////////////////////////////////////////////
+// calcul la longueur d'une string depuis start jusqau'au cut //
+////////////////////////////////////////////////////////////////
 
-	i = 0;
-	ptr = (char **)malloc(sizeof(char *) * (wordcount(s, c) + 1));
-	if (!ptr || !s)
+static int	ft_len_strt_stop(const char *str, int start, const char cut)
+{
+	int	stop;
+
+	if (!str)
+		return (0);
+	while (str[start] && str[start] == cut)
+		start++;
+	stop = start;
+	while (str[stop] && str[stop] != cut)
+		stop++;
+	return (stop - start);
+}
+
+////////////////////////////////////////////////////
+// decoupe une string en array en fonction du cut //
+////////////////////////////////////////////////////
+
+char	**ft_split(const char *str, const char cut)
+{
+	int		i;
+	int		j;
+	int		word;
+	int		start;
+	char	**new;
+
+	word = ft_count_word(str, cut);
+	new = malloc(sizeof(char *) * (word + 1));
+	if (!new || !str)
 		return (NULL);
-	while (*s)
+	i = 0;
+	start = 0;
+	while (i < word)
 	{
-		while (*s == c)
-			s++;
-		if (*s)
-		{
-			if (!ft_strchr(s, c))
-				length = ft_strlen(s);
-			else
-				length = ft_strchr(s, c) - s;
-			ptr[i++] = ft_substr(s, 0, length);
-			s += length;
-		}
+		new[i] = malloc(sizeof(char) * (ft_len_strt_stop(str, start, cut) + 1));
+		if (!new[i])
+			return (NULL);
+		j = 0;
+		while (str[start] && str[start] == cut)
+			start++;
+		while (str[start] && str[start] != cut)
+			new[i][j++] = str[start++];
+		new[i++][j] = '\0';
 	}
-	ptr[i] = NULL;
-	return (ptr);
+	return (new[i] = NULL, new);
 }

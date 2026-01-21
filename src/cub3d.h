@@ -312,7 +312,7 @@ void			set_position(t_controls *dir, t_data *data);
 void			ft_draw_minimap(t_data *data);
 // check_define.c
 void			ft_map_size(t_data *data);
-bool			ft_check_unclosed_map(char **map);
+bool	ft_check_unclosed_map(char **map, int x, int y);
 int				ft_nbr_and_player_orientation(t_data *data);
 void			ft_isolate_map(t_data *data);
 void			ft_convert_color(t_data *data);

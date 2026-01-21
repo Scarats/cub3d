@@ -78,8 +78,8 @@ static void	ft_search_in_file(t_data *data)
 	int	j;
 	int	siz;
 
-	i = -1;
-	while (data->parse.stock[++i])
+	i = 0;
+	while (data->parse.stock[i])
 	{
 		j = 0;
 		while (ft_strncmp(data->parse.stock + i, data->parse.element[j],
@@ -97,11 +97,14 @@ static void	ft_search_in_file(t_data *data)
 		}
 		else if (!ft_is_char_in_str(data->parse.stock[i], "10NSEWD\n"))
 			data->parse.stock[i++] = ' ';
+		i++;
 	}
 }
 
 void	ft_parsing(t_data *data)
 {
+	int i;
+	int j;
 	printf("ft_parsing\n");
 	ft_read_file(data);
 	ft_search_in_file(data);
@@ -110,10 +113,30 @@ void	ft_parsing(t_data *data)
 		ft_error(&data, "💥 MISSING TEXTURE 💥", 1);
 	ft_convert_color(data);
 	ft_isolate_map(data);
+	if (!data->parse.map)
+		ft_error(&data, "💥 WRONG MAP 💥", 1);
 	if (ft_nbr_and_player_orientation(data) != 1)
 		ft_error(&data, "💥 THERE MUST BE ONLY ONE PLAYER IN THE MAP 💥", 1);
-	if (!ft_check_unclosed_map(data->parse.map))
+	if (!ft_check_unclosed_map(data->parse.map, (int)data->p.pos.y, (int)data->p.pos.x))
 		ft_error(&data, "💥 INCORRECT MAP 💥", 1);
+	i = 0;
+	while (data->parse.map[i])
+	{
+		j = 0;
+		while (data->parse.map[i][j])
+		{
+			if (data->parse.map[i][j] == '_')
+				data->parse.map[i][j] = '0';
+			if (data->parse.map[i][j] == 'd')
+				data->parse.map[i][j] = 'D';
+			j++;
+		}
+		i++;
+	}
+	// printf("\n--------------------------------------------------------------\n");
+	// for (int i = 0; data->parse.map[i]; i++)
+	// 	printf("%s", data->parse.map[i]);
+	// printf("\n--------------------------------------------------------------\n");
 	ft_map_size(data);
 	ft_save_assets(data);
 	get_sprites(data);

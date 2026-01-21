@@ -23,32 +23,35 @@ void	ft_map_size(t_data *data)
 	data->parse.height = i;
 }
 
-bool	ft_check_unclosed_map(char **map)
+bool	ft_check_unclosed_map(char **map, int x, int y)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	while (map[x])
-	{
-		y = 0;
-		while (map[x][y])
-		{
-			if (map[x][y] == '0' && ((x == 0 || map[x - 1][y] == ' ') || (x == 0
-						|| y == 0 || map[x - 1][y - 1] == ' ') || (x == 0
-						|| y == ft_strlen(map[x]) - 1 || map[x - 1][y
-						+ 1] == ' ') || (y == 0 || map[x][y - 1] == ' ')
-					|| (y == ft_strlen(map[x]) - 1 || map[x][y + 1] == ' ')
-					|| (!map[x + 1] || map[x + 1][y] == ' ') || (!map[x + 1]
-						|| y == 0 || map[x + 1][y - 1] == ' ') || (!map[x + 1]
-						|| y == ft_strlen(map[x + 1]) - 1 || map[x + 1][y
-						+ 1] == ' ')))
-				return (false);
-			y++;
-		}
-		x++;
-	}
-	return (true);
+	int len = 0;
+	
+	if (x < 0 || !map[x]) {
+		return(false);
+    }
+    while (map[x][len]) {
+        len++;
+    }
+    if (y < 0 || y >= len || map[x][y] == '\n') {
+        return (false);
+    }
+	if (map[x][y] == '1' || map[x][y] == '_' || map[x][y] == 'd')
+		return (true);
+	if (map[x][y] == 'D')
+		map[x][y] = 'd';
+	if (map[x][y] != '1' && map[x][y] != 'd')
+    	map[x][y] = '_';
+	bool is_closed = true;
+    is_closed &= ft_check_unclosed_map(map, x + 1, y);
+    is_closed &= ft_check_unclosed_map(map, x, y + 1);
+    is_closed &= ft_check_unclosed_map(map, x - 1, y);
+    is_closed &= ft_check_unclosed_map(map, x, y - 1);
+    is_closed &= ft_check_unclosed_map(map, x + 1, y + 1);
+    is_closed &= ft_check_unclosed_map(map, x + 1, y - 1);
+    is_closed &= ft_check_unclosed_map(map, x - 1, y + 1);
+    is_closed &= ft_check_unclosed_map(map, x - 1, y - 1);
+    return is_closed;
 }
 
 int	ft_nbr_and_player_orientation(t_data *data)
@@ -96,6 +99,8 @@ void	ft_isolate_map(t_data *data)
 		siz--;
 	siz++;
 	map = ft_strndup(data->parse.stock + start, siz - start);
+	if (!map)
+		return;
 	data->parse.map = ft_split(map, '\n');
 	my_array_addtolist(&data->malloc_list, (void **)data->parse.map);
 	free(map);
