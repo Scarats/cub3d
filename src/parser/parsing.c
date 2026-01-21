@@ -27,8 +27,8 @@ static void	ft_read_file(t_data *data)
 	int		bytes;
 	char	str[1024];
 
-	fd = ft_strlen(data->parse.file);
-	if (fd > 4 && !ft_strncmp(data->parse.file, ".cub", fd - 4))
+	fd = ft_strlen(data->parse.file) - 4;
+	if (fd > 0 && ft_strcmp(data->parse.file + fd, ".cub"))
 		ft_error(&data, "💥 WRONG FILE NAME 💥", 1);
 	fd = open(data->parse.file, O_RDONLY);
 	if (fd == -1)
