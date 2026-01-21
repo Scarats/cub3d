@@ -37,6 +37,9 @@ void	ft_save_images(t_data *data)
 			&data->tex.east.w, &data->tex.east.h);
 	data->tex.east.data = (int *)mlx_get_data_addr(data->tex.east.img,
 			&data->tex.east.bpp, &data->tex.east.size, &data->tex.east.endian);
+	
+	data->tex.door.img = mlx_xpm_file_to_image(data->mlx, data->file.door,
+			&data->tex.door.w, &data->tex.door.h);
 	data->tex.door.data = (int *)mlx_get_data_addr(data->tex.door.img,
 			&data->tex.door.bpp, &data->tex.door.size, &data->tex.door.endian);
 	if (!data->tex.north.img || !data->tex.south.img || !data->tex.west.img

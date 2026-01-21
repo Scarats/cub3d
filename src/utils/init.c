@@ -52,7 +52,7 @@ void init(t_data *data)
 void ft_init_struct(t_data *data, char *map)
 {
 	data->parse.file = map;
-	data->parse.element = ft_split("NO-SO-WE-EA-F-C", '-');
+	data->parse.element = ft_split("NO-SO-WE-EA-F-C-DO", '-');
 	my_array_addtolist(&data->malloc_list, (void **)data->parse.element);
 	init(data);
 }
