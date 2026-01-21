@@ -98,7 +98,7 @@ void	ft_isolate_map(t_data *data)
 	while (siz > 0 && data->parse.stock[siz] != '1')
 		siz--;
 	siz++;
-	if (start > siz - start)
+	if (ft_strlen(data->parse.stock) + start <= siz - start)
 		return;
 	map = ft_strndup(data->parse.stock + start, siz - start);
 	if (!map)

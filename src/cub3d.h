@@ -196,6 +196,7 @@ typedef struct s_player
 
 typedef struct s_dda
 {
+	int is_door;
 	t_point		map_pos;
 	t_point		step;
 	t_dpoint	delta_dist;
