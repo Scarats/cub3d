@@ -27,6 +27,8 @@ static void	ft_read_file(t_data *data)
 	int		bytes;
 	char	str[1024];
 
+	// fd = ft_strlen(data->parse.file);
+	// if (fd > 4 && ft_str)
 	fd = open(data->parse.file, O_RDONLY);
 	if (fd == -1)
 		ft_error(&data, "💥 FILE DOES'NT EXIST 💥", 1);
