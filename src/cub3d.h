@@ -35,6 +35,9 @@
 # define PADDING 10	// To avoid the borders of the .xmp
 # define MAGIC_NUMBER 6
 
+// DOOR
+# define DOOR_DISTANCE 1
+
 // EVENT
 typedef enum e_event
 {
@@ -56,6 +59,7 @@ typedef enum e_key
 	KEY_D = 100,
 	KEY_S = 115,
 	KEY_R = 114,
+	KEY_E = 101
 }				t_key;
 
 // PARSING
@@ -230,6 +234,7 @@ typedef struct s_data
 	// PLAYER
 	t_player	p;
 	t_dda		dda;
+	bool		door;
 
 	// t_dpoint	d_pos;
 	t_controls	controls;
@@ -279,6 +284,9 @@ void			set_hooks(t_data *data);
 void			render_img(t_img *img, t_data *data);
 void			refresh_images(t_data *data);
 
+// DOORS
+void			handle_door(t_data *data);
+
 // RAYCASTING
 void			raycasting(t_data *data, t_player *p);
 
@@ -321,6 +329,7 @@ void			ft_convert_color(t_data *data);
 void			ft_parsing(t_data *data);
 void			ft_draw_floor_and_celling(t_data *data);
 void			ft_save_assets(t_data *data);
+void 			set_orientation(t_data *data);
 
 // MAIN
 void			ft_error(t_data **data, const char *str, int code);
@@ -329,5 +338,5 @@ void			ft_free_arr(char ***arr);
 void			ft_free_struct(t_data **data);
 bool			ft_is_char_in_str(const char c, const char *type);
 
-// void    		sprites_handler(t_sprite *s, t_data *data);
+void    		sprites_handler(t_sprite *s, t_data *data);
 #endif
