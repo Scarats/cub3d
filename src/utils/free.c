@@ -48,4 +48,5 @@ void	ft_free_struct(t_data **s)
 	ft_free_str(&(*s)->file.east);
 	ft_free_str(&(*s)->file.floor);
 	ft_free_str(&(*s)->file.ceiling);
+	ft_free_str(&(*s)->file.door);
 }

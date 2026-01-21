@@ -47,6 +47,8 @@ int stop(t_data **data)
 		destroy_image(&(*data)->tex.south.img, *data);
 	if ((*data)->tex.west.img)
 		destroy_image(&(*data)->tex.west.img, *data);
+	if ((*data)->tex.door.img)
+		destroy_image(&(*data)->tex.door.img, *data);
 	if ((*data)->window)
 	{
 		mlx_destroy_window((*data)->mlx, (*data)->window);
