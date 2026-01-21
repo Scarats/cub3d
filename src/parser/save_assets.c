@@ -27,7 +27,8 @@ void	ft_save_images(t_data *data)
 			&data->tex.west.w, &data->tex.west.h);
 	data->tex.east.img = mlx_xpm_file_to_image(data->mlx, data->file.east,
 			&data->tex.east.w, &data->tex.east.h);
-	data->tex.door.img = mlx_xpm_file_to_image(data->mlx, data->file.door,
+	if (data->file.door)
+		data->tex.door.img = mlx_xpm_file_to_image(data->mlx, data->file.door,
 			&data->tex.door.w, &data->tex.door.h);
 	if (!data->tex.north.img || !data->tex.south.img || !data->tex.west.img
 		|| !data->tex.east.img)
