@@ -115,12 +115,16 @@ void	ft_convert_color(t_data *data)
 	while (data->file.ceiling[i] >= '0' && data->file.ceiling[i] <= '9')
 		i++;
 	tmp = ft_split(data->file.ceiling, data->file.ceiling[i]);
+	if (!tmp[0] || !tmp[1] || !tmp[2])
+		return (ft_free_arr(&tmp), ft_error(&data, "💥 WRONG CEILING 💥", 1));
 	data->tex.ceiling = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
 	ft_free_arr(&tmp);
 	i = 0;
 	while (data->file.floor[i] >= '0' && data->file.floor[i] <= '9')
 		i++;
 	tmp = ft_split(data->file.floor, data->file.floor[i]);
+	if (!tmp[0] || !tmp[1] || !tmp[2])
+		return (ft_free_arr(&tmp), ft_error(&data, "💥 WRONG FLOOR 💥", 1));
 	data->tex.floor = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
 	ft_free_arr(&tmp);
 }

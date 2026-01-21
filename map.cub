@@ -1,10 +1,10 @@
-NO ./assets/amertens.xp
+NO ./assets/amertens.xpm
 WE ./assets/mberthol.xpm
 SO ./assets/milamber.xpm
 EA ./assets/gomerovi.xpm
 DO  ./assets/door.xpm
 F 046,046,046
-C 173,216,230
+C 173,
 
         1111111111111111111111111
         1000000000110000000000001
