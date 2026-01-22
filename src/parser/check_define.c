@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_define.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 09:33:49 by chboegne          #+#    #+#             */
+/*   Updated: 2026/01/22 09:41:53 by chboegne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	ft_map_size(t_data *data)
@@ -25,33 +37,30 @@ void	ft_map_size(t_data *data)
 
 bool	ft_check_unclosed_map(char **map, int x, int y)
 {
-	int len = 0;
-	
-	if (x < 0 || !map[x]) {
-		return(false);
-    }
-    while (map[x][len]) {
-        len++;
-    }
-    if (y < 0 || y >= len || map[x][y] == '\n') {
-        return (false);
-    }
+	int		len;
+	bool	is_closed;
+
+	len = 0;
+	while (map[x][len])
+		len++;
+	if (x < 0 || !map[x] || y < 0 || y >= len || map[x][y] == '\n')
+		return (false);
 	if (map[x][y] == '1' || map[x][y] == '_' || map[x][y] == 'd')
 		return (true);
 	if (map[x][y] == 'D')
 		map[x][y] = 'd';
 	if (map[x][y] != '1' && map[x][y] != 'd')
-    	map[x][y] = '_';
-	bool is_closed = true;
-    is_closed &= ft_check_unclosed_map(map, x + 1, y);
-    is_closed &= ft_check_unclosed_map(map, x, y + 1);
-    is_closed &= ft_check_unclosed_map(map, x - 1, y);
-    is_closed &= ft_check_unclosed_map(map, x, y - 1);
-    is_closed &= ft_check_unclosed_map(map, x + 1, y + 1);
-    is_closed &= ft_check_unclosed_map(map, x + 1, y - 1);
-    is_closed &= ft_check_unclosed_map(map, x - 1, y + 1);
-    is_closed &= ft_check_unclosed_map(map, x - 1, y - 1);
-    return is_closed;
+		map[x][y] = '_';
+	is_closed = true;
+	is_closed &= ft_check_unclosed_map(map, x + 1, y);
+	is_closed &= ft_check_unclosed_map(map, x, y + 1);
+	is_closed &= ft_check_unclosed_map(map, x - 1, y);
+	is_closed &= ft_check_unclosed_map(map, x, y - 1);
+	is_closed &= ft_check_unclosed_map(map, x + 1, y + 1);
+	is_closed &= ft_check_unclosed_map(map, x + 1, y - 1);
+	is_closed &= ft_check_unclosed_map(map, x - 1, y + 1);
+	is_closed &= ft_check_unclosed_map(map, x - 1, y - 1);
+	return (is_closed);
 }
 
 int	ft_nbr_and_player_orientation(t_data *data)
@@ -99,10 +108,10 @@ void	ft_isolate_map(t_data *data)
 		siz--;
 	siz++;
 	if (ft_strlen(data->parse.stock) + start <= siz - start)
-		return;
+		return ;
 	map = ft_strndup(data->parse.stock + start, siz - start);
 	if (!map)
-		return;
+		return ;
 	data->parse.map = ft_split(map, '\n');
 	my_array_addtolist(&data->malloc_list, (void **)data->parse.map);
 	free(map);
@@ -119,7 +128,9 @@ void	ft_convert_color(t_data *data)
 	tmp = ft_split(data->file.ceiling, data->file.ceiling[i]);
 	if (!tmp[0] || !tmp[1] || !tmp[2])
 		return (ft_free_arr(&tmp), ft_error(&data, "💥 WRONG CEILING 💥", 1));
-	data->tex.ceiling = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
+	data->tex.ceiling = ((0xFF << 24)
+			| (ft_atoi(tmp[0]) << 16)
+			| (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
 	ft_free_arr(&tmp);
 	i = 0;
 	while (data->file.floor[i] >= '0' && data->file.floor[i] <= '9')
@@ -127,6 +138,8 @@ void	ft_convert_color(t_data *data)
 	tmp = ft_split(data->file.floor, data->file.floor[i]);
 	if (!tmp[0] || !tmp[1] || !tmp[2])
 		return (ft_free_arr(&tmp), ft_error(&data, "💥 WRONG FLOOR 💥", 1));
-	data->tex.floor = ((0xFF << 24) | (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
+	data->tex.floor = ((0xFF << 24)
+			| (ft_atoi(tmp[0]) << 16)
+			| (ft_atoi(tmp[1]) << 8) | ft_atoi(tmp[2]));
 	ft_free_arr(&tmp);
 }
