@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 12:17:28 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/22 12:17:58 by chboegne         ###   ########.fr       */
+/*   Updated: 2026/01/22 19:29:51 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,29 @@ int	key_released(int keycode, t_data *data)
 	return (0);
 }
 
-int	key_pressed(int keycode, t_data *data)
+int	key_pressed(int keycode, t_data **data)
 {
 	if (keycode == KEY_LEFT)
-		look_left(data);
+		look_left(*data);
 	else if (keycode == KEY_RIGHT)
-		look_right(data);
+		look_right(*data);
 	else if (keycode == KEY_ESC)
-		stop(&data);
+		stop(data);
 	else if (keycode == KEY_W)
-		go_straight(data, 0);
+		go_straight(*data, 0);
 	else if (keycode == KEY_S)
-		go_back(data, 0);
+		go_back(*data, 0);
 	else if (keycode == KEY_A)
-		go_left(data, 0);
+		go_left(*data, 0);
 	else if (keycode == KEY_D)
-		go_right(data, 0);
+		go_right(*data, 0);
 	else if (keycode == KEY_R)
 	{
-		data->flag_reload = 1;
-		data->bullets = 10;
+		(*data)->flag_reload = 1;
+		(*data)->bullets = 10;
 	}
 	else if (keycode == KEY_E)
-		data->door = true;
+		(*data)->door = true;
 	printf("keycode = %i\n", keycode);
 	return (0);
 }
@@ -70,12 +70,13 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 }
 
 // Setups hook and then call the main_logic
-void	set_hooks(t_data *data)
+void	set_hooks(t_data **data)
 {
 	fdprintf(1, "setup_hooks\n");
-	mlx_hook(data->window, EVENT_KEY_PRESSED, 1L << 0, key_pressed, data);
-	mlx_hook(data->window, EVENT_KEY_RELEASED, 1L << 1, key_released, data);
-	mlx_mouse_hook(data->window, mouse_hook, data);
-	mlx_hook(data->window, 17, 1L << 17, stop, data);
-	mlx_hook(data->window, 6, 1L << 6, mouse_pov, data);
+	mlx_hook((*data)->window, EVENT_KEY_PRESSED, 1L << 0, key_pressed, data);
+	mlx_hook((*data)->window, EVENT_KEY_RELEASED, 1L << 1, key_released, data);
+	mlx_mouse_hook((*data)->window, mouse_hook, data);
+	mlx_hook((*data)->window, 17, 1L << 17, stop, data);
+	printf("HEY\n");
+	mlx_hook((*data)->window, 6, 1L << 6, mouse_pov, data);
 }

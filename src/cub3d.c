@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 12:22:45 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/22 12:22:46 by chboegne         ###   ########.fr       */
+/*   Updated: 2026/01/22 19:33:26 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	ft_parsing(data);
 	set_orientation(data);
 	create_window(data);
-	set_hooks(data);
+	set_hooks(&data);
 	mlx_loop_hook(data->mlx, main_logic, data);
 	mlx_loop(data->mlx);
 	stop(&data);

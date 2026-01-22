@@ -6,7 +6,7 @@
 /*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:21:04 by tcardair          #+#    #+#             */
-/*   Updated: 2026/01/22 16:23:58 by tcardair         ###   ########.fr       */
+/*   Updated: 2026/01/22 19:24:57 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,7 +296,7 @@ void			draw_d_line_b(t_dpoint *a, t_dpoint *b, t_line *l);
 void			draw_line_b(t_point *a, t_point *b, t_line *l);
 
 // HOOKS
-void			set_hooks(t_data *data);
+void			set_hooks(t_data **data);
 
 // RENDERING
 void			render_img(t_img *img, t_data *data);
