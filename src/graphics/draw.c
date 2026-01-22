@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 10:46:03 by tcardair          #+#    #+#             */
+/*   Updated: 2026/01/22 11:26:10 by tcardair         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 // Mlx might add padding to the img addr for memory management purposes.
@@ -32,18 +44,7 @@ void	draw_line(t_point a, t_point b, int color, t_img *img)
 	t_line	l;
 	int		e2;
 
-	// int i = 0; // Just for testing
-	l.dx = abs(b.x - a.x);
-	l.dy = abs(b.y - a.y);
-	if (a.x < b.x)
-		l.sx = 1;
-	else
-		l.sx = -1;
-	if (a.y < b.y)
-		l.sy = 1;
-	else
-		l.sy = -1;
-	l.error = l.dx - l.dy;
+	draw_line_b(&a, &b, &l);
 	while (1)
 	{
 		my_pixel_put(img, a.x, a.y, color);
@@ -69,17 +70,7 @@ void	draw_d_line(t_dpoint a, t_dpoint b, int color, t_img *img)
 	t_line	l;
 	int		e2;
 
-	l.dx = fabs(b.x - a.x);
-	l.dy = fabs(b.y - a.y);
-	if (a.x < b.x)
-		l.sx = 1;
-	else
-		l.sx = -1;
-	if (a.y < b.y)
-		l.sy = 1;
-	else
-		l.sy = -1;
-	l.error = l.dx - l.dy;
+	draw_d_line_b(&a, &b, &l);
 	while (1)
 	{
 		my_pixel_put(img, a.x, a.y, color);

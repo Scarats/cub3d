@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprites.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 11:31:10 by tcardair          #+#    #+#             */
+/*   Updated: 2026/01/22 11:54:43 by tcardair         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 // Check if a color is considered transparent (white-ish)
@@ -10,7 +22,6 @@ int is_transparent(int color)
     r = (color >> 16) & 0xFF;
     g = (color >> 8) & 0xFF;
     b = color & 0xFF;
-    // If all RGB components are very high (close to white), consider it transparent
     if (r >= TRANSPARENCY_THRESHOLD && g >= TRANSPARENCY_THRESHOLD 
         && b >= TRANSPARENCY_THRESHOLD)
         return (1);
