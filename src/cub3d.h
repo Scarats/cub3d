@@ -283,6 +283,8 @@ void			my_pixel_put(t_img *img, int x, int y, int color);
 void			draw_line(t_point a, t_point b, int color, t_img *img);
 void			draw_d_line(t_dpoint a, t_dpoint b, int color, t_img *img);
 int				get_offset(int y, int x, int line_length, int bits_per_pixel);
+void			draw_d_line_b(t_dpoint *a, t_dpoint *b, t_line *l);
+void			draw_line_b(t_point *a, t_point *b, t_line *l);
 
 // HOOKS
 void			set_hooks(t_data *data);
