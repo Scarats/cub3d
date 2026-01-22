@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 13:21:04 by tcardair          #+#    #+#             */
+/*   Updated: 2026/01/22 13:37:43 by tcardair         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -162,21 +174,18 @@ typedef struct s_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	
 	// To store t_data
 	void		*data;
-
 	int			h;
 	int			w;
 }				t_img;
 
 typedef struct s_sprite
 {
-	unsigned int size;
-	unsigned int counter;
-	t_pex **frames;
-
-} t_sprite;
+	unsigned int	size;
+	unsigned int	counter;
+	t_pex			**frames;
+}	t_sprite;
 
 typedef struct s_map
 {
@@ -187,7 +196,7 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	t_dpoint dir; // The point where the main vector hit a wall
+	t_dpoint	dir;
 	t_dpoint	pos;
 	t_vector	v_plane;
 	t_vector	v_dir;
@@ -196,8 +205,7 @@ typedef struct s_player
 
 typedef struct s_dda
 {
-	int is_door;
-	//
+	int			is_door;
 	t_point		map_pos;
 	t_point		step;
 	t_dpoint	delta_dist;
@@ -207,62 +215,62 @@ typedef struct s_dda
 typedef struct s_data
 {
 	// CARLOSE MERDIER
-	int side;
-	int draw_start;
-	int draw_end;
+	int				side;
+	int				draw_start;
+	int				draw_end;
 	// CARLOS PARSER
-	t_parse		parse;
-	t_file		file;
-	t_mini		mini;
-	t_tex		tex;
+	t_parse			parse;
+	t_file			file;
+	t_mini			mini;
+	t_tex			tex;
 
 	// MLX && WINDOW
-	void		*mlx;
-	void		*window;
-	int			win_height;
-	int			win_width;
+	void			*mlx;
+	void			*window;
+	int				win_height;
+	int				win_width;
 
 	// IMAGES
-	t_img *img_buff; // Image being created
-	t_img *img_main; // Currently displayed
+	t_img			*img_buff; // Image being created
+	t_img			*img_main; // Currently displayed
 	// SPRITES
-	char		saved_sprites;
-	t_sprite	normal;
-	char		flag_fire;
-	t_sprite	fire;
-	char		flag_reload;
-	t_sprite	reload;
-	t_point		sprite_start;
+	char			saved_sprites;
+	t_sprite		normal;
+	char			flag_fire;
+	t_sprite		fire;
+	char			flag_reload;
+	t_sprite		reload;
+	t_point			sprite_start;
 	struct timeval	last_frame_time;
-	int			bullets;
+	int				bullets;
 
 	// FLAGS
-	int			error;
+	int				error;
 
 	// PLAYER
-	t_player	p;
-	t_dda		dda;
-	bool		door;
+	t_player		p;
+	t_dda			dda;
+	bool			door;
 
 	// t_dpoint	d_pos;
-	t_controls	controls;
+	t_controls		controls;
 
 	// RAYCASTING
-	t_dpoint	delta_dist;
-	t_dpoint	side_dist;
-	t_point		step;
-	t_point		map_pos;
+	t_dpoint		delta_dist;
+	t_dpoint		side_dist;
+	t_point			step;
+	t_point			map_pos;
 
 	// MINIMAP
-	t_map		map;
+	t_map			map;
 
 	// MOUSE
-	t_point		*last_mouse_pos;
-	t_point		*curr_mouse_pos;
+	t_point			*last_mouse_pos;
+	t_point			*curr_mouse_pos;
 
 	// MALLOC
-	t_list		*malloc_list;
-}				t_data;
+	t_list			*malloc_list;
+}					t_data;
 
 // MAIN
 int				main_logic(t_data *data);
@@ -299,10 +307,16 @@ void			handle_door(t_data *data);
 
 // RAYCASTING
 void			raycasting(t_data *data, t_player *p);
+void			dda_wall_detection(t_dda *dda, t_data *data, int *side);
+void			compute_ray_direction(t_player *p, int x, int width,
+					t_vector *ray_dir);
+void			init_dda(t_dda *dda, t_player *p, t_vector *ray_dir);
+void			draw_wall(int x, double distance, t_data *data,
+					t_vector ray_dir);
 
 // SPRITES
 void			get_sprites(t_data *data);
-void    		draw_sprites(t_data *data);
+void			draw_sprites(t_data *data);
 
 // POV
 void			look_right(t_data *data);
@@ -328,9 +342,11 @@ void			set_position(t_controls *dir, t_data *data);
 
 // CARLOS PARSING
 void			ft_draw_minimap(t_data *data);
+void			ft_stock_element(t_data *data, char *element, char *file);
+void			ft_read_file(t_data *data);
 // check_define.c
 void			ft_map_size(t_data *data);
-bool	ft_check_unclosed_map(char **map, int x, int y);
+bool			ft_check_unclosed_map(char **map, int x, int y);
 int				ft_nbr_and_player_orientation(t_data *data);
 void			ft_isolate_map(t_data *data);
 void			ft_convert_color(t_data *data);
@@ -339,7 +355,7 @@ void			ft_convert_color(t_data *data);
 void			ft_parsing(t_data *data);
 void			ft_draw_floor_and_celling(t_data *data);
 void			ft_save_assets(t_data *data);
-void 			set_orientation(t_data *data);
+void			set_orientation(t_data *data);
 
 // MAIN
 void			ft_error(t_data **data, const char *str, int code);
@@ -347,6 +363,5 @@ void			ft_free_str(char **str);
 void			ft_free_arr(char ***arr);
 void			ft_free_struct(t_data **data);
 bool			ft_is_char_in_str(const char c, const char *type);
-
-void    		sprites_handler(t_sprite *s, t_data *data);
+void			sprites_handler(t_sprite *s, t_data *data);
 #endif
