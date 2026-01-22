@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window_handler.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 12:20:28 by chboegne          #+#    #+#             */
+/*   Updated: 2026/01/22 12:20:34 by chboegne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	get_screen_dimentions(t_data *data)
@@ -11,7 +23,6 @@ void	get_screen_dimentions(t_data *data)
 		data->error = 1;
 		stop(&data);
 	}
-	// data->win_width /= 2;
 }
 
 void	create_window(t_data *data)

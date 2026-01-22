@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   position.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 12:16:50 by chboegne          #+#    #+#             */
+/*   Updated: 2026/01/22 12:17:15 by chboegne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 t_vector	build_input_vectors(t_controls *dir)
@@ -31,7 +43,8 @@ bool	check_collision(t_data *data, t_vector *move)
 	curr_pos = data->p.pos;
 	curr_pos.x += move->dx;
 	curr_pos.y += move->dy;
-	if (data->parse.map[(int)curr_pos.y][(int)curr_pos.x] != '0' && data->parse.map[(int)curr_pos.y][(int)curr_pos.x] != 'O')
+	if (data->parse.map[(int)curr_pos.y][(int)curr_pos.x]
+		!= '0' && data->parse.map[(int)curr_pos.y][(int)curr_pos.x] != 'O')
 		return (false);
 	return (true);
 }
@@ -53,7 +66,6 @@ void	set_position(t_controls *dir, t_data *data)
 	move.dy = forward.dy * input.dy + right.dy * input.dx;
 	move.dx *= WALK_SPEED;
 	move.dy *= WALK_SPEED;
-	// Check for colision here.
 	if (check_collision(data, &move))
 	{
 		data->p.pos.x += move.dx;

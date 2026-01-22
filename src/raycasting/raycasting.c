@@ -6,7 +6,7 @@
 /*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:20:21 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/22 11:35:29 by chboegne         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:16:00 by chboegne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,18 @@ void	dda_wall_detection(t_dda *dda, t_data *data, int *side)
 	}
 }
 
-void	compute_hit_point(t_player *player, t_dda *dda, int side,
-		t_dpoint *hit_point, t_vector *ray_dir)
-{
-	double	distance;
+// void	compute_hit_point(t_player *player, t_dda *dda, int side,
+// 		t_dpoint *hit_point, t_vector *ray_dir)
+// {
+// 	double	distance;
 
-	if (side == 0)
-		distance = dda->side_dist.x - dda->delta_dist.x;
-	else
-		distance = dda->side_dist.y - dda->delta_dist.y;
-	hit_point->x = player->pos.x + ray_dir->dx * distance;
-	hit_point->y = player->pos.y + ray_dir->dy * distance;
-}
+// 	if (side == 0)
+// 		distance = dda->side_dist.x - dda->delta_dist.x;
+// 	else
+// 		distance = dda->side_dist.y - dda->delta_dist.y;
+// 	hit_point->x = player->pos.x + ray_dir->dx * distance;
+// 	hit_point->y = player->pos.y + ray_dir->dy * distance;
+// }
 
 double	get_distance(int side, t_dda *dda)
 {
@@ -120,18 +120,13 @@ double	get_distance(int side, t_dda *dda)
 		return (dda->side_dist.y - dda->delta_dist.y);
 }
 
-void	draw_wall(int x, double distance, t_data *data, int side,
-		t_vector ray_dir)
+t_pex	*draw_wall_b(t_data *data, double distance)
 {
-	int		draw_start;
-	int		draw_end;
-	int		tex_x;
-	int		tex_y;
-	double	wall_x;
 	t_pex	*current_tex;
 
-	draw_start = -(data->win_height / distance) / 2 + data->win_height / 2;
-	draw_end = (data->win_height / distance) / 2 + data->win_height / 2;
+	data->draw_start = -(data->win_height / distance)
+		/ 2 + data->win_height / 2;
+	data->draw_end = (data->win_height / distance) / 2 + data->win_height / 2;
 	if (data->parse.orientation == 'D')
 		current_tex = &data->tex.door;
 	else if (data->parse.orientation == 'N')
@@ -142,39 +137,78 @@ void	draw_wall(int x, double distance, t_data *data, int side,
 		current_tex = &data->tex.west;
 	else
 		current_tex = &data->tex.east;
-	if (side == 0)
+	return (current_tex);
+}
+
+int	draw_wall_c(t_data *data, double *wall_x, t_pex	*current_tex)
+{
+	int		tex_x;
+
+	tex_x = (int)((*wall_x - floor(*wall_x)) * (double)current_tex->w);
+	if (tex_x < 0)
+		tex_x = 0;
+	if (data->draw_start < 0)
+		data->draw_start = 0;
+	if (data->draw_end > data->win_width)
+		data->draw_end = data->win_width;
+	if (tex_x >= current_tex->w)
+		tex_x = current_tex->w - 1;
+	return (tex_x);
+}
+
+void	draw_wall(int x, double distance, t_data *data,
+		t_vector ray_dir)
+{
+	int		tex_x;
+	int		tex_y;
+	double	wall_x;
+	t_pex	*current_tex;
+
+	current_tex = draw_wall_b(data, distance);
+	if (data->side == 0)
 		wall_x = (data->p.pos.y + distance * ray_dir.dy);
 	else
 		wall_x = (data->p.pos.x + distance * ray_dir.dx);
-	tex_x = (int)((wall_x - floor(wall_x)) * (double)current_tex->w);
-	if (tex_x < 0)
-		tex_x = 0;
-	if (draw_start < 0)
-		draw_start = 0;
-	if (draw_end > data->win_width)
-		draw_end = data->win_width;
-
-	if (tex_x >= current_tex->w)
-		tex_x = current_tex->w - 1;
-	while (draw_start <= draw_end)
+	tex_x = draw_wall_c(data, &wall_x, current_tex);
+	while (data->draw_start <= data->draw_end)
 	{
-		tex_y = (((draw_start * 256 - data->win_height * 128 + (data->win_height
-							/ distance) * 128) * current_tex->h)
+		tex_y = (((data->draw_start * 256 - data->win_height
+						* 128 + (data->win_height / distance)
+						* 128) * current_tex->h)
 				/ (data->win_height / distance)) / 256;
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= current_tex->h)
 			tex_y = current_tex->h - 1;
-		my_pixel_put(data->img_buff, x, draw_start, current_tex->data[tex_y
-			* (current_tex->size / 4) + tex_x]);
-		draw_start++;
+		my_pixel_put(data->img_buff, x, data->draw_start,
+			current_tex->data[tex_y * (current_tex->size / 4) + tex_x]);
+		data->draw_start++;
+	}
+}
+
+void	raycasting_b(t_data *data, t_vector	ray_dir)
+{
+	if (data->dda.is_door)
+		data->parse.orientation = 'D';
+	else if (data->side == 0)
+	{
+		if (ray_dir.dx > 0)
+			data->parse.orientation = 'E';
+		else
+			data->parse.orientation = 'W';
+	}
+	else
+	{
+		if (ray_dir.dy > 0)
+			data->parse.orientation = 'S';
+		else
+			data->parse.orientation = 'N';
 	}
 }
 
 void	raycasting(t_data *data, t_player *p)
 {
 	int			x;
-	int			side;
 	t_vector	ray_dir;
 	double		distance;
 
@@ -183,24 +217,9 @@ void	raycasting(t_data *data, t_player *p)
 	{
 		compute_ray_direction(p, x, data->win_width, &ray_dir);
 		init_dda(&data->dda, p, &ray_dir);
-		dda_wall_detection(&data->dda, data, &side);
-		if (data->dda.is_door)
-			data->parse.orientation = 'D';
-		else if (side == 0)
-		{
-			if (ray_dir.dx > 0)
-				data->parse.orientation = 'E';
-			else
-				data->parse.orientation = 'W';
-		}
-		else
-		{
-			if (ray_dir.dy > 0)
-				data->parse.orientation = 'S';
-			else
-				data->parse.orientation = 'N';
-		}
-		distance = get_distance(side, &data->dda);
-		draw_wall(x, distance, data, side, ray_dir);
+		dda_wall_detection(&data->dda, data, &data->side);
+		raycasting_b(data, ray_dir);
+		distance = get_distance(data->side, &data->dda);
+		draw_wall(x, distance, data, ray_dir);
 	}
 }

@@ -208,7 +208,8 @@ typedef struct s_data
 {
 	// CARLOSE MERDIER
 	int side;
-	double wall_x;
+	int draw_start;
+	int draw_end;
 	// CARLOS PARSER
 	t_parse		parse;
 	t_file		file;

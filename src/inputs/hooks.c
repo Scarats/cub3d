@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 12:17:28 by chboegne          #+#    #+#             */
+/*   Updated: 2026/01/22 12:17:58 by chboegne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	key_released(int keycode, t_data *data)
@@ -19,7 +31,6 @@ int	key_released(int keycode, t_data *data)
 
 int	key_pressed(int keycode, t_data *data)
 {
-	// printf("%i\n", keycode);
 	if (keycode == KEY_LEFT)
 		look_left(data);
 	else if (keycode == KEY_RIGHT)
@@ -45,12 +56,11 @@ int	key_pressed(int keycode, t_data *data)
 	return (0);
 }
 
-int mouse_hook(int button, int x, int y, t_data *data)
+int	mouse_hook(int button, int x, int y, t_data *data)
 {
 	(void)x;
 	(void)y;
 	(void)button;
-
 	if (!data->flag_reload && data->bullets > 0)
 	{
 		data->flag_fire = 1;

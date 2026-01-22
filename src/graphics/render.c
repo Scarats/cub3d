@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 12:22:22 by chboegne          #+#    #+#             */
+/*   Updated: 2026/01/22 12:22:35 by chboegne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	render_img(t_img *img, t_data *data)
 {
 	if (!img)
-		return (void)printf(RED "NULL IMG\n" RESET);
+		return ((void)printf(RED "NULL IMG\n" RESET));
 	mlx_put_image_to_window(data->mlx, data->window, img->mlx_img, 0, 0);
 }
 

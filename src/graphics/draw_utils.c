@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_utils->c                                       :+:      :+:    :+:   */
+/*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcardair <tcardair@student->42->fr>          +#+  +:+       +#+        */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/22 10:48:15 by tcardair          #+#    #+#             */
-/*   Updated: 2026/01/22 11:20:35 by tcardair         ###   ########->fr       */
+/*   Created: 2026/01/22 12:20:07 by chboegne          #+#    #+#             */
+/*   Updated: 2026/01/22 12:20:21 by chboegne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	draw_line_b(t_point *a, t_point *b, t_line *l)
 		l->sy = -1;
 	l->error = l->dx - l->dy;
 }
-
 
 void	draw_d_line_b(t_dpoint *a, t_dpoint *b, t_line *l)
 {
