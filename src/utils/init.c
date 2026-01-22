@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:16:03 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/22 11:17:35 by chboegne         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:31:58 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+bool	check_file(const char *path)
+{
+	int fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (false);
+	close(fd);
+	return (true);
+}
 
 void	set_orientation(t_data *data)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:17:43 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/22 11:34:51 by chboegne         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:34:02 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,24 @@ void	free_sprites(t_data *data)
 
 	printf("free_sprites\n");
 	i = -1;
-	while (++i < data->normal.size)
-		destroy_image(&data->normal.frames[i]->img, data);
+	printf(GREEN""RESET);
+	while (data->normal.frames && ++i < data->normal.size)
+	{
+		if (data->normal.frames[i]->img)
+			destroy_image(&data->normal.frames[i]->img, data);
+	}
 	i = -1;
-	while (++i < data->fire.size)
-		destroy_image(&data->fire.frames[i]->img, data);
+	while (data->fire.frames && ++i < data->fire.size)
+	{
+		if (data->fire.frames[i]->img)
+			destroy_image(&data->fire.frames[i]->img, data);
+	}
 	i = -1;
-	while (++i < data->reload.size)
-		destroy_image(&data->reload.frames[i]->img, data);
+	while (data->reload.frames && ++i < data->reload.size)
+	{
+		if (data->reload.frames[i]->img)
+			destroy_image(&data->reload.frames[i]->img, data);
+	}
 }
 
 int	stop_b(t_data **data, int error)
@@ -62,8 +72,7 @@ int	stop(t_data **data)
 
 	fdprintf(1, "stop\n");
 	error = (*data)->error;
-	if ((*data)->saved_sprites == 1)
-		free_sprites(*data);
+	free_sprites(*data);
 	ft_free_struct(data);
 	if ((*data)->img_buff)
 		destroy_image(&(*data)->img_buff->mlx_img, *data);

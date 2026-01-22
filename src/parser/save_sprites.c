@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 09:42:13 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/22 09:48:17 by chboegne         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:45:17 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,27 @@ char	*build_name(char *name, char *path, int number)
 	return (name);
 }
 
+bool	free_t_pex(t_pex **imgs, t_data *data, int size)
+{
+	int	i;
+
+	i = 0;
+	if (!imgs || !*imgs)
+		return (true);
+	while (i < size && imgs[i])
+	{
+		if (imgs[i]->img)
+			destroy_image(&imgs[i]->img, data);
+		i++;
+	}
+	return (true);
+}
+
 // Save an array of t_img with this kinda name : "path/to/file_"
 // After the "_" comes the number. The function will import up to "size"
 // The name is rebuilt using "  .xpm", the 2 spaces are for file number.
 // WARNING: the file number has to be < 99, or add the according amount
 //  of spaces.
-
 t_pex	**save_sprites(t_data *data, char *path, const unsigned int size)
 {
 	unsigned int	i;
@@ -59,7 +74,7 @@ t_pex	**save_sprites(t_data *data, char *path, const unsigned int size)
 	{
 		name = build_name(name, path, i + 1);
 		printf("file %s\n", name);
-		if (access(name, R_OK) != 0)
+		if (!check_file(name) && free_t_pex(imgs, data, i))
 			return (free(name), ft_error(&data, "not accessible", 2), NULL);
 		imgs[i] = my_malloc(NULL, &data->malloc_list, sizeof(t_pex));
 		imgs[i]->img = mlx_xpm_file_to_image(data->mlx,

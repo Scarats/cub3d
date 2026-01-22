@@ -6,7 +6,7 @@
 /*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:21:04 by tcardair          #+#    #+#             */
-/*   Updated: 2026/01/22 13:37:43 by tcardair         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:23:58 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -364,4 +364,7 @@ void			ft_free_arr(char ***arr);
 void			ft_free_struct(t_data **data);
 bool			ft_is_char_in_str(const char c, const char *type);
 void			sprites_handler(t_sprite *s, t_data *data);
+void			destroy_image(void **img, t_data *data);
+bool			check_file(const char *path);
+
 #endif
