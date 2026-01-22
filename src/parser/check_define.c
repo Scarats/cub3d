@@ -6,7 +6,7 @@
 /*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 09:33:49 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/22 09:41:53 by chboegne         ###   ########.fr       */
+/*   Updated: 2026/01/22 15:14:10 by chboegne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	ft_isolate_map(t_data *data)
 	while (siz > 0 && data->parse.stock[siz] != '1')
 		siz--;
 	siz++;
-	if (ft_strlen(data->parse.stock) + start <= siz - start)
+	if (siz <= start || ft_strlen(data->parse.stock) + start <= siz - start)
 		return ;
 	map = ft_strndup(data->parse.stock + start, siz - start);
 	if (!map)
