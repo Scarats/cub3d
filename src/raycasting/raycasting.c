@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 11:20:21 by chboegne          #+#    #+#             */
+/*   Updated: 2026/01/22 11:35:29 by chboegne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-// Compute the ray direction according to x (position on the screen) and the curr direction
+// Compute the ray direction according to
+// x (position on the screen) and the curr direction
 void	compute_ray_direction(t_player *p, int x, int width, t_vector *ray_dir)
 {
 	double	screen_x;
@@ -8,6 +21,21 @@ void	compute_ray_direction(t_player *p, int x, int width, t_vector *ray_dir)
 	screen_x = 2.0 * x / width - 1.0;
 	ray_dir->dx = p->v_dir.dx + p->v_plane.dx * screen_x;
 	ray_dir->dy = p->v_dir.dy + p->v_plane.dy * screen_x;
+}
+
+void	init_dda_b(t_dda *dda, t_player *p, t_vector *ray_dir)
+{
+	if (ray_dir->dy < 0)
+	{
+		dda->step.y = -1;
+		dda->side_dist.y = (p->pos.y - dda->map_pos.y) * dda->delta_dist.y;
+	}
+	else
+	{
+		dda->step.y = 1;
+		dda->side_dist.y = (dda->map_pos.y + 1.0 - p->pos.y)
+			* dda->delta_dist.y;
+	}
 }
 
 void	init_dda(t_dda *dda, t_player *p, t_vector *ray_dir)
@@ -28,23 +56,26 @@ void	init_dda(t_dda *dda, t_player *p, t_vector *ray_dir)
 		dda->side_dist.x = (dda->map_pos.x + 1.0 - p->pos.x)
 			* dda->delta_dist.x;
 	}
-	if (ray_dir->dy < 0)
+	init_dda_b(dda, p, ray_dir);
+}
+
+void	dda_wall_detection_b(t_dda *dda, t_data *data, int *hit)
+{
+	char	cell;
+
+	cell = data->parse.map[dda->map_pos.y][dda->map_pos.x];
+	if (cell == '1')
+		*hit = 1;
+	else if (cell == 'D')
 	{
-		dda->step.y = -1;
-		dda->side_dist.y = (p->pos.y - dda->map_pos.y) * dda->delta_dist.y;
-	}
-	else
-	{
-		dda->step.y = 1;
-		dda->side_dist.y = (dda->map_pos.y + 1.0 - p->pos.y)
-			* dda->delta_dist.y;
+		dda->is_door = 1;
+		*hit = 1;
 	}
 }
 
 void	dda_wall_detection(t_dda *dda, t_data *data, int *side)
 {
-	int	hit;
-	char	cell;
+	int		hit;
 
 	hit = 0;
 	while (hit == 0)
@@ -64,17 +95,7 @@ void	dda_wall_detection(t_dda *dda, t_data *data, int *side)
 		if (dda->map_pos.y < 0 || dda->map_pos.y >= data->parse.height
 			|| dda->map_pos.x < 0 || dda->map_pos.x >= data->parse.width)
 			break ;
-		// if (data->parse.map[dda->map_pos.y][dda->map_pos.x] != '0' && data->parse.map[dda->map_pos.y][dda->map_pos.x] != 'O')
-		// 	hit = 1;
-		cell = data->parse.map[dda->map_pos.y][dda->map_pos.x];
-
-		if (cell == '1')
-			hit = 1;
-		else if (cell == 'D')
-		{
-			dda->is_door = 1;
-			hit = 1;
-		}
+		dda_wall_detection_b(dda, data, &hit);
 	}
 }
 
@@ -111,15 +132,13 @@ void	draw_wall(int x, double distance, t_data *data, int side,
 
 	draw_start = -(data->win_height / distance) / 2 + data->win_height / 2;
 	draw_end = (data->win_height / distance) / 2 + data->win_height / 2;
-	//
 	if (data->parse.orientation == 'D')
 		current_tex = &data->tex.door;
-	//
-	else if (data->parse.orientation == 'N') // Nord
+	else if (data->parse.orientation == 'N')
 		current_tex = &data->tex.north;
-	else if (data->parse.orientation == 'S') // Sud
+	else if (data->parse.orientation == 'S')
 		current_tex = &data->tex.south;
-	else if (data->parse.orientation == 'W') // Ouest
+	else if (data->parse.orientation == 'W')
 		current_tex = &data->tex.west;
 	else
 		current_tex = &data->tex.east;
@@ -165,26 +184,22 @@ void	raycasting(t_data *data, t_player *p)
 		compute_ray_direction(p, x, data->win_width, &ray_dir);
 		init_dda(&data->dda, p, &ray_dir);
 		dda_wall_detection(&data->dda, data, &side);
-		// MANAGE THE ORIENTATION (find the value in s_file)
-		//
 		if (data->dda.is_door)
 			data->parse.orientation = 'D';
-		//
 		else if (side == 0)
 		{
 			if (ray_dir.dx > 0)
-				data->parse.orientation = 'E'; // Est
+				data->parse.orientation = 'E';
 			else
-				data->parse.orientation = 'W'; // Ouest
+				data->parse.orientation = 'W';
 		}
 		else
 		{
 			if (ray_dir.dy > 0)
-				data->parse.orientation = 'S'; // Sud
+				data->parse.orientation = 'S';
 			else
-				data->parse.orientation = 'N'; // Nord
+				data->parse.orientation = 'N';
 		}
-		//
 		distance = get_distance(side, &data->dda);
 		draw_wall(x, distance, data, side, ray_dir);
 	}

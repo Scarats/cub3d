@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stop.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 11:17:43 by chboegne          #+#    #+#             */
+/*   Updated: 2026/01/22 11:34:51 by chboegne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-void destroy_image(void **img, t_data *data)
+void	destroy_image(void **img, t_data *data)
 {
 	if (img && *img)
 	{
@@ -9,9 +21,9 @@ void destroy_image(void **img, t_data *data)
 	}
 }
 
-void free_sprites(t_data *data)
+void	free_sprites(t_data *data)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	printf("free_sprites\n");
 	i = -1;
@@ -25,10 +37,28 @@ void free_sprites(t_data *data)
 		destroy_image(&data->reload.frames[i]->img, data);
 }
 
-// Free the allocated memory and exit the program using the error number.
-int stop(t_data **data)
+int	stop_b(t_data **data, int error)
 {
-	int error;
+	if ((*data)->window)
+	{
+		mlx_destroy_window((*data)->mlx, (*data)->window);
+		(*data)->window = NULL;
+	}
+	if ((*data)->mlx)
+	{
+		mlx_destroy_display((*data)->mlx);
+		(*data)->mlx = NULL;
+	}
+	my_free(&(*data)->malloc_list);
+	ft_memset(*data, 0, sizeof(t_data));
+	free(*data);
+	exit(error);
+}
+
+// Free the allocated memory and exit the program using the error number.
+int	stop(t_data **data)
+{
+	int	error;
 
 	fdprintf(1, "stop\n");
 	error = (*data)->error;
@@ -49,23 +79,10 @@ int stop(t_data **data)
 		destroy_image(&(*data)->tex.west.img, *data);
 	if ((*data)->tex.door.img)
 		destroy_image(&(*data)->tex.door.img, *data);
-	if ((*data)->window)
-	{
-		mlx_destroy_window((*data)->mlx, (*data)->window);
-		(*data)->window = NULL;
-	}
-	if ((*data)->mlx)
-	{
-		mlx_destroy_display((*data)->mlx);
-		(*data)->mlx = NULL;
-	}
-	my_free(&(*data)->malloc_list);
-	ft_memset(*data, 0, sizeof(t_data));
-	free(*data);
-	exit(error);
+	return (stop_b(data, error));
 }
 
-void ft_error(t_data **s, const char *str, int code)
+void	ft_error(t_data **s, const char *str, int code)
 {
 	(*s)->error = code;
 	if (str)

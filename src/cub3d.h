@@ -197,6 +197,7 @@ typedef struct s_player
 typedef struct s_dda
 {
 	int is_door;
+	//
 	t_point		map_pos;
 	t_point		step;
 	t_dpoint	delta_dist;
@@ -205,6 +206,9 @@ typedef struct s_dda
 
 typedef struct s_data
 {
+	// CARLOSE MERDIER
+	int side;
+	double wall_x;
 	// CARLOS PARSER
 	t_parse		parse;
 	t_file		file;

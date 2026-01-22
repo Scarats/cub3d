@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save_assets.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 11:13:47 by chboegne          #+#    #+#             */
+/*   Updated: 2026/01/22 11:36:30 by chboegne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	ft_minimap_mesure(t_data *data)
@@ -17,22 +29,8 @@ void	ft_minimap_mesure(t_data *data)
 	data->mini.pixel = data->mini.height / data->parse.height;
 }
 
-void	ft_save_images(t_data *data)
+void	ft_save_images_b(t_data *data)
 {
-	data->tex.north.img = mlx_xpm_file_to_image(data->mlx, data->file.north,
-			&data->tex.north.w, &data->tex.north.h);
-	data->tex.south.img = mlx_xpm_file_to_image(data->mlx, data->file.south,
-			&data->tex.south.w, &data->tex.south.h);
-	data->tex.west.img = mlx_xpm_file_to_image(data->mlx, data->file.west,
-			&data->tex.west.w, &data->tex.west.h);
-	data->tex.east.img = mlx_xpm_file_to_image(data->mlx, data->file.east,
-			&data->tex.east.w, &data->tex.east.h);
-	if (data->file.door)
-		data->tex.door.img = mlx_xpm_file_to_image(data->mlx, data->file.door,
-			&data->tex.door.w, &data->tex.door.h);
-	if (!data->tex.north.img || !data->tex.south.img || !data->tex.west.img
-		|| !data->tex.east.img)
-		ft_error(&data, "💥 FT_SAVE_ASSET 💥", 1);
 	data->tex.north.data = (int *)mlx_get_data_addr(data->tex.north.img,
 			&data->tex.north.bpp, &data->tex.north.size,
 			&data->tex.north.endian);
@@ -45,16 +43,31 @@ void	ft_save_images(t_data *data)
 			&data->tex.east.bpp, &data->tex.east.size, &data->tex.east.endian);
 	if (data->tex.door.img)
 		data->tex.door.data = (int *)mlx_get_data_addr(data->tex.door.img,
-			&data->tex.door.bpp, &data->tex.door.size, &data->tex.door.endian);
-	
+				&data->tex.door.bpp,
+				&data->tex.door.size, &data->tex.door.endian);
+}
+
+void	ft_save_images(t_data *data)
+{
+	data->tex.north.img = mlx_xpm_file_to_image(data->mlx, data->file.north,
+			&data->tex.north.w, &data->tex.north.h);
+	data->tex.south.img = mlx_xpm_file_to_image(data->mlx, data->file.south,
+			&data->tex.south.w, &data->tex.south.h);
+	data->tex.west.img = mlx_xpm_file_to_image(data->mlx, data->file.west,
+			&data->tex.west.w, &data->tex.west.h);
+	data->tex.east.img = mlx_xpm_file_to_image(data->mlx, data->file.east,
+			&data->tex.east.w, &data->tex.east.h);
+	if (data->file.door)
+		data->tex.door.img = mlx_xpm_file_to_image(data->mlx, data->file.door,
+				&data->tex.door.w, &data->tex.door.h);
+	if (!data->tex.north.img || !data->tex.south.img || !data->tex.west.img
+		|| !data->tex.east.img)
+		ft_error(&data, "💥 FT_SAVE_ASSET 💥", 1);
+	ft_save_images_b(data);
 }
 
 void	ft_save_assets(t_data *data)
 {
 	ft_minimap_mesure(data);
 	ft_save_images(data);
-	// my_addtolist(&data->malloc_list, &data->tex.north.img);
-	// my_addtolist(&data->malloc_list, &data->tex.east.img);
-	// my_addtolist(&data->malloc_list, &data->tex.south.img);
-	// my_addtolist(&data->malloc_list, &data->tex.west.img);
 }
