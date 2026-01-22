@@ -6,7 +6,7 @@
 /*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 12:17:28 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/22 19:29:51 by tcardair         ###   ########.fr       */
+/*   Updated: 2026/01/22 19:41:02 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ void	set_hooks(t_data **data)
 {
 	fdprintf(1, "setup_hooks\n");
 	mlx_hook((*data)->window, EVENT_KEY_PRESSED, 1L << 0, key_pressed, data);
-	mlx_hook((*data)->window, EVENT_KEY_RELEASED, 1L << 1, key_released, data);
-	mlx_mouse_hook((*data)->window, mouse_hook, data);
+	mlx_hook((*data)->window, EVENT_KEY_RELEASED, 1L << 1, key_released, *data);
+	mlx_mouse_hook((*data)->window, mouse_hook, *data);
 	mlx_hook((*data)->window, 17, 1L << 17, stop, data);
 	printf("HEY\n");
-	mlx_hook((*data)->window, 6, 1L << 6, mouse_pov, data);
+	mlx_hook((*data)->window, 6, 1L << 6, mouse_pov, *data);
 }
