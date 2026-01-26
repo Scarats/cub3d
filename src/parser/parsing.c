@@ -6,7 +6,7 @@
 /*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 09:20:59 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/26 11:26:34 by tcardair         ###   ########.fr       */
+/*   Updated: 2026/01/26 12:07:48 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void	ft_parsing_b(t_data *data)
 			if (data->parse.map[i][j] == '_')
 				data->parse.map[i][j] = '0';
 			if (data->parse.map[i][j] == 'd')
+			{
 				data->parse.map[i][j] = 'D';
+				data->door_d = true;
+			}
 			j++;
 		}
 		i++;

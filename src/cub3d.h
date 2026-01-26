@@ -6,7 +6,7 @@
 /*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:21:04 by tcardair          #+#    #+#             */
-/*   Updated: 2026/01/26 11:26:14 by tcardair         ###   ########.fr       */
+/*   Updated: 2026/01/26 11:46:18 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,7 @@ typedef struct s_data
 	int				side;
 	int				draw_start;
 	int				draw_end;
+	bool			door_d;
 	// CARLOS PARSER
 	t_parse			parse;
 	t_file			file;

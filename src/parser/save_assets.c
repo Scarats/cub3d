@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_assets.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:13:47 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/22 11:36:30 by chboegne         ###   ########.fr       */
+/*   Updated: 2026/01/26 12:07:01 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ void	ft_save_images(t_data *data)
 			&data->tex.west.w, &data->tex.west.h);
 	data->tex.east.img = mlx_xpm_file_to_image(data->mlx, data->file.east,
 			&data->tex.east.w, &data->tex.east.h);
-	if (data->file.door)
+	if (data->file.door == NULL && data->door_d == true)
+		ft_error(&data, "💥 PAS PORTE 💥", 1);
+	else if (data->file.door)
 		data->tex.door.img = mlx_xpm_file_to_image(data->mlx, data->file.door,
 				&data->tex.door.w, &data->tex.door.h);
 	if (!data->tex.north.img || !data->tex.south.img || !data->tex.west.img
