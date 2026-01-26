@@ -6,7 +6,7 @@
 /*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:21:04 by tcardair          #+#    #+#             */
-/*   Updated: 2026/01/22 19:24:57 by tcardair         ###   ########.fr       */
+/*   Updated: 2026/01/26 11:26:14 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,7 +346,7 @@ void			ft_stock_element(t_data *data, char *element, char *file);
 void			ft_read_file(t_data *data);
 // check_define.c
 void			ft_map_size(t_data *data);
-bool			ft_check_unclosed_map(char **map, int x, int y);
+bool			ft_check_unclosed_map(char **map, int x, int y, int len);
 int				ft_nbr_and_player_orientation(t_data *data);
 void			ft_isolate_map(t_data *data);
 void			ft_convert_color(t_data *data);

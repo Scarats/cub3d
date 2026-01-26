@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_define.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chboegne <chboegne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcardair <tcardair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 09:33:49 by chboegne          #+#    #+#             */
-/*   Updated: 2026/01/22 15:14:10 by chboegne         ###   ########.fr       */
+/*   Updated: 2026/01/26 11:31:27 by tcardair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void	ft_map_size(t_data *data)
 	data->parse.height = i;
 }
 
-bool	ft_check_unclosed_map(char **map, int x, int y)
+bool	ft_check_unclosed_map(char **map, int x, int y, int len)
 {
-	int		len;
 	bool	is_closed;
 
-	len = 0;
+	if (x < 0 || !map[x])
+		return (false);
 	while (map[x][len])
 		len++;
-	if (x < 0 || !map[x] || y < 0 || y >= len || map[x][y] == '\n')
+	if (y < 0 || y >= len || map[x][y] == '\n')
 		return (false);
 	if (map[x][y] == '1' || map[x][y] == '_' || map[x][y] == 'd')
 		return (true);
@@ -52,14 +52,14 @@ bool	ft_check_unclosed_map(char **map, int x, int y)
 	if (map[x][y] != '1' && map[x][y] != 'd')
 		map[x][y] = '_';
 	is_closed = true;
-	is_closed &= ft_check_unclosed_map(map, x + 1, y);
-	is_closed &= ft_check_unclosed_map(map, x, y + 1);
-	is_closed &= ft_check_unclosed_map(map, x - 1, y);
-	is_closed &= ft_check_unclosed_map(map, x, y - 1);
-	is_closed &= ft_check_unclosed_map(map, x + 1, y + 1);
-	is_closed &= ft_check_unclosed_map(map, x + 1, y - 1);
-	is_closed &= ft_check_unclosed_map(map, x - 1, y + 1);
-	is_closed &= ft_check_unclosed_map(map, x - 1, y - 1);
+	is_closed &= ft_check_unclosed_map(map, x + 1, y, 0);
+	is_closed &= ft_check_unclosed_map(map, x, y + 1, 0);
+	is_closed &= ft_check_unclosed_map(map, x - 1, y, 0);
+	is_closed &= ft_check_unclosed_map(map, x, y - 1, 0);
+	is_closed &= ft_check_unclosed_map(map, x + 1, y + 1, 0);
+	is_closed &= ft_check_unclosed_map(map, x + 1, y - 1, 0);
+	is_closed &= ft_check_unclosed_map(map, x - 1, y + 1, 0);
+	is_closed &= ft_check_unclosed_map(map, x - 1, y - 1, 0);
 	return (is_closed);
 }
 
